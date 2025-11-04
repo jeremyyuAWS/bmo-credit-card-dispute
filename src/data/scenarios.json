@@ -231,6 +231,238 @@
           "delay": 1500
         }
       ]
+    },
+    {
+      "id": "proactive-fraud-stop",
+      "title": "Proactive Fraud Prevention",
+      "description": "AI stops fraud before customer notices",
+      "customer": {
+        "name": "Jennifer Wu",
+        "initials": "JW"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi Jennifer, we just blocked a $2,847 attempted purchase from 'Tech Warehouse Malaysia' on your card. This doesn't match your spending patterns.",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "What?! I'm in Toronto and I've never bought anything from Malaysia. Thank you for catching this!",
+          "delay": 2800
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "You're safe — we stopped it in real-time. Your card has been secured. Let me verify your recent legitimate transactions.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Confirmed fraud attempt. Geolocation mismatch, unusual merchant category, and velocity check flagged this immediately.",
+          "delay": 2000
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Zero liability protection activated per Reg E. Customer has no financial responsibility for attempted fraud.",
+          "delay": 1800
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "New card issued with overnight delivery. Your digital wallet cards are already updated and ready to use.",
+          "delay": 2000
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "I've automatically transferred your 8 recurring payments to your new card. No subscriptions interrupted.",
+          "delay": 2200
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Threat neutralized ✅ This attack pattern shared across network to protect all BMO customers.",
+          "delay": 1500
+        }
+      ]
+    },
+    {
+      "id": "international-currency",
+      "title": "International Currency Dispute",
+      "description": "Hidden currency conversion fees",
+      "customer": {
+        "name": "Raj Patel",
+        "initials": "RP"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hello Raj, we noticed your €500 Paris hotel charge converted to $847 CAD. That's an 18% markup above standard rates.",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "Yes! They told me it would be around $700. I feel like I was overcharged.",
+          "delay": 2500
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Let me investigate the exchange rate applied and check the merchant's currency disclosure practices.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Hotel used dynamic currency conversion without proper disclosure. Should have been $720 CAD at interbank rate.",
+          "delay": 2200
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Card network rules violated — merchants must disclose conversion rates. This qualifies for dispute under international transaction protections.",
+          "delay": 2000
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$127 difference credited back to your account. Full chargeback filed for undisclosed currency markup.",
+          "delay": 2200
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "Pro tip: Declining dynamic currency conversion and paying in local currency saves 3-8% on future international purchases.",
+          "delay": 2500
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Case won ✅ This merchant flagged. We'll alert customers about currency conversion options at this location.",
+          "delay": 1500
+        }
+      ]
+    },
+    {
+      "id": "elder-protection",
+      "title": "Elder Fraud Protection",
+      "description": "Protecting vulnerable customer from scam",
+      "customer": {
+        "name": "Dorothy Evans",
+        "initials": "DE"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi Dorothy, we detected three unusual wire transfers totaling $15,000 to 'Tech Support Services' this week. Is everything okay?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "Yes, the nice man said my computer had viruses and I needed to pay to fix them.",
+          "delay": 2800
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Dorothy, this sounds like a tech support scam. Real companies don't ask for wire transfers. Let me help protect your account immediately.",
+          "delay": 2500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Pattern matches known elder fraud schemes. Customer was likely coerced. Payments made under false pretenses.",
+          "delay": 2200
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Elder financial abuse protections apply. BMO's duty of care requires intervention and recovery assistance.",
+          "delay": 2000
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Wire transfers recalled — $15,000 recovered. Account secured with enhanced fraud monitoring and family notification option enabled.",
+          "delay": 2500
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "I've added your daughter Lisa as a trusted contact for large transactions. We'll notify her of any unusual activity.",
+          "delay": 2400
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Customer protected ✅ Scam pattern added to real-time detection. We're calling other customers who may be targeted.",
+          "delay": 1800
+        }
+      ]
+    },
+    {
+      "id": "medical-billing",
+      "title": "Medical Billing Dispute",
+      "description": "Complex insurance coordination issue",
+      "customer": {
+        "name": "Patricia Johnson",
+        "initials": "PJ"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi Patricia, we see a $2,340 charge from City Medical Center. Your insurance typically covers these expenses. Would you like us to investigate?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "Yes please! My insurance said they covered it, but the hospital still charged my card. I'm so confused.",
+          "delay": 3000
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Medical billing can be stressful. Let me coordinate with both your insurance and the hospital to sort this out for you.",
+          "delay": 2000
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Insurance paid $1,890 but hospital double-billed. Coordination of benefits error. Customer should owe $0 after insurance.",
+          "delay": 2500
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Medical billing regulations reviewed. Hospital violated balance billing protections. Customer has legal protections here.",
+          "delay": 2200
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$2,340 credited immediately. We're contacting the hospital's billing department directly to resolve the insurance coordination error.",
+          "delay": 2400
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "We've documented everything for your records. If the hospital contacts you, just refer them to BMO's dispute department.",
+          "delay": 2300
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Issue resolved ✅ This hospital's billing system flagged. We'll expedite future insurance disputes from this provider.",
+          "delay": 1600
+        }
+      ]
     }
   ],
   "agents": [
