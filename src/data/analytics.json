@@ -1,0 +1,75 @@
+{
+  "metrics": [
+    {
+      "id": "resolution-time",
+      "title": "Avg Resolution Time",
+      "value": "24 min",
+      "change": "-68%",
+      "trend": "down",
+      "description": "vs. traditional 7-14 days"
+    },
+    {
+      "id": "manual-intervention",
+      "title": "Manual Intervention Rate",
+      "value": "4.3%",
+      "change": "-82%",
+      "trend": "down",
+      "description": "Cases requiring human review"
+    },
+    {
+      "id": "compliance-violations",
+      "title": "Compliance Violations",
+      "value": "0",
+      "change": "100%",
+      "trend": "up",
+      "description": "Live policy violations detected"
+    },
+    {
+      "id": "customer-sentiment",
+      "title": "Customer Sentiment",
+      "value": "+82",
+      "change": "+35%",
+      "trend": "up",
+      "description": "Satisfaction score from transcripts"
+    },
+    {
+      "id": "refund-accuracy",
+      "title": "Refund Accuracy",
+      "value": "98.9%",
+      "change": "+12%",
+      "trend": "up",
+      "description": "AI vs. human audit match rate"
+    },
+    {
+      "id": "fraud-prediction",
+      "title": "Fraud Prediction Lift",
+      "value": "+15%",
+      "change": "+15%",
+      "trend": "up",
+      "description": "Month-over-month accuracy improvement"
+    }
+  ],
+  "resolutionTimeline": [
+    { "month": "Jan", "traditional": 288, "agentic": 24 },
+    { "month": "Feb", "traditional": 312, "agentic": 22 },
+    { "month": "Mar", "traditional": 276, "agentic": 26 },
+    { "month": "Apr", "traditional": 298, "agentic": 23 },
+    { "month": "May", "traditional": 305, "agentic": 25 },
+    { "month": "Jun", "traditional": 290, "agentic": 24 }
+  ],
+  "agentWorkload": [
+    { "name": "Fraud Sentinel", "value": 18 },
+    { "name": "Outreach", "value": 15 },
+    { "name": "Eligibility", "value": 16 },
+    { "name": "Compliance Guard", "value": 14 },
+    { "name": "Resolution", "value": 17 },
+    { "name": "Recovery", "value": 12 },
+    { "name": "Learning", "value": 8 }
+  ],
+  "processComparison": [
+    { "metric": "Steps", "traditional": 72, "agentic": 6 },
+    { "metric": "Teams", "traditional": 9, "agentic": 1 },
+    { "metric": "Days", "traditional": 10, "agentic": 0.02 },
+    { "metric": "Touch Points", "traditional": 24, "agentic": 2 }
+  ]
+}

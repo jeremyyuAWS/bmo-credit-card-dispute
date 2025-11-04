@@ -1,0 +1,287 @@
+{
+  "scenarios": [
+    {
+      "id": "fraudulent-charge",
+      "title": "Fraudulent Charge",
+      "description": "Customer disputes unauthorized transaction",
+      "customer": {
+        "name": "Sarah Mitchell",
+        "initials": "SM"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi Sarah, we noticed a $142 charge from 'Techtronix Store' on your card ending in 4892. Was this you?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "No, I don't recognize it.",
+          "delay": 2000
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Got it — I'll block the transaction immediately and start a quick review.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Verified — this transaction qualifies for dispute under Visa Rule 4863. Proceeding with claim.",
+          "delay": 2000
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Policy confirmed — low-risk case, eligible for instant refund per regulatory guidelines.",
+          "delay": 1800
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$142 has been credited back to your account. Your new card will arrive in 3 business days.",
+          "delay": 2000
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "I've automatically reconnected Netflix, Spotify, and your childcare payment to your new card.",
+          "delay": 2200
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Case closed ✅ This outcome has been added to our fraud prevention models to protect you better.",
+          "delay": 1500
+        }
+      ]
+    },
+    {
+      "id": "duplicate-charge",
+      "title": "Duplicate Charge",
+      "description": "Customer charged twice for same service",
+      "customer": {
+        "name": "Marcus Chen",
+        "initials": "MC"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hello Marcus, we detected duplicate charges of $89.99 from 'StreamFlix' within 2 hours. Would you like us to investigate?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "Yes! I only signed up once. Why was I charged twice?",
+          "delay": 2000
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "I understand your concern. Let me pull up your transaction history and contact the merchant.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Confirmed duplicate charge. Merchant error detected. This qualifies for immediate reversal under billing error protection.",
+          "delay": 2000
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Regulatory check passed. Duplicate charge protection applies per Fair Credit Billing Act.",
+          "delay": 1800
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$89.99 refunded to your account. Merchant has been notified to prevent future duplicates.",
+          "delay": 2000
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "Your StreamFlix subscription remains active with single billing. No action needed on your end.",
+          "delay": 2200
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Case resolved ✅ Pattern logged to identify similar merchant errors automatically.",
+          "delay": 1500
+        }
+      ]
+    },
+    {
+      "id": "travel-dispute",
+      "title": "Travel Cancellation",
+      "description": "Hotel charge after cancelled reservation",
+      "customer": {
+        "name": "Emily Rodriguez",
+        "initials": "ER"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi Emily, we see a $425 charge from 'Grand Plaza Hotel' posted yesterday. Everything okay with this transaction?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "No! I cancelled that reservation 2 weeks ago and got a confirmation email.",
+          "delay": 2500
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "That's frustrating. Let me review your cancellation and check the hotel's policy.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Cancellation confirmed 14 days before check-in. Hotel policy allows full refund. Dispute is valid.",
+          "delay": 2200
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Travel protection verified. Merchant violated their own cancellation terms. Proceeding with chargeback.",
+          "delay": 2000
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$425 credit issued. Formal chargeback filed with hotel. You'll see the refund within 2 business days.",
+          "delay": 2200
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "No recurring payments affected. Your travel card remains active for upcoming trips.",
+          "delay": 1800
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Dispute won ✅ This merchant flagged for closer monitoring on future cancellation disputes.",
+          "delay": 1500
+        }
+      ]
+    },
+    {
+      "id": "subscription-abuse",
+      "title": "Unauthorized Subscription",
+      "description": "Recurring charge from unknown service",
+      "customer": {
+        "name": "David Thompson",
+        "initials": "DT"
+      },
+      "conversation": [
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Hi David, we noticed recurring $29.99 monthly charges from 'ProFit Wellness' for the past 6 months. Are you using this service?",
+          "delay": 1000
+        },
+        {
+          "speaker": "user",
+          "text": "No idea what that is. I've never signed up for any wellness app.",
+          "delay": 2300
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "I'll investigate this immediately and cancel any unauthorized subscriptions.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "No user activity detected on associated account. This appears to be unauthorized recurring billing.",
+          "delay": 2000
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Unauthorized subscription confirmed. Consumer protection laws apply. All charges eligible for reversal.",
+          "delay": 1900
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "$179.94 refunded (6 months × $29.99). Subscription cancelled and merchant blocked from future charges.",
+          "delay": 2200
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "I've added extra fraud alerts to your account to catch similar patterns earlier.",
+          "delay": 2000
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Case closed ✅ This subscription pattern added to early detection models across all customers.",
+          "delay": 1500
+        }
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "id": "fraud-sentinel",
+      "name": "Fraud Sentinel",
+      "icon": "shield-alert",
+      "description": "Detect anomaly & notify user",
+      "reasoning": "Analyzes transaction patterns, location data, and spending behavior to identify anomalies before customers notice them."
+    },
+    {
+      "id": "outreach",
+      "name": "Outreach",
+      "icon": "message-square",
+      "description": "Confirm and collect details",
+      "reasoning": "Engages customers with empathetic, natural language to confirm identity and gather dispute context efficiently."
+    },
+    {
+      "id": "eligibility",
+      "name": "Eligibility",
+      "icon": "check-circle",
+      "description": "Validate claim",
+      "reasoning": "Verifies KYC status, merchant reputation, transaction metadata, and card network rules to determine dispute validity."
+    },
+    {
+      "id": "compliance-guard",
+      "name": "Compliance Guard",
+      "icon": "scale",
+      "description": "Check policy rules",
+      "reasoning": "Cross-references decisions against OCC, FINRA, Visa/Mastercard regulations, and internal policies to ensure zero audit risk."
+    },
+    {
+      "id": "resolution",
+      "name": "Resolution",
+      "icon": "dollar-sign",
+      "description": "Execute refund + reissue card",
+      "reasoning": "Processes provisional credits, blocks compromised cards, triggers reissuance, and orchestrates backend systems automatically."
+    },
+    {
+      "id": "recovery",
+      "name": "Recovery",
+      "icon": "refresh-cw",
+      "description": "Reconnect subscriptions",
+      "reasoning": "Identifies recurring payment relationships and proactively reconnects trusted merchants to prevent service disruption."
+    },
+    {
+      "id": "learning",
+      "name": "Learning",
+      "icon": "brain",
+      "description": "Feed insights to fraud predictor",
+      "reasoning": "Captures case features and outcomes to retrain fraud detection models, creating a continuous improvement loop."
+    }
+  ]
+}

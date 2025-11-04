@@ -1,0 +1,102 @@
+{
+  "conversation": [
+    {
+      "agent": "Fraud Sentinel",
+      "speaker": "agent",
+      "text": "Hi Jeremy, we noticed a $142 charge from 'Techtronix Store' on your card ending in 4892. Was this you?",
+      "delay": 1000
+    },
+    {
+      "speaker": "user",
+      "text": "No, I don't recognize it.",
+      "delay": 2000
+    },
+    {
+      "agent": "Outreach",
+      "speaker": "agent",
+      "text": "Got it — I'll block the transaction immediately and start a quick review.",
+      "delay": 1500
+    },
+    {
+      "agent": "Eligibility",
+      "speaker": "agent",
+      "text": "Verified — this transaction qualifies for dispute under Visa Rule 4863. Proceeding with claim.",
+      "delay": 2000
+    },
+    {
+      "agent": "Compliance Guard",
+      "speaker": "agent",
+      "text": "Policy confirmed — low-risk case, eligible for instant refund per regulatory guidelines.",
+      "delay": 1800
+    },
+    {
+      "agent": "Resolution",
+      "speaker": "agent",
+      "text": "$142 has been credited back to your account. Your new card will arrive in 3 business days.",
+      "delay": 2000
+    },
+    {
+      "agent": "Recovery",
+      "speaker": "agent",
+      "text": "I've automatically reconnected Netflix, Spotify, and your childcare payment to your new card.",
+      "delay": 2200
+    },
+    {
+      "agent": "Learning",
+      "speaker": "agent",
+      "text": "Case closed ✅ This outcome has been added to our fraud prevention models to protect you better.",
+      "delay": 1500
+    }
+  ],
+  "agents": [
+    {
+      "id": "fraud-sentinel",
+      "name": "Fraud Sentinel",
+      "icon": "shield-alert",
+      "description": "Detect anomaly & notify user",
+      "color": "red"
+    },
+    {
+      "id": "outreach",
+      "name": "Outreach",
+      "icon": "message-square",
+      "description": "Confirm and collect details",
+      "color": "blue"
+    },
+    {
+      "id": "eligibility",
+      "name": "Eligibility",
+      "icon": "check-circle",
+      "description": "Validate claim",
+      "color": "green"
+    },
+    {
+      "id": "compliance-guard",
+      "name": "Compliance Guard",
+      "icon": "scale",
+      "description": "Check policy rules",
+      "color": "purple"
+    },
+    {
+      "id": "resolution",
+      "name": "Resolution",
+      "icon": "dollar-sign",
+      "description": "Execute refund + reissue card",
+      "color": "emerald"
+    },
+    {
+      "id": "recovery",
+      "name": "Recovery",
+      "icon": "refresh-cw",
+      "description": "Reconnect subscriptions",
+      "color": "orange"
+    },
+    {
+      "id": "learning",
+      "name": "Learning",
+      "icon": "brain",
+      "description": "Feed insights to fraud predictor",
+      "color": "indigo"
+    }
+  ]
+}
