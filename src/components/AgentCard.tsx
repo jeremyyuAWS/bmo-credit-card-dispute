@@ -4,6 +4,7 @@ import { ShieldAlert, MessageSquare, Scale, DollarSign, RefreshCw, Brain } from 
 interface AgentCardProps {
   agentName: string;
   reasoning?: string;
+  isPriority?: boolean;
 }
 
 const iconMap: Record<string, React.ElementType> = {
@@ -26,20 +27,29 @@ const agentDescriptions: Record<string, string> = {
   'Learning': 'Updates fraud models with case outcomes',
 };
 
-export function AgentCard({ agentName, reasoning }: AgentCardProps) {
+export function AgentCard({ agentName, reasoning, isPriority = false }: AgentCardProps) {
   const Icon = iconMap[agentName] || CheckCircle;
   const description = agentDescriptions[agentName] || '';
 
   return (
     <div className="my-4 animate-fadeIn">
-      <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl p-5 shadow-lg">
+      <div className={`${
+        isPriority
+          ? 'bg-gradient-to-r from-blue-600 to-blue-500 ring-2 ring-blue-400 ring-offset-2'
+          : 'bg-gradient-to-r from-gray-900 to-gray-800'
+      } text-white rounded-2xl p-5 shadow-lg`}>
         <div className="flex items-start space-x-4">
-          <div className="flex-shrink-0 w-11 h-11 bg-white rounded-full flex items-center justify-center">
-            <Icon className="w-5 h-5 text-gray-900" />
+          <div className={`flex-shrink-0 w-11 h-11 ${isPriority ? 'bg-white' : 'bg-white'} rounded-full flex items-center justify-center`}>
+            <Icon className={`w-5 h-5 ${isPriority ? 'text-blue-600' : 'text-gray-900'}`} />
           </div>
           <div className="flex-1">
             <div className="flex items-center space-x-2 mb-1">
               <h4 className="font-semibold text-base">{agentName}</h4>
+              {isPriority && (
+                <span className="text-xs bg-white bg-opacity-20 px-2 py-0.5 rounded-full font-semibold">
+                  Priority Agent
+                </span>
+              )}
               <div className="flex items-center space-x-1">
                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-smooth-pulse"></div>
                 <span className="text-xs text-gray-300">Active</span>

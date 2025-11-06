@@ -23,6 +23,7 @@ interface ChatWindowProps {
     role: string;
     initials: string;
   };
+  priorityAgents?: string[];
 }
 
 export function ChatWindow({
@@ -33,7 +34,8 @@ export function ChatWindow({
   playbackSpeed = 1,
   viewMode = 'customer',
   customerName,
-  bmoTeamMember
+  bmoTeamMember,
+  priorityAgents = []
 }: ChatWindowProps) {
   const [messages, setMessages] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -115,6 +117,7 @@ export function ChatWindow({
             key={`agent-${index}`}
             agentName={msg.agent}
             reasoning={getAgentReasoning(msg.agent)}
+            isPriority={viewMode === 'bmo-team' && priorityAgents.includes(msg.agent)}
           />
         );
         lastAgent = msg.agent;
@@ -142,6 +145,7 @@ export function ChatWindow({
           key={`agent-upcoming-${showingAgent}`}
           agentName={showingAgent}
           reasoning={getAgentReasoning(showingAgent)}
+          isPriority={viewMode === 'bmo-team' && priorityAgents.includes(showingAgent)}
         />
       );
     }

@@ -9,7 +9,10 @@ import { ResponsibleAITab } from './components/ResponsibleAITab';
 import { LyzrAgents } from './components/LyzrAgents';
 import { AgentConfiguration } from './components/AgentConfiguration';
 import { StrategicAdvisor } from './components/StrategicAdvisor';
+import { PersonaSelector } from './components/PersonaSelector';
+import { PersonaDashboard } from './components/PersonaDashboard';
 import scenariosData from './data/scenarios.json';
+import personasData from './data/personas.json';
 
 type ViewMode = 'customer' | 'bmo-team';
 type BMOPersona = 'cardholder-resolution' | 'dispute-fraud' | 'transaction-integrity' | 'consumer-protection';
@@ -59,9 +62,11 @@ function App() {
   const [pauseRequested, setPauseRequested] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('customer');
   const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
+  const [selectedPersonaRole, setSelectedPersonaRole] = useState('dispute-specialist');
 
   const currentScenario = scenariosData.scenarios.find(s => s.id === selectedScenarioId) || scenariosData.scenarios[0];
   const currentPersona = bmoPersonas.find(p => p.id === selectedPersona) || bmoPersonas[0];
+  const currentPersonaRole = personasData.personas.find(p => p.id === selectedPersonaRole);
 
   const getAvailableTabs = () => {
     if (viewMode === 'customer') {
@@ -190,24 +195,17 @@ function App() {
         <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">BMO Team Persona</div>
-              <div className="flex items-center space-x-3">
-                <select
-                  value={selectedPersona}
-                  onChange={(e) => handlePersonaChange(e.target.value as BMOPersona)}
-                  className="px-4 py-2 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-black hover:border-black transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-black"
-                >
-                  {bmoPersonas.map(persona => (
-                    <option key={persona.id} value={persona.id}>
-                      {persona.name}
-                    </option>
-                  ))}
-                </select>
-                <span className="text-sm text-gray-600">{currentPersona.description}</span>
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                Personalized Role View
               </div>
+              <PersonaSelector
+                personas={personasData.personas}
+                selectedPersona={selectedPersonaRole}
+                onSelect={setSelectedPersonaRole}
+              />
             </div>
             <div className="text-xs text-gray-500">
-              {currentPersona.availableTabs.length} tabs available
+              UI customized for {personasData.personas.find(p => p.id === selectedPersonaRole)?.name}
             </div>
           </div>
         </div>
@@ -316,6 +314,16 @@ function App() {
               playbackSpeed={playbackSpeed}
               onSpeedChange={setPlaybackSpeed}
             />
+            {viewMode === 'bmo-team' && (
+              <div className="px-8 py-4 bg-white border-b border-gray-200">
+                <PersonaDashboard
+                  metrics={personasData.personas.find(p => p.id === selectedPersonaRole)?.primaryMetrics || []}
+                  quickActions={personasData.personas.find(p => p.id === selectedPersonaRole)?.quickActions || []}
+                  personaColor={personasData.personas.find(p => p.id === selectedPersonaRole)?.color || 'gray'}
+                  personaName={personasData.personas.find(p => p.id === selectedPersonaRole)?.name || 'Team Member'}
+                />
+              </div>
+            )}
             <div className="flex-1 overflow-hidden">
               <ChatWindow
                 conversation={viewMode === 'customer' ? currentScenario.conversation : (currentScenario.bmoConversation || currentScenario.conversation)}
@@ -326,6 +334,7 @@ function App() {
                 viewMode={viewMode}
                 customerName={currentScenario.customer?.name}
                 bmoTeamMember={currentScenario.bmoTeamMember}
+                priorityAgents={currentPersonaRole?.priorityAgents || []}
               />
             </div>
           </div>

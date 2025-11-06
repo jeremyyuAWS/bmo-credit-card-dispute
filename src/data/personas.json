@@ -1,0 +1,124 @@
+{
+  "personas": [
+    {
+      "id": "fraud-analyst",
+      "name": "Fraud Analyst",
+      "description": "Focus on fraud detection, risk assessment, and pattern analysis",
+      "icon": "shield-alert",
+      "color": "red",
+      "priorityAgents": ["Fraud Sentinel", "Learning"],
+      "primaryMetrics": [
+        { "label": "Fraud Detection Rate", "value": "94%", "trend": "up" },
+        { "label": "False Positives", "value": "2.1%", "trend": "down" },
+        { "label": "Risk Score", "value": "Medium", "color": "yellow" }
+      ],
+      "quickActions": [
+        "View fraud patterns",
+        "Check velocity rules",
+        "Review merchant risk",
+        "Analyze geolocation"
+      ],
+      "dashboardLayout": "fraud-focused"
+    },
+    {
+      "id": "compliance-officer",
+      "name": "Compliance Officer",
+      "description": "Focus on regulatory adherence, audit trails, and policy validation",
+      "icon": "scale",
+      "color": "blue",
+      "priorityAgents": ["Compliance Guard", "Eligibility"],
+      "primaryMetrics": [
+        { "label": "Compliance Score", "value": "100%", "trend": "stable" },
+        { "label": "Audit Flags", "value": "0", "trend": "stable" },
+        { "label": "Reg E Timeline", "value": "2 hrs", "color": "green" }
+      ],
+      "quickActions": [
+        "Check regulatory status",
+        "Review audit trail",
+        "Verify disclosures",
+        "Policy compliance check"
+      ],
+      "dashboardLayout": "compliance-focused"
+    },
+    {
+      "id": "customer-service",
+      "name": "Customer Service Rep",
+      "description": "Focus on customer communication, resolution speed, and satisfaction",
+      "icon": "headphones",
+      "color": "green",
+      "priorityAgents": ["Outreach", "Resolution"],
+      "primaryMetrics": [
+        { "label": "Avg Handle Time", "value": "2.1 min", "trend": "down" },
+        { "label": "CSAT Score", "value": "89%", "trend": "up" },
+        { "label": "First Call Resolution", "value": "96%", "color": "green" }
+      ],
+      "quickActions": [
+        "View customer history",
+        "Check resolution status",
+        "Send notification",
+        "Escalate to supervisor"
+      ],
+      "dashboardLayout": "customer-focused"
+    },
+    {
+      "id": "operations-manager",
+      "name": "Operations Manager",
+      "description": "Focus on efficiency, throughput, team performance, and cost savings",
+      "icon": "bar-chart-3",
+      "color": "purple",
+      "priorityAgents": ["Resolution", "Recovery", "Learning"],
+      "primaryMetrics": [
+        { "label": "Cases Processed", "value": "1,247", "trend": "up" },
+        { "label": "Automation Rate", "value": "98.4%", "trend": "up" },
+        { "label": "Cost per Case", "value": "$3.20", "color": "green" }
+      ],
+      "quickActions": [
+        "View team metrics",
+        "Check SLA compliance",
+        "Review bottlenecks",
+        "Export performance report"
+      ],
+      "dashboardLayout": "operations-focused"
+    },
+    {
+      "id": "dispute-specialist",
+      "name": "Dispute Resolution Specialist",
+      "description": "Balanced view for end-to-end case management and resolution",
+      "icon": "users",
+      "color": "gray",
+      "priorityAgents": ["Eligibility", "Resolution", "Recovery"],
+      "primaryMetrics": [
+        { "label": "Win Rate", "value": "83%", "trend": "up" },
+        { "label": "Avg Resolution Time", "value": "2.1 min", "trend": "down" },
+        { "label": "Active Cases", "value": "12", "color": "blue" }
+      ],
+      "quickActions": [
+        "View case details",
+        "Check chargeback status",
+        "Update customer",
+        "File documentation"
+      ],
+      "dashboardLayout": "balanced"
+    },
+    {
+      "id": "risk-manager",
+      "name": "Risk Manager",
+      "description": "Focus on portfolio risk, loss prevention, and strategic trends",
+      "icon": "trending-up",
+      "color": "orange",
+      "priorityAgents": ["Fraud Sentinel", "Compliance Guard", "Learning"],
+      "primaryMetrics": [
+        { "label": "Fraud Loss Prevented", "value": "$8.4M", "trend": "up" },
+        { "label": "Portfolio Risk Score", "value": "Low", "color": "green" },
+        { "label": "Emerging Threats", "value": "3", "color": "yellow" }
+      ],
+      "quickActions": [
+        "View risk dashboard",
+        "Review fraud trends",
+        "Check exposure levels",
+        "Strategic recommendations"
+      ],
+      "dashboardLayout": "risk-focused"
+    }
+  ]
+}
