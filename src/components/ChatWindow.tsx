@@ -46,10 +46,16 @@ export function ChatWindow({
   const [hasStarted, setHasStarted] = useState(false);
   const [showingAgent, setShowingAgent] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, showingAgent]);
+    if (isActive && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }, [messages, showingAgent, isActive]);
 
   useEffect(() => {
     if (isActive && !hasStarted) {
@@ -160,7 +166,7 @@ export function ChatWindow({
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      <div className="flex-1 overflow-y-auto px-6 py-8">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-6 py-8">
         <div className="max-w-3xl mx-auto">
           {renderMessages()}
           <div ref={chatEndRef} />

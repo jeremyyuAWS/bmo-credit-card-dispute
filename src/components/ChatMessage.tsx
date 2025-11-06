@@ -38,9 +38,11 @@ export function ChatMessage({
   const [displayedText, setDisplayedText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
+  const [initialText] = useState(text);
 
   useEffect(() => {
     if (hasStartedTyping) return;
+    if (text !== initialText) return;
 
     const showTimer = setTimeout(() => {
       setIsVisible(true);
@@ -49,10 +51,10 @@ export function ChatMessage({
     }, delay / playbackSpeed);
 
     return () => clearTimeout(showTimer);
-  }, [delay, playbackSpeed, hasStartedTyping]);
+  }, [delay, playbackSpeed, hasStartedTyping, text, initialText]);
 
   useEffect(() => {
-    if (!isVisible || currentCharIndex >= text.length) return;
+    if (!isVisible || currentCharIndex >= initialText.length) return;
 
     const charDelay = speaker === 'user'
       ? 25 / playbackSpeed
@@ -60,18 +62,18 @@ export function ChatMessage({
 
     const typingTimer = setTimeout(() => {
       setCurrentCharIndex(prev => prev + 1);
-      setDisplayedText(text.slice(0, currentCharIndex + 1));
+      setDisplayedText(initialText.slice(0, currentCharIndex + 1));
     }, charDelay);
 
     return () => clearTimeout(typingTimer);
-  }, [isVisible, currentCharIndex, text, playbackSpeed, speaker]);
+  }, [isVisible, currentCharIndex, initialText, playbackSpeed, speaker]);
 
   useEffect(() => {
-    if (isVisible && currentCharIndex >= text.length && onComplete && hasStartedTyping) {
+    if (isVisible && currentCharIndex >= initialText.length && onComplete && hasStartedTyping) {
       const completeTimer = setTimeout(onComplete, 700 / playbackSpeed);
       return () => clearTimeout(completeTimer);
     }
-  }, [currentCharIndex, text.length, onComplete, isVisible, playbackSpeed, hasStartedTyping]);
+  }, [currentCharIndex, initialText.length, onComplete, isVisible, playbackSpeed, hasStartedTyping]);
 
   if (!isVisible) return null;
 
