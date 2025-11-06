@@ -66,9 +66,25 @@ function App() {
   const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
   const [selectedPersonaRole, setSelectedPersonaRole] = useState('dispute-specialist');
 
-  const currentScenario = scenariosData.scenarios.find(s => s.id === selectedScenarioId) || scenariosData.scenarios[0];
   const currentPersona = bmoPersonas.find(p => p.id === selectedPersona) || bmoPersonas[0];
   const currentPersonaRole = personasData.personas.find(p => p.id === selectedPersonaRole);
+
+  const getFilteredScenarios = () => {
+    if (viewMode === 'customer') {
+      return scenariosData.scenarios;
+    }
+
+    return scenariosData.scenarios.filter(scenario => {
+      const relevantPersonas = (scenario as any).relevantPersonas;
+      if (!relevantPersonas || relevantPersonas.length === 0) {
+        return true;
+      }
+      return relevantPersonas.includes(selectedPersonaRole);
+    });
+  };
+
+  const filteredScenarios = getFilteredScenarios();
+  const currentScenario = filteredScenarios.find(s => s.id === selectedScenarioId) || filteredScenarios[0];
 
   const getAvailableTabs = () => {
     if (viewMode === 'customer') {
@@ -122,6 +138,18 @@ function App() {
 
     setActiveAgent(null);
     setIsComplete(false);
+
+    const newFilteredScenarios = scenariosData.scenarios.filter(scenario => {
+      const relevantPersonas = (scenario as any).relevantPersonas;
+      if (!relevantPersonas || relevantPersonas.length === 0) {
+        return true;
+      }
+      return relevantPersonas.includes(roleId);
+    });
+
+    if (newFilteredScenarios.length > 0 && !newFilteredScenarios.find(s => s.id === selectedScenarioId)) {
+      setSelectedScenarioId(newFilteredScenarios[0].id);
+    }
 
     if (role && !role.availableTabs.includes(activeTab)) {
       setActiveTab(role.availableTabs[0]);
@@ -336,7 +364,7 @@ function App() {
         {activeTab === 'live-demo' && (
           <div className="h-full flex flex-col">
             <ScenarioSelector
-              scenarios={scenariosData.scenarios}
+              scenarios={filteredScenarios}
               selectedScenario={selectedScenarioId}
               onSelect={handleScenarioSelect}
               disabled={isPlaying}

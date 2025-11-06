@@ -4,6 +4,7 @@
       "id": "fraudulent-charge",
       "title": "Fraudulent Charge",
       "description": "Customer disputes unauthorized transaction",
+      "relevantPersonas": ["fraud-analyst", "compliance-officer", "customer-service", "operations-manager", "dispute-specialist", "risk-manager", "executive"],
       "valueProps": {
         "customer": "Instant fraud protection with zero liability",
         "bmo": "High automation rate dramatically reduces ops cost per case"
@@ -458,6 +459,7 @@
       "id": "duplicate-charge",
       "title": "Duplicate Charge",
       "description": "Customer charged twice for same service",
+      "relevantPersonas": ["customer-service", "operations-manager", "dispute-specialist"],
       "valueProps": {
         "customer": "Automatic duplicate detection and instant refund",
         "bmo": "Merchant relationship protection with rapid resolution"
@@ -520,6 +522,7 @@
       "id": "travel-dispute",
       "title": "Travel Cancellation",
       "description": "Hotel charge after cancelled reservation",
+      "relevantPersonas": ["customer-service", "dispute-specialist"],
       "valueProps": {
         "customer": "Hassle-free travel dispute resolution",
         "bmo": "Industry-leading win rate on travel chargebacks"
@@ -582,6 +585,7 @@
       "id": "subscription-abuse",
       "title": "Unauthorized Subscription",
       "description": "Recurring charge from unknown service",
+      "relevantPersonas": ["fraud-analyst", "customer-service", "risk-manager"],
       "valueProps": {
         "customer": "Multi-month recovery of unauthorized charges",
         "bmo": "Prevents major annual revenue leakage from undetected fraud"
@@ -644,6 +648,7 @@
       "id": "proactive-fraud-stop",
       "title": "Proactive Fraud Prevention",
       "description": "AI stops fraud before customer notices",
+      "relevantPersonas": ["fraud-analyst", "risk-manager", "executive"],
       "valueProps": {
         "customer": "AI stops fraud before customer notices",
         "bmo": "Major annual fraud loss prevention with proactive blocking"
@@ -706,6 +711,7 @@
       "id": "international-currency",
       "title": "International Currency Dispute",
       "description": "Hidden currency conversion fees",
+      "relevantPersonas": ["customer-service", "dispute-specialist"],
       "valueProps": {
         "customer": "Protection from hidden international fees",
         "bmo": "Significant recovery per case, strengthens premium card value"
@@ -768,6 +774,7 @@
       "id": "elder-protection",
       "title": "Elder Fraud Protection",
       "description": "Protecting vulnerable customer from scam",
+      "relevantPersonas": ["fraud-analyst", "compliance-officer", "risk-manager", "executive"],
       "valueProps": {
         "customer": "Real-time elder fraud protection and recovery",
         "bmo": "Mitigates reputational risk and protects vulnerable customers"
@@ -830,6 +837,7 @@
       "id": "medical-billing",
       "title": "Medical Billing Dispute",
       "description": "Complex insurance coordination issue",
+      "relevantPersonas": ["customer-service", "dispute-specialist"],
       "valueProps": {
         "customer": "Stress-free medical billing dispute resolution",
         "bmo": "Dramatic reduction in resolution time improves satisfaction"
