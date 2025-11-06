@@ -49,6 +49,164 @@
       "description": "Month-over-month accuracy improvement"
     }
   ],
+  "liveInsights": [
+    {
+      "id": 1,
+      "type": "anomaly",
+      "severity": "high",
+      "title": "Spike in Merchant Error Disputes",
+      "description": "AI detected 23% increase in merchant billing errors from streaming services in past 2 hours",
+      "recommendation": "Proactive outreach to top 5 merchant partners recommended",
+      "confidence": 94,
+      "timestamp": "2 min ago"
+    },
+    {
+      "id": 2,
+      "type": "opportunity",
+      "severity": "medium",
+      "title": "Cross-sell Opportunity Identified",
+      "description": "387 customers with resolved disputes show high propensity for premium card upgrade",
+      "recommendation": "Automated follow-up campaign with 68% predicted conversion",
+      "confidence": 87,
+      "timestamp": "12 min ago"
+    },
+    {
+      "id": 3,
+      "type": "risk",
+      "severity": "medium",
+      "title": "Emerging Fraud Pattern",
+      "description": "Learning Agent identified new synthetic identity pattern across 14 cases",
+      "recommendation": "Update fraud rules - estimated $247K loss prevention",
+      "confidence": 91,
+      "timestamp": "28 min ago"
+    },
+    {
+      "id": 4,
+      "type": "efficiency",
+      "severity": "low",
+      "title": "Agent Performance Optimization",
+      "description": "Eligibility Agent can reduce processing time by 8% with updated merchant database",
+      "recommendation": "Schedule maintenance window for model refresh",
+      "confidence": 82,
+      "timestamp": "1 hour ago"
+    }
+  ],
+  "predictiveForecasts": [
+    { "week": "Week 1", "predicted": 1247, "actual": 1243, "confidence": 95 },
+    { "week": "Week 2", "predicted": 1289, "actual": 1285, "confidence": 94 },
+    { "week": "Week 3", "predicted": 1312, "actual": 1308, "confidence": 96 },
+    { "week": "Week 4", "predicted": 1356, "actual": null, "confidence": 93 },
+    { "week": "Week 5", "predicted": 1398, "actual": null, "confidence": 89 },
+    { "week": "Week 6", "predicted": 1425, "actual": null, "confidence": 85 }
+  ],
+  "fraudRiskTrends": [
+    { "day": "Mon", "risk": 12, "prevented": 11, "flagged": 1 },
+    { "day": "Tue", "risk": 15, "prevented": 14, "flagged": 1 },
+    { "day": "Wed", "risk": 18, "prevented": 17, "flagged": 1 },
+    { "day": "Thu", "risk": 22, "prevented": 20, "flagged": 2 },
+    { "day": "Fri", "risk": 28, "prevented": 26, "flagged": 2 },
+    { "day": "Sat", "risk": 19, "prevented": 18, "flagged": 1 },
+    { "day": "Sun", "risk": 14, "prevented": 13, "flagged": 1 }
+  ],
+  "agentEfficiency": [
+    {
+      "agent": "Fraud Sentinel",
+      "accuracy": 96.8,
+      "speed": 94.2,
+      "learning": 12.3,
+      "cases": 1247
+    },
+    {
+      "agent": "Eligibility",
+      "accuracy": 98.9,
+      "speed": 96.1,
+      "learning": 8.7,
+      "cases": 1156
+    },
+    {
+      "agent": "Compliance Guard",
+      "accuracy": 100,
+      "speed": 99.4,
+      "learning": 3.2,
+      "cases": 1247
+    },
+    {
+      "agent": "Resolution",
+      "accuracy": 97.2,
+      "speed": 91.8,
+      "learning": 15.6,
+      "cases": 1189
+    },
+    {
+      "agent": "Recovery",
+      "accuracy": 95.4,
+      "speed": 88.9,
+      "learning": 18.2,
+      "cases": 892
+    },
+    {
+      "agent": "Outreach",
+      "accuracy": 93.7,
+      "speed": 97.3,
+      "learning": 6.8,
+      "cases": 1034
+    },
+    {
+      "agent": "Learning",
+      "accuracy": 91.2,
+      "speed": 85.6,
+      "learning": 24.7,
+      "cases": 1247
+    }
+  ],
+  "patternDiscovery": [
+    {
+      "id": 1,
+      "pattern": "Subscription Auto-Renewal Disputes",
+      "frequency": 342,
+      "trend": "up",
+      "impact": "high",
+      "description": "Customers unaware of auto-renewal clauses",
+      "aiSuggestion": "Proactive email 7 days before renewal with opt-out link",
+      "estimatedReduction": "78%"
+    },
+    {
+      "id": 2,
+      "pattern": "International Transaction Confusion",
+      "frequency": 187,
+      "trend": "stable",
+      "impact": "medium",
+      "description": "Currency conversion and foreign fees cause disputes",
+      "aiSuggestion": "Real-time SMS notification with local currency amount",
+      "estimatedReduction": "64%"
+    },
+    {
+      "id": 3,
+      "pattern": "Merchant Name Mismatch",
+      "frequency": 156,
+      "trend": "down",
+      "impact": "medium",
+      "description": "Corporate parent name differs from brand name",
+      "aiSuggestion": "Enhanced merchant metadata with brand aliases",
+      "estimatedReduction": "91%"
+    },
+    {
+      "id": 4,
+      "pattern": "Family Account Disputes",
+      "frequency": 94,
+      "trend": "up",
+      "impact": "low",
+      "description": "Authorized users create unrecognized charges",
+      "aiSuggestion": "AI-powered family spending insights dashboard",
+      "estimatedReduction": "56%"
+    }
+  ],
+  "costSavingsBreakdown": [
+    { "category": "Labor Reduction", "value": 1247000, "percentage": 52 },
+    { "category": "Fraud Prevention", "value": 684000, "percentage": 28 },
+    { "category": "Chargeback Fees", "value": 312000, "percentage": 13 },
+    { "category": "Process Efficiency", "value": 157000, "percentage": 7 }
+  ],
   "resolutionTimeline": [
     { "month": "Jan", "traditional": 288, "agentic": 24 },
     { "month": "Feb", "traditional": 312, "agentic": 22 },

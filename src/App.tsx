@@ -4,7 +4,7 @@ import { ChatWindow } from './components/ChatWindow';
 import { ScenarioSelector } from './components/ScenarioSelector';
 import { WelcomeModal } from './components/WelcomeModal';
 import { HITLFeedbackHub } from './components/HITLFeedbackHub';
-import { AnalyticsDashboard } from './components/AnalyticsDashboard';
+import { EnhancedAnalytics } from './components/EnhancedAnalytics';
 import { ResponsibleAITab } from './components/ResponsibleAITab';
 import { LyzrAgents } from './components/LyzrAgents';
 import { AgentConfiguration } from './components/AgentConfiguration';
@@ -402,9 +402,7 @@ function App() {
         )}
 
         {activeTab === 'analytics' && (
-          <div className="h-full overflow-y-auto bg-gray-50">
-            <AnalyticsDashboard />
-          </div>
+          <EnhancedAnalytics />
         )}
 
         {activeTab === 'lyzr-agents' && (
