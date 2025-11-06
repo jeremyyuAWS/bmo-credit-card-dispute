@@ -8,6 +8,10 @@ interface Message {
   speaker: string;
   text: string;
   delay?: number;
+  summaryData?: {
+    title: string;
+    metrics: Array<{ icon: string; label: string; value: string }>;
+  };
 }
 
 interface ChatWindowProps {
@@ -126,7 +130,7 @@ export function ChatWindow({
       elements.push(
         <ChatMessage
           key={`msg-${index}`}
-          speaker={msg.speaker as 'user' | 'agent'}
+          speaker={msg.speaker as 'user' | 'agent' | 'summary'}
           text={msg.text}
           agent={msg.agent}
           delay={isLast ? msg.delay || 0 : 0}
@@ -135,6 +139,7 @@ export function ChatWindow({
           viewMode={viewMode}
           customerName={customerName}
           bmoTeamMember={bmoTeamMember}
+          summaryData={msg.summaryData}
         />
       );
     });

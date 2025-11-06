@@ -126,16 +126,16 @@ export function ScenarioSelector({
             </p>
 
             {scenario.valueProps && (
-              <div className="mt-3 pt-3 border-t border-gray-300 space-y-2">
-                <div className="flex items-start space-x-2">
+              <div className="mt-3 pt-3 border-t border-gray-300 space-y-1.5">
+                <div className="flex items-start space-x-1.5">
                   <Users className={`w-3 h-3 mt-0.5 flex-shrink-0 ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-500'}`} />
-                  <span className={`text-xs ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <span className={`text-xs leading-tight ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-600'}`}>
                     {scenario.valueProps.customer}
                   </span>
                 </div>
-                <div className="flex items-start space-x-2">
+                <div className="flex items-start space-x-1.5">
                   <TrendingUp className={`w-3 h-3 mt-0.5 flex-shrink-0 ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-500'}`} />
-                  <span className={`text-xs font-semibold ${selectedScenario === scenario.id ? 'text-white' : 'text-black'}`}>
+                  <span className={`text-xs font-semibold leading-tight ${selectedScenario === scenario.id ? 'text-white' : 'text-black'}`}>
                     {scenario.valueProps.bmo}
                   </span>
                 </div>

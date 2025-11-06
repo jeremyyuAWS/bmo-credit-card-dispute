@@ -131,6 +131,28 @@
       "dashboardLayout": "risk-focused",
       "availableTabs": ["live-demo", "analytics", "strategic-advisor", "responsible-ai"],
       "conversationType": "risk-focused"
+    },
+    {
+      "id": "executive",
+      "name": "Executive",
+      "description": "Focus on strategic impact, ROI, business outcomes, and competitive advantage",
+      "icon": "crown",
+      "color": "purple",
+      "priorityAgents": ["Resolution", "Learning"],
+      "primaryMetrics": [
+        { "label": "Customer Satisfaction", "value": "96%", "trend": "up" },
+        { "label": "Cost Savings (QTD)", "value": "$557K", "trend": "up" },
+        { "label": "AI Automation Rate", "value": "98.4%", "color": "green" }
+      ],
+      "quickActions": [
+        "View executive dashboard",
+        "Review strategic insights",
+        "Check competitive positioning",
+        "Export board report"
+      ],
+      "dashboardLayout": "executive-focused",
+      "availableTabs": ["live-demo", "strategic-advisor", "analytics", "responsible-ai"],
+      "conversationType": "executive-focused"
     }
   ]
 }

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { CheckCircle2, TrendingUp, DollarSign, Users } from 'lucide-react';
 
 interface ChatMessageProps {
-  speaker: 'user' | 'agent';
+  speaker: 'user' | 'agent' | 'summary';
   text: string;
   agent?: string;
   delay?: number;
@@ -14,6 +15,10 @@ interface ChatMessageProps {
     role: string;
     initials: string;
   };
+  summaryData?: {
+    title: string;
+    metrics: Array<{ icon: string; label: string; value: string }>;
+  };
 }
 
 export function ChatMessage({
@@ -25,7 +30,8 @@ export function ChatMessage({
   playbackSpeed = 1,
   viewMode = 'customer',
   customerName,
-  bmoTeamMember
+  bmoTeamMember,
+  summaryData
 }: ChatMessageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
@@ -63,6 +69,44 @@ export function ChatMessage({
     }
     return customerName || 'Customer';
   };
+
+  const getIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'check': return CheckCircle2;
+      case 'trending': return TrendingUp;
+      case 'dollar': return DollarSign;
+      case 'users': return Users;
+      default: return CheckCircle2;
+    }
+  };
+
+  if (speaker === 'summary' && summaryData) {
+    return (
+      <div className="flex justify-center mb-6 animate-fadeIn mt-6">
+        <div className="w-full max-w-4xl bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 rounded-2xl p-6 shadow-lg">
+          <div className="flex items-center space-x-2 mb-4">
+            <CheckCircle2 className="w-6 h-6 text-green-600" />
+            <h3 className="text-lg font-bold text-black">{summaryData.title}</h3>
+          </div>
+          <p className="text-sm text-gray-700 mb-4 leading-relaxed">{text}</p>
+          <div className="grid grid-cols-3 gap-4">
+            {summaryData.metrics.map((metric, index) => {
+              const Icon = getIcon(metric.icon);
+              return (
+                <div key={index} className="bg-white rounded-xl p-4 border border-green-100">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <Icon className="w-4 h-4 text-green-600" />
+                    <span className="text-xs font-semibold text-gray-600">{metric.label}</span>
+                  </div>
+                  <p className="text-lg font-bold text-black">{metric.value}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex ${speaker === 'user' ? 'justify-end' : 'justify-start'} mb-4 animate-fadeIn`}>

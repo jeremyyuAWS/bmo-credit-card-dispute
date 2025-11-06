@@ -132,6 +132,19 @@
           "speaker": "agent",
           "text": "Analysis complete. This matches 'card-not-present electronics fraud' pattern — 847 similar cases last 90 days. Techtronix Store flagged as medium-risk merchant (2.1% fraud rate vs 0.8% network avg). Recommendation: Monitor Sarah's account for 72 hours for additional unauthorized attempts. Pattern logged for proactive detection across portfolio.",
           "delay": 2500
+        },
+        {
+          "speaker": "summary",
+          "text": "This demonstration showcased how Lyzr's AI agents transformed a $142 fraud case from an 18-minute manual process into a 2.1-minute automated resolution. Sarah received instant protection while BMO maintained compliance, prevented future fraud, and achieved 98% automation.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Demo Value Summary",
+            "metrics": [
+              { "icon": "check", "label": "Customer Impact", "value": "2-min resolution" },
+              { "icon": "dollar", "label": "Cost Savings", "value": "$44.60 per case" },
+              { "icon": "trending", "label": "Automation Rate", "value": "98.4%" }
+            ]
+          }
         }
       ],
       "personaConversations": {
@@ -365,6 +378,78 @@
             "speaker": "agent",
             "text": "Emerging threats (high priority): 1) Synthetic identity fraud up 23% QoQ, 2) Account takeover via SIM swap attacks (+15%), 3) Friendly fraud in subscription services (+8%). Recommended actions: Enhanced identity verification for new accounts, real-time device fingerprinting, merchant category monitoring for subscriptions. Strategic risk level: Low but trending up.",
             "delay": 2700
+          },
+          {
+            "speaker": "summary",
+            "text": "Risk Manager View: This case demonstrates portfolio-wide fraud prevention capabilities with $8.4M YTD savings, 94% detection accuracy, and proactive threat monitoring that protects BMO's competitive position.",
+            "delay": 2000,
+            "summaryData": {
+              "title": "Risk Management Impact",
+              "metrics": [
+                { "icon": "dollar", "label": "YTD Fraud Prevented", "value": "$8.4M" },
+                { "icon": "trending", "label": "Detection Accuracy", "value": "94.2%" },
+                { "icon": "check", "label": "False Positive Rate", "value": "2.1%" }
+              ]
+            }
+          }
+        ],
+        "executive-focused": [
+          {
+            "speaker": "user",
+            "text": "Show me the strategic business impact of this fraud case resolution.",
+            "delay": 1000
+          },
+          {
+            "agent": "Resolution",
+            "speaker": "agent",
+            "text": "Strategic Impact Overview: This $142 case represents $171K quarterly fraud recovery across 1,247 cases. Customer satisfaction: 96% (up 8 points YoY). Time to resolution: 2.1 minutes vs 18-minute industry average. Brand protection: Zero viral complaints, 100% regulatory compliance. Competitive advantage: Market-leading fraud protection drives premium card acquisition.",
+            "delay": 2500
+          },
+          {
+            "speaker": "user",
+            "text": "What's the ROI and cost structure of the AI platform?",
+            "delay": 1500
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Financial Performance: Platform ROI: 847% annualized. Cost per case: $3.20 (down from $47.80). Quarterly cost savings: $557K. Staff productivity: 8.5x increase enabling strategic reallocation of 6 FTEs from routine work to high-value investigations. Break-even achieved in 4.2 months. Projected annual savings: $2.2M with current volume.",
+            "delay": 2700
+          },
+          {
+            "speaker": "user",
+            "text": "How does this position us competitively in the market?",
+            "delay": 1400
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Competitive Positioning: BMO's 2.1-minute resolution vs 18-minute industry average = 8.5x speed advantage. 98.4% automation vs 62% industry benchmark. Customer satisfaction (96%) exceeds Big 5 average (88%). Zero liability delivery in 2 hours vs industry 3-5 days. Market differentiation: 'Instant Fraud Protection' messaging drives 23% lift in premium card applications. Analyst recognition: Ranked #1 in digital fraud prevention innovation.",
+            "delay": 2800
+          },
+          {
+            "speaker": "user",
+            "text": "What are the strategic risks and regulatory considerations?",
+            "delay": 1500
+          },
+          {
+            "agent": "Compliance Guard",
+            "speaker": "agent",
+            "text": "Strategic Risk Assessment: Regulatory compliance: 100% across all jurisdictions (FCRA, FCBA, Reg E, Reg Z). Audit readiness: Real-time documentation eliminates retroactive compliance risk. Model governance: AI explainability meets OCC standards. Reputation protection: Proactive fraud prevention mitigates social media escalation. Board reporting: Comprehensive dashboards provide fiduciary oversight. Strategic risk: Low and declining with continuous AI learning.",
+            "delay": 2600
+          },
+          {
+            "speaker": "summary",
+            "text": "Executive Summary: Lyzr's AI platform delivers 847% ROI with $2.2M annual savings while achieving market-leading 2.1-minute fraud resolution. This creates strategic differentiation driving 23% premium card growth and #1 innovation ranking.",
+            "delay": 2000,
+            "summaryData": {
+              "title": "Strategic Business Impact",
+              "metrics": [
+                { "icon": "dollar", "label": "Annual ROI", "value": "847%" },
+                { "icon": "trending", "label": "Market Position", "value": "#1 Innovation" },
+                { "icon": "users", "label": "CSAT Increase", "value": "+8 points" }
+              ]
+            }
           }
         ]
       }

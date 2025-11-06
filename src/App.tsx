@@ -58,7 +58,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [activeTab, setActiveTab] = useState('live-demo');
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [playbackSpeed, setPlaybackSpeed] = useState(0.5);
   const [pauseRequested, setPauseRequested] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('customer');
   const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
