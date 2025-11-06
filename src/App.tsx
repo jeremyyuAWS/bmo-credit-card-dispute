@@ -314,7 +314,7 @@ function App() {
               playbackSpeed={playbackSpeed}
               onSpeedChange={setPlaybackSpeed}
             />
-            {viewMode === 'bmo-team' && (
+            {viewMode === 'bmo-team' && !isPlaying && (
               <div className="px-8 py-4 bg-white border-b border-gray-200">
                 <PersonaDashboard
                   metrics={personasData.personas.find(p => p.id === selectedPersonaRole)?.primaryMetrics || []}
