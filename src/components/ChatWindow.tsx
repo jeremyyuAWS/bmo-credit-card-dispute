@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from './ChatMessage';
-import { AgentCard } from './AgentCard';
-import scenariosData from '../data/scenarios.json';
 
 interface Message {
   agent?: string;
@@ -109,34 +107,14 @@ export function ChatWindow({
     }
   };
 
-  const getAgentReasoning = (agentName: string) => {
-    const agent = scenariosData.agents.find(a => a.name === agentName);
-    return agent?.reasoning;
-  };
-
   const renderMessages = () => {
     const elements: JSX.Element[] = [];
-    let lastAgent: string | null = null;
-    const renderedAgents = new Set<string>();
 
     messages.forEach((index, arrayIndex) => {
       const msg = conversation[index];
       if (!msg) return;
 
       const isLast = arrayIndex === messages.length - 1;
-
-      if (msg.agent && msg.agent !== lastAgent) {
-        elements.push(
-          <AgentCard
-            key={`agent-${index}`}
-            agentName={msg.agent}
-            reasoning={getAgentReasoning(msg.agent)}
-            isPriority={viewMode === 'bmo-team' && priorityAgents.includes(msg.agent)}
-          />
-        );
-        lastAgent = msg.agent;
-        renderedAgents.add(msg.agent);
-      }
 
       elements.push(
         <ChatMessage
@@ -154,17 +132,6 @@ export function ChatWindow({
         />
       );
     });
-
-    if (showingAgent && !renderedAgents.has(showingAgent)) {
-      elements.push(
-        <AgentCard
-          key={`agent-upcoming-${showingAgent}`}
-          agentName={showingAgent}
-          reasoning={getAgentReasoning(showingAgent)}
-          isPriority={viewMode === 'bmo-team' && priorityAgents.includes(showingAgent)}
-        />
-      );
-    }
 
     return elements;
   };
