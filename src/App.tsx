@@ -72,10 +72,23 @@ function App() {
     if (viewMode === 'customer') {
       return ['live-demo', 'analytics', 'responsible-ai'];
     }
-    return currentPersona.availableTabs;
+    return currentPersonaRole?.availableTabs || currentPersona.availableTabs;
   };
 
   const availableTabs = getAvailableTabs();
+
+  const getPersonaConversation = () => {
+    if (viewMode === 'customer') {
+      return currentScenario.conversation;
+    }
+
+    const conversationType = currentPersonaRole?.conversationType;
+    if (conversationType && currentScenario.personaConversations?.[conversationType]) {
+      return currentScenario.personaConversations[conversationType];
+    }
+
+    return currentScenario.bmoConversation || currentScenario.conversation;
+  };
 
   const handleViewModeChange = (mode: ViewMode) => {
     setViewMode(mode);
@@ -93,6 +106,23 @@ function App() {
     const persona = bmoPersonas.find(p => p.id === personaId);
     if (persona && !persona.availableTabs.includes(activeTab)) {
       setActiveTab(persona.availableTabs[0]);
+    }
+  };
+
+  const handlePersonaRoleChange = (roleId: string) => {
+    setSelectedPersonaRole(roleId);
+    const role = personasData.personas.find(p => p.id === roleId);
+
+    if (isPlaying) {
+      setIsPlaying(false);
+      setPauseRequested(false);
+    }
+
+    setActiveAgent(null);
+    setIsComplete(false);
+
+    if (role && !role.availableTabs.includes(activeTab)) {
+      setActiveTab(role.availableTabs[0]);
     }
   };
 
@@ -201,7 +231,7 @@ function App() {
               <PersonaSelector
                 personas={personasData.personas}
                 selectedPersona={selectedPersonaRole}
-                onSelect={setSelectedPersonaRole}
+                onSelect={handlePersonaRoleChange}
               />
             </div>
             <div className="text-xs text-gray-500">
@@ -326,7 +356,7 @@ function App() {
             )}
             <div className="flex-1 overflow-hidden">
               <ChatWindow
-                conversation={viewMode === 'customer' ? currentScenario.conversation : (currentScenario.bmoConversation || currentScenario.conversation)}
+                conversation={getPersonaConversation()}
                 onAgentChange={setActiveAgent}
                 onComplete={handleComplete}
                 isActive={isPlaying && !pauseRequested}

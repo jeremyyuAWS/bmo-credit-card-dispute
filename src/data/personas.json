@@ -18,7 +18,9 @@
         "Review merchant risk",
         "Analyze geolocation"
       ],
-      "dashboardLayout": "fraud-focused"
+      "dashboardLayout": "fraud-focused",
+      "availableTabs": ["live-demo", "analytics", "lyzr-agents", "responsible-ai"],
+      "conversationType": "fraud-focused"
     },
     {
       "id": "compliance-officer",
@@ -38,7 +40,9 @@
         "Verify disclosures",
         "Policy compliance check"
       ],
-      "dashboardLayout": "compliance-focused"
+      "dashboardLayout": "compliance-focused",
+      "availableTabs": ["live-demo", "hitl", "agent-config", "responsible-ai"],
+      "conversationType": "compliance-focused"
     },
     {
       "id": "customer-service",
@@ -58,7 +62,9 @@
         "Send notification",
         "Escalate to supervisor"
       ],
-      "dashboardLayout": "customer-focused"
+      "dashboardLayout": "customer-focused",
+      "availableTabs": ["live-demo", "hitl", "analytics", "lyzr-agents"],
+      "conversationType": "customer-service-focused"
     },
     {
       "id": "operations-manager",
@@ -78,7 +84,9 @@
         "Review bottlenecks",
         "Export performance report"
       ],
-      "dashboardLayout": "operations-focused"
+      "dashboardLayout": "operations-focused",
+      "availableTabs": ["live-demo", "analytics", "agent-config", "strategic-advisor"],
+      "conversationType": "operations-focused"
     },
     {
       "id": "dispute-specialist",
@@ -98,7 +106,9 @@
         "Update customer",
         "File documentation"
       ],
-      "dashboardLayout": "balanced"
+      "dashboardLayout": "balanced",
+      "availableTabs": ["live-demo", "hitl", "analytics", "lyzr-agents", "responsible-ai"],
+      "conversationType": "balanced"
     },
     {
       "id": "risk-manager",
@@ -118,7 +128,9 @@
         "Check exposure levels",
         "Strategic recommendations"
       ],
-      "dashboardLayout": "risk-focused"
+      "dashboardLayout": "risk-focused",
+      "availableTabs": ["live-demo", "analytics", "strategic-advisor", "responsible-ai"],
+      "conversationType": "risk-focused"
     }
   ]
 }

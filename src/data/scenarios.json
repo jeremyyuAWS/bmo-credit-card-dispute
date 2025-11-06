@@ -133,7 +133,241 @@
           "text": "Analysis complete. This matches 'card-not-present electronics fraud' pattern — 847 similar cases last 90 days. Techtronix Store flagged as medium-risk merchant (2.1% fraud rate vs 0.8% network avg). Recommendation: Monitor Sarah's account for 72 hours for additional unauthorized attempts. Pattern logged for proactive detection across portfolio.",
           "delay": 2500
         }
-      ]
+      ],
+      "personaConversations": {
+        "fraud-focused": [
+          {
+            "speaker": "user",
+            "text": "Pull up the fraud analysis for case FR-2847.",
+            "delay": 1000
+          },
+          {
+            "agent": "Fraud Sentinel",
+            "speaker": "agent",
+            "text": "Fraud score: 87/100 (High confidence). Key indicators: Geolocation mismatch (Dallas vs Toronto home), transaction at 2:23 AM local time, merchant flagged with 2.1% fraud rate. Cardholder velocity: Normal. Device fingerprint: New device, not recognized in past 90 days.",
+            "delay": 2000
+          },
+          {
+            "speaker": "user",
+            "text": "Show me historical fraud patterns for similar transactions.",
+            "delay": 1600
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Pattern match: 'Card-Not-Present Electronics Fraud' — 847 similar cases in last 90 days, 94% confirmed fraud. Common merchant categories: Electronics, Tech accessories. Average fraud amount: $156. This merchant (Techtronix) has 23 previous fraud reports, representing 2.8x network average.",
+            "delay": 2500
+          },
+          {
+            "speaker": "user",
+            "text": "What's the risk if we approve this dispute?",
+            "delay": 1400
+          },
+          {
+            "agent": "Fraud Sentinel",
+            "speaker": "agent",
+            "text": "Risk assessment: Low. Customer profile clean (zero fraud history, 4.2 years tenure, $87K annual spend). If fraudulent claim: Likelihood <3%. If legitimate fraud: Chargeback win probability 89% based on Visa Rule 4863 criteria and merchant response history. Recommend: Approve with standard monitoring.",
+            "delay": 2200
+          },
+          {
+            "speaker": "user",
+            "text": "Flag this merchant for enhanced monitoring?",
+            "delay": 1300
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Recommendation: Yes. Adding Techtronix Store to watchlist. Enhanced monitoring active for 90 days. All future transactions $100+ will trigger real-time velocity checks and require device verification. Portfolio impact: 12 active cardholders with this merchant, total exposure $1,843.",
+            "delay": 2400
+          }
+        ],
+        "compliance-focused": [
+          {
+            "speaker": "user",
+            "text": "Run compliance check on case FR-2847.",
+            "delay": 1000
+          },
+          {
+            "agent": "Compliance Guard",
+            "speaker": "agent",
+            "text": "Regulation E compliance: ✓ Passed. Provisional credit timeline: 2 hours (regulation allows 10 business days). FCBA requirements: ✓ Met. Customer disclosure sent 11/06 14:25 EST via email and SMS. Billing error notice: ✓ Compliant. OCC audit trail: Complete with timestamps and decision points.",
+            "delay": 2200
+          },
+          {
+            "speaker": "user",
+            "text": "Any documentation gaps or regulatory risks?",
+            "delay": 1500
+          },
+          {
+            "agent": "Eligibility",
+            "speaker": "agent",
+            "text": "Documentation status: Complete. Customer statement obtained and timestamped. Card network rule compliance: Visa Rule 4863 (Cardholder Does Not Recognize) — fully satisfied. Required elements: Cardholder denial ✓, Transaction details ✓, Merchant descriptor ✓. Chargeback filing deadline: 120 days from transaction date, currently at day 1.",
+            "delay": 2300
+          },
+          {
+            "speaker": "user",
+            "text": "Verify zero liability protection application.",
+            "delay": 1400
+          },
+          {
+            "agent": "Compliance Guard",
+            "speaker": "agent",
+            "text": "Zero Liability analysis: Qualified ✓. Cardholder notification within 60 days (actual: 2 hours). No cardholder negligence indicators. Card in cardholder possession. No PIN used. Gross negligence test: Negative. Federal liability cap: $50, BMO policy: $0. Customer liability: $0.00. Disclosure compliance: Account agreement section 12.3 applied.",
+            "delay": 2500
+          }
+        ],
+        "customer-service-focused": [
+          {
+            "speaker": "user",
+            "text": "What's Sarah Mitchell's account status and history?",
+            "delay": 1000
+          },
+          {
+            "agent": "Outreach",
+            "speaker": "agent",
+            "text": "Customer: Sarah Mitchell, Account since Feb 2020 (4.2 years). Contact preference: SMS primary, email secondary. Last contact: 11/06 14:23 (today, regarding this case). CSAT score: 92/100 (based on 3 previous interactions). Customer sentiment: Satisfied, no escalations in history.",
+            "delay": 2000
+          },
+          {
+            "speaker": "user",
+            "text": "How quickly can we resolve this for her?",
+            "delay": 1500
+          },
+          {
+            "agent": "Resolution",
+            "speaker": "agent",
+            "text": "Resolution timeline: Immediate. Provisional credit posted at 14:25 EST (2 minutes after report). Card replacement: Expedited shipping, 3 business days delivery. No service disruption — 3 recurring payments auto-updated within 24 hours. Total customer effort: Single call, 2.1 minute handle time. Follow-up: Confirmation sent, no further action required.",
+            "delay": 2200
+          },
+          {
+            "speaker": "user",
+            "text": "Should I proactively reach out with any additional information?",
+            "delay": 1600
+          },
+          {
+            "agent": "Outreach",
+            "speaker": "agent",
+            "text": "Recommendation: Optional proactive touchpoint on day 3. Message: 'Your new card arrives tomorrow. We've automatically updated Netflix, Spotify, and Little Scholars Daycare.' Predicted CSAT impact: +4 points. Alternative: Wait for card delivery, then send 'card activated' confirmation with fraud prevention tips.",
+            "delay": 2300
+          }
+        ],
+        "operations-focused": [
+          {
+            "speaker": "user",
+            "text": "Show me the operational metrics for this case type.",
+            "delay": 1000
+          },
+          {
+            "agent": "Resolution",
+            "speaker": "agent",
+            "text": "Case type: Fraudulent Charge (unauthorized CNP). Volume today: 47 cases. Automation rate: 98.4% (46 fully automated, 1 HITL review). Average handle time: 2.1 minutes (vs 18 minutes pre-AI). Cost per case: $3.20 (vs $47.80 traditional). SLA performance: 100% within 24-hour target, actual: 2.3 minute average.",
+            "delay": 2200
+          },
+          {
+            "speaker": "user",
+            "text": "What's our chargeback win rate for these cases?",
+            "delay": 1500
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Chargeback performance (90-day window): Win rate: 83.7%. Total cases: 1,247. Won: 1,044. Lost: 187. Pending: 16. Average recovery: $164 per case. Total recovery: $171,216. Primary loss reason: Insufficient documentation (12%), followed by expired filing window (5%). Recommendation: Enhanced merchant evidence collection.",
+            "delay": 2400
+          },
+          {
+            "speaker": "user",
+            "text": "Impact on team productivity and cost savings?",
+            "delay": 1400
+          },
+          {
+            "agent": "Recovery",
+            "speaker": "agent",
+            "text": "Productivity analysis: Agent capacity increased 8.5x (from 2.1 cases/hour to 17.9 cases/hour). Cost reduction: $44.60 per case savings. Quarterly savings projection: $557K (based on 12,500 cases). ROI on AI platform: 847% annualized. Team reallocation: 6 FTEs moved from routine disputes to complex investigations and customer experience.",
+            "delay": 2500
+          }
+        ],
+        "balanced": [
+          {
+            "speaker": "user",
+            "text": "Show me the details on case #FR-2847 for Sarah Mitchell.",
+            "delay": 1000
+          },
+          {
+            "agent": "Fraud Sentinel",
+            "speaker": "agent",
+            "text": "Case FR-2847: Unauthorized $142 charge at Techtronix Store detected 11/06 at 14:23 EST. Card ending 4892. Geolocation mismatch — transaction in Dallas, customer home location Toronto. Velocity check passed. Merchant category: Electronics.",
+            "delay": 1500
+          },
+          {
+            "speaker": "user",
+            "text": "What's the dispute eligibility assessment?",
+            "delay": 1800
+          },
+          {
+            "agent": "Eligibility",
+            "speaker": "agent",
+            "text": "Dispute valid under Visa Rule 4863 (Cardholder Does Not Recognize). KYC verified, account in good standing. Customer confirmed non-authorization within 2 hours of transaction. Zero prior disputes in 24 months. Recommendation: Approve instant provisional credit.",
+            "delay": 2200
+          },
+          {
+            "speaker": "user",
+            "text": "Any compliance flags I should know about?",
+            "delay": 1500
+          },
+          {
+            "agent": "Compliance Guard",
+            "speaker": "agent",
+            "text": "No flags. Transaction falls below high-value threshold ($500). Reg E zero liability applies. FCBA provisional credit timeline compliant (within 10 business days, we're at 2 hours). OCC audit trail complete. All disclosures sent to customer automatically.",
+            "delay": 2000
+          },
+          {
+            "speaker": "user",
+            "text": "Proceed with resolution. What's the full action plan?",
+            "delay": 1600
+          },
+          {
+            "agent": "Resolution",
+            "speaker": "agent",
+            "text": "Executed: $142 provisional credit posted to account. Card *4892 blocked and flagged for reissuance. New card expedited (3 business days). Merchant chargeback filed automatically via Visa network. Customer notification sent via SMS and email.",
+            "delay": 2200
+          }
+        ],
+        "risk-focused": [
+          {
+            "speaker": "user",
+            "text": "What's the portfolio risk exposure from this case pattern?",
+            "delay": 1000
+          },
+          {
+            "agent": "Fraud Sentinel",
+            "speaker": "agent",
+            "text": "Portfolio risk assessment: Techtronix Store pattern identified across 23 transactions, 12 unique cardholders, total exposure $3,247. Risk classification: Medium (2.1% fraud rate vs 0.8% portfolio average). Geographic concentration: 67% Dallas-Fort Worth area. Emerging pattern: Late-night transactions (2-4 AM), average value $141.",
+            "delay": 2400
+          },
+          {
+            "speaker": "user",
+            "text": "Show me the financial impact and loss prevention metrics.",
+            "delay": 1500
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Loss prevention performance (YTD): Total fraud prevented: $8.4M. False positive rate: 2.1% (down from 8.7% last year). Detection accuracy: 94.2%. Average detection speed: 4.7 minutes from transaction. Risk score model performance: AUC 0.96. Cost avoidance vs traditional methods: $2.3M annually.",
+            "delay": 2500
+          },
+          {
+            "speaker": "user",
+            "text": "What are the emerging threat patterns I should monitor?",
+            "delay": 1600
+          },
+          {
+            "agent": "Learning",
+            "speaker": "agent",
+            "text": "Emerging threats (high priority): 1) Synthetic identity fraud up 23% QoQ, 2) Account takeover via SIM swap attacks (+15%), 3) Friendly fraud in subscription services (+8%). Recommended actions: Enhanced identity verification for new accounts, real-time device fingerprinting, merchant category monitoring for subscriptions. Strategic risk level: Low but trending up.",
+            "delay": 2700
+          }
+        ]
+      }
     },
     {
       "id": "duplicate-charge",
