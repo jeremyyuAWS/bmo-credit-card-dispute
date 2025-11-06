@@ -83,8 +83,9 @@ export function ChatWindow({
 
     if (nextIndex < conversation.length) {
       const nextMessage = conversation[nextIndex];
+      const currentMessage = conversation[currentIndex];
 
-      if (nextMessage?.agent && nextMessage.agent !== showingAgent) {
+      if (nextMessage?.agent && nextMessage.agent !== currentMessage?.agent) {
         setShowingAgent(nextMessage.agent);
         onAgentChange(nextMessage.agent);
         setTimeout(() => {
@@ -95,11 +96,13 @@ export function ChatWindow({
         setCurrentIndex(nextIndex);
         setMessages(prev => [...prev, nextIndex]);
         if (nextMessage?.agent) {
+          setShowingAgent(nextMessage.agent);
           onAgentChange(nextMessage.agent);
         }
       }
     } else {
       onAgentChange(null);
+      setShowingAgent(null);
       setTimeout(() => {
         onComplete();
       }, 1000 / playbackSpeed);

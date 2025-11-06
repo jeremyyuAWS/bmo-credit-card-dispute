@@ -468,6 +468,11 @@
         "name": "Marcus Chen",
         "initials": "MC"
       },
+      "bmoTeamMember": {
+        "name": "Alex Thompson",
+        "role": "Customer Service Representative",
+        "initials": "AT"
+      },
       "conversation": [
         {
           "agent": "Fraud Sentinel",
@@ -516,6 +521,52 @@
           "text": "Case resolved ✅ Pattern logged to identify similar merchant errors automatically.",
           "delay": 1500
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Review case #DUP-1423 for Marcus Chen.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case DUP-1423: Duplicate charges detected. Two identical $89.99 transactions from StreamFlix posted 11/06 within 2-hour window. Transaction IDs: TXN-8847392, TXN-8847401. Merchant category: Streaming services. Pattern: Likely merchant billing system error.",
+          "delay": 1800
+        },
+        {
+          "speaker": "user",
+          "text": "What's the resolution pathway for this case?",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Duplicate charge confirmed via transaction matching. Qualifies for immediate reversal under Fair Credit Billing Act billing error provisions. Customer account verified, no history of duplicate disputes. Merchant relationship status: Good standing, enrolled in auto-reversal program.",
+          "delay": 2200
+        },
+        {
+          "speaker": "user",
+          "text": "Process the refund and notify the customer.",
+          "delay": 1400
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $89.99 credit posted to account ending 4829. Second transaction (TXN-8847401) reversed. Merchant notification sent via automated dispute channel. Customer notification: SMS and email sent 11/06 14:38. Subscription status: Remains active with single billing cycle.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "Confirm no service disruption for the customer.",
+          "delay": 1300
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "Service continuity confirmed. StreamFlix subscription active with corrected single charge. No customer action required. Merchant acknowledgment received: Billing system glitch affecting 47 customers, all resolved. Added to merchant quality monitoring for 30 days.",
+          "delay": 2200
+        }
       ]
     },
     {
@@ -530,6 +581,11 @@
       "customer": {
         "name": "Emily Rodriguez",
         "initials": "ER"
+      },
+      "bmoTeamMember": {
+        "name": "Morgan Lee",
+        "role": "Dispute Resolution Specialist",
+        "initials": "ML"
       },
       "conversation": [
         {
@@ -579,6 +635,52 @@
           "text": "Dispute won ✅ This merchant flagged for closer monitoring on future cancellation disputes.",
           "delay": 1500
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Pull up travel dispute case #TRV-5829 for Emily Rodriguez.",
+          "delay": 1000
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Case TRV-5829: $425 charge from Grand Plaza Hotel posted 11/05. Customer reports cancellation 14 days prior with confirmation. Merchant: Grand Plaza Hotel (Chicago). Cancellation policy: Full refund 7+ days before check-in. Customer provided cancellation confirmation email timestamped 10/22.",
+          "delay": 2000
+        },
+        {
+          "speaker": "user",
+          "text": "Verify the merchant's cancellation policy and our chargeback eligibility.",
+          "delay": 1600
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Chargeback eligible under Visa Reason Code 13.1 (Services Not Provided). Evidence: Customer cancellation confirmation 14 days before check-in, merchant policy allows cancellation 7+ days prior. Hotel failed to process refund. Win probability: 92% based on documentation and policy violation.",
+          "delay": 2300
+        },
+        {
+          "speaker": "user",
+          "text": "Initiate the chargeback and credit the customer.",
+          "delay": 1400
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $425 provisional credit posted to account ending 3841. Chargeback filed via Visa network. Supporting documentation attached: Cancellation email, merchant policy screenshot, booking confirmation. Customer notification sent. Expected chargeback resolution: 30-45 days.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "Is this merchant a repeat offender?",
+          "delay": 1300
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Merchant analysis: Grand Plaza Hotel has 8 similar disputes in past 12 months (cancellation policy violations). Chargeback win rate against this merchant: 87%. Recommendation: Flag for enhanced monitoring. Alert issued to fraud prevention team for portfolio-wide review of active bookings with this merchant.",
+          "delay": 2500
+        }
       ]
     },
     {
@@ -593,6 +695,11 @@
       "customer": {
         "name": "David Thompson",
         "initials": "DT"
+      },
+      "bmoTeamMember": {
+        "name": "Taylor Kim",
+        "role": "Fraud Analyst",
+        "initials": "TK"
       },
       "conversation": [
         {
@@ -642,6 +749,52 @@
           "text": "Case closed ✅ This subscription pattern added to early detection models across all customers.",
           "delay": 1500
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Analyze subscription fraud case #SUB-7621 for David Thompson.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case SUB-7621: Recurring $29.99 monthly charges from ProFit Wellness, 6-month duration, total $179.94. Pattern: Zero user activity detected on linked account. No app downloads, no logins, no service usage. Card-not-present transactions. High confidence unauthorized subscription (fraud score: 91/100).",
+          "delay": 2200
+        },
+        {
+          "speaker": "user",
+          "text": "What's the recovery strategy for multi-month fraud?",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Recovery eligibility: All 6 months qualify for chargeback under unauthorized transaction rules. Timeline: Within 60-day dispute window. Evidence strength: Strong (zero usage activity, customer denial, no enrollment verification). Recommendation: Full $179.94 recovery + subscription termination + merchant block.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "Execute full recovery and protect the account.",
+          "delay": 1300
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $179.94 provisional credit posted (6 transactions reversed). Subscription cancelled via merchant API. ProFit Wellness blocked from future charges on this card. Enhanced fraud monitoring activated for 90 days. Customer notification sent with summary of recovered charges.",
+          "delay": 2500
+        },
+        {
+          "speaker": "user",
+          "text": "Is this part of a larger fraud pattern?",
+          "delay": 1400
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Pattern analysis: ProFit Wellness linked to 34 similar cases across portfolio (suspected card testing operation). Common thread: Small recurring charges, zero customer engagement. Portfolio exposure: $6,847 total. Recommendation: Add to merchant watchlist, implement real-time subscription verification for this merchant category.",
+          "delay": 2600
+        }
       ]
     },
     {
@@ -656,6 +809,11 @@
       "customer": {
         "name": "Jennifer Wu",
         "initials": "JW"
+      },
+      "bmoTeamMember": {
+        "name": "Sam Rivera",
+        "role": "Risk Manager",
+        "initials": "SR"
       },
       "conversation": [
         {
@@ -705,6 +863,52 @@
           "text": "Threat neutralized ✅ This attack pattern shared across network to protect all BMO customers.",
           "delay": 1500
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Review proactive fraud block case #PRO-3492 for Jennifer Wu.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case PRO-3492: Real-time block executed. $2,847 attempted purchase from Tech Warehouse Malaysia declined at 11/06 09:47 EST. Risk triggers: Geolocation anomaly (Toronto to Malaysia, no travel history), merchant risk score 8.2/10, transaction amount 4.7x customer's average. Fraud confidence: 96%.",
+          "delay": 2300
+        },
+        {
+          "speaker": "user",
+          "text": "Confirm customer legitimacy and next steps.",
+          "delay": 1400
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Customer contacted via SMS at 09:48 EST (1-minute response time). Customer confirmed: Not her transaction, currently in Toronto, no Malaysia purchases ever. Card compromise confirmed. Customer expressed gratitude for real-time protection. CSAT prediction: Excellent.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "Execute card replacement and review portfolio impact.",
+          "delay": 1500
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: Card *7264 deactivated. New card issued with overnight delivery. Digital wallet credentials updated (Apple Pay, Google Pay). 8 recurring merchants auto-transferred to new card. Zero financial loss. Customer zero liability confirmed. Total fraud prevented: $2,847.",
+          "delay": 2500
+        },
+        {
+          "speaker": "user",
+          "text": "What's the strategic value of this proactive stop?",
+          "delay": 1400
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Strategic impact analysis: Proactive detection prevented $2,847 loss. Customer experience: Exceptional (zero effort, zero loss). Attack vector identified: Compromised cards from data breach at third-party retailer. Portfolio protection: Pattern shared across fraud detection system, 127 similar attempts blocked network-wide today. Annual savings from proactive blocks: $12.3M.",
+          "delay": 2800
+        }
       ]
     },
     {
@@ -719,6 +923,11 @@
       "customer": {
         "name": "Raj Patel",
         "initials": "RP"
+      },
+      "bmoTeamMember": {
+        "name": "Casey Martinez",
+        "role": "Dispute Resolution Specialist",
+        "initials": "CM"
       },
       "conversation": [
         {
@@ -768,6 +977,52 @@
           "text": "Case won ✅ This merchant flagged. We'll alert customers about currency conversion options at this location.",
           "delay": 1500
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Review international currency case #INT-9274 for Raj Patel.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case INT-9274: €500 Paris hotel charge converted to $847 CAD. Standard interbank rate analysis: Should be $720 CAD. Markup: 17.6% above fair exchange rate. Merchant: Grand Hotel Paris. Transaction type: Dynamic Currency Conversion (DCC) applied at point of sale.",
+          "delay": 2100
+        },
+        {
+          "speaker": "user",
+          "text": "Was DCC properly disclosed per Visa regulations?",
+          "delay": 1500
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Violation confirmed. Visa Operating Regulations require clear DCC disclosure and customer opt-in. Customer reports no disclosure, no rate comparison shown, no choice offered. This violates card network rules. Chargeback eligible under Reason Code: Currency Conversion Assessment.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "Process the recovery and educate the customer.",
+          "delay": 1400
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $127 credit posted (excessive markup amount). Chargeback filed with supporting evidence: Transaction receipt, Visa rate comparison, regulatory citation. Customer education sent: 'Always pay in local currency abroad' tip sheet. Expected win probability: 91%.",
+          "delay": 2500
+        },
+        {
+          "speaker": "user",
+          "text": "Should we flag this merchant for other customers?",
+          "delay": 1300
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Recommendation: Yes. Grand Hotel Paris added to DCC watchlist. 14 similar complaints identified in past 6 months. Alert system activated: Future transactions at this merchant will trigger real-time SMS to customer: 'Decline currency conversion if offered.' Portfolio protection: Estimated $8.4K annual savings.",
+          "delay": 2600
+        }
       ]
     },
     {
@@ -782,6 +1037,11 @@
       "customer": {
         "name": "Dorothy Evans",
         "initials": "DE"
+      },
+      "bmoTeamMember": {
+        "name": "Jamie Chen",
+        "role": "Fraud Analyst - Elder Protection Unit",
+        "initials": "JC"
       },
       "conversation": [
         {
@@ -831,6 +1091,52 @@
           "text": "Customer protected ✅ Scam pattern added to real-time detection. We're calling other customers who may be targeted.",
           "delay": 1800
         }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Urgent escalation: Review elder protection case #ELD-6173 for Dorothy Evans.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case ELD-6173: HIGH PRIORITY. Customer age 74, three wire transfers totaling $15,000 to 'Tech Support Services LLC' within 96 hours. Pattern: Classic tech support scam. Red flags: New payee, wire transfers (unusual for customer), merchant in high-fraud jurisdiction, customer contacted us asking if payments were 'secure.'",
+          "delay": 2500
+        },
+        {
+          "speaker": "user",
+          "text": "What's our intervention strategy for elder financial abuse?",
+          "delay": 1600
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "Elder Protection Protocol activated. Customer meets vulnerable adult criteria (age 65+, unusual transaction pattern). Legal basis: OCC elder financial exploitation guidance. Duty of care: Immediate intervention required. Recommendation: Halt further transactions, attempt wire recall, notify adult protective services if warranted, offer trusted contact program.",
+          "delay": 2800
+        },
+        {
+          "speaker": "user",
+          "text": "Execute full recovery and implement safeguards.",
+          "delay": 1500
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: Wire recall initiated with receiving bank (Chase). $15,000 successfully recovered (funds had not yet cleared). Account secured: Large transaction alerts enabled, wire transfer requires phone verification. Trusted contact added: Daughter Lisa Evans (customer consented). Customer outreach: Follow-up call scheduled, scam education materials sent via mail.",
+          "delay": 2900
+        },
+        {
+          "speaker": "user",
+          "text": "Report this to authorities and protect other vulnerable customers.",
+          "delay": 1600
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Multi-layer response executed: 1) Scam reported to Canadian Anti-Fraud Centre, 2) Tech Support Services LLC added to merchant block list network-wide, 3) Portfolio scan: 23 customers 65+ with similar patterns identified and contacted, 4) Pattern shared with Financial Crimes Enforcement Network (FinCEN). Estimated portfolio protection: $340K in prevented losses.",
+          "delay": 3000
+        }
       ]
     },
     {
@@ -845,6 +1151,11 @@
       "customer": {
         "name": "Patricia Johnson",
         "initials": "PJ"
+      },
+      "bmoTeamMember": {
+        "name": "Riley Brooks",
+        "role": "Customer Service Representative",
+        "initials": "RB"
       },
       "conversation": [
         {
@@ -893,6 +1204,52 @@
           "speaker": "agent",
           "text": "Issue resolved ✅ This hospital's billing system flagged. We'll expedite future insurance disputes from this provider.",
           "delay": 1600
+        }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Review medical billing case #MED-4758 for Patricia Johnson.",
+          "delay": 1000
+        },
+        {
+          "agent": "Outreach",
+          "speaker": "agent",
+          "text": "Case MED-4758: $2,340 charge from City Medical Center posted 11/04. Customer reports insurance coverage issue. Insurance carrier: BlueCross BlueShield. Claim #: BC-7729384. Customer states: 'Insurance approved procedure, but hospital charged my card anyway.' Customer stress level: High (medical billing disputes are emotionally taxing).",
+          "delay": 2300
+        },
+        {
+          "speaker": "user",
+          "text": "Verify insurance payment and hospital billing records.",
+          "delay": 1500
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Investigation complete: Insurance paid $1,890 to hospital on 11/02 (Explanation of Benefits verified). Hospital billing error: Double-charged patient card on 11/04 despite receiving insurance payment. Customer responsibility: $0 (fully covered procedure). Evidence: EOB shows $0 patient balance. Hospital violated coordination of benefits protocol.",
+          "delay": 2700
+        },
+        {
+          "speaker": "user",
+          "text": "Credit the customer and resolve with hospital billing.",
+          "delay": 1400
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $2,340 provisional credit posted immediately (customer relief priority). Hospital billing department contacted via direct line. Hospital acknowledged error: Coordination of Benefits system glitch. Hospital agreement: Will not re-bill customer. BMO chargeback unnecessary (merchant cooperation obtained). Customer notification: Email with EOB summary and resolution details.",
+          "delay": 2800
+        },
+        {
+          "speaker": "user",
+          "text": "Provide customer support documentation and prevent future issues.",
+          "delay": 1500
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "Customer advocacy package prepared: 1) Timeline of events document, 2) EOB summary, 3) Hospital billing resolution letter, 4) Direct contact for hospital billing dept if needed. Added benefit: City Medical Center flagged in system - future charges will trigger automatic insurance verification check before posting to customer accounts.",
+          "delay": 2600
         }
       ]
     }
