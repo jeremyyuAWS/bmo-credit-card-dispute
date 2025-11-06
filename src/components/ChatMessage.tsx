@@ -35,37 +35,41 @@ export function ChatMessage({
   summaryData
 }: ChatMessageProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
   useEffect(() => {
     const showTimer = setTimeout(() => {
-      setIsTyping(true);
+      setIsVisible(true);
+      setCurrentCharIndex(0);
     }, delay / playbackSpeed);
 
     return () => clearTimeout(showTimer);
   }, [delay, playbackSpeed]);
 
   useEffect(() => {
-    if (!isTyping) return;
+    if (!isVisible || currentCharIndex >= text.length) return;
 
-    const typingDuration = speaker === 'user'
-      ? Math.min(text.length * 20, 1200) / playbackSpeed
-      : Math.min(text.length * 15, 800) / playbackSpeed;
+    const charDelay = speaker === 'user'
+      ? 25 / playbackSpeed
+      : 20 / playbackSpeed;
 
     const typingTimer = setTimeout(() => {
-      setIsTyping(false);
-      setIsVisible(true);
-      setDisplayedText(text);
-      if (onComplete) {
-        setTimeout(onComplete, 700 / playbackSpeed);
-      }
-    }, typingDuration);
+      setCurrentCharIndex(prev => prev + 1);
+      setDisplayedText(text.slice(0, currentCharIndex + 1));
+    }, charDelay);
 
     return () => clearTimeout(typingTimer);
-  }, [isTyping, text, onComplete, playbackSpeed, speaker]);
+  }, [isVisible, currentCharIndex, text, playbackSpeed, speaker]);
 
-  if (!isTyping && !isVisible) return null;
+  useEffect(() => {
+    if (isVisible && currentCharIndex >= text.length && onComplete) {
+      const completeTimer = setTimeout(onComplete, 700 / playbackSpeed);
+      return () => clearTimeout(completeTimer);
+    }
+  }, [currentCharIndex, text.length, onComplete, isVisible, playbackSpeed]);
+
+  if (!isVisible) return null;
 
   const getUserLabel = () => {
     if (viewMode === 'bmo-team' && bmoTeamMember) {
@@ -141,15 +145,12 @@ export function ChatMessage({
               : 'bg-white text-black border-gray-200'
           }`}
         >
-          {isTyping ? (
-            <div className="flex items-center space-x-1">
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-            </div>
-          ) : (
-            <p className="text-sm leading-relaxed">{displayedText}</p>
-          )}
+          <p className="text-sm leading-relaxed">
+            {displayedText}
+            {currentCharIndex < text.length && (
+              <span className="inline-block w-0.5 h-4 bg-current ml-0.5 animate-pulse"></span>
+            )}
+          </p>
         </div>
       </div>
     </div>
