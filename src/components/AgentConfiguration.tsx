@@ -59,6 +59,10 @@ interface Integration {
 
 export function AgentConfiguration() {
   const [activeSubTab, setActiveSubTab] = useState('thresholds');
+  const [selectedAgent, setSelectedAgent] = useState<AgentPerformance | null>(null);
+  const [selectedModel, setSelectedModel] = useState<ModelVersion | null>(null);
+  const [showDownloadNotification, setShowDownloadNotification] = useState(false);
+  const [showPromoteNotification, setShowPromoteNotification] = useState(false);
   const [thresholds, setThresholds] = useState<ThresholdConfig[]>([
     {
       id: 'fraud-confidence',
@@ -799,7 +803,7 @@ export function AgentConfiguration() {
 
             <div className="space-y-4">
               {agentPerformance.map((agent) => (
-                <div key={agent.agentId} className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                <div key={agent.agentId} className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-md transition-all cursor-pointer hover:border-black" onClick={() => setSelectedAgent(agent)}>
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white">
@@ -820,7 +824,7 @@ export function AgentConfiguration() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-6 gap-4">
+                  <div className="grid grid-cols-6 gap-4 mb-3">
                     <div>
                       <div className="text-xs text-gray-600 mb-1">Uptime</div>
                       <div className="text-lg font-bold text-black">{agent.uptime}%</div>
@@ -845,6 +849,22 @@ export function AgentConfiguration() {
                       <div className="text-xs text-gray-600 mb-1">Last Deploy</div>
                       <div className="text-xs font-semibold text-gray-700">{agent.lastDeployment}</div>
                     </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-200">
+                    <span className="text-xs text-gray-500 flex items-center">
+                      <Eye className="w-3 h-3 mr-1" />
+                      Click to view detailed metrics
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedAgent(agent);
+                      }}
+                      className="px-3 py-1 rounded-lg bg-black text-white text-xs font-semibold hover:bg-gray-800 transition-colors"
+                    >
+                      View Metrics
+                    </button>
                   </div>
                 </div>
               ))}
@@ -944,26 +964,49 @@ export function AgentConfiguration() {
                     <div className="flex items-center space-x-2">
                       {model.status === 'active' && (
                         <>
-                          <button className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50">
+                          <button
+                            onClick={() => setSelectedModel(model)}
+                            className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                          >
                             View Metrics
                           </button>
-                          <button className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50">
+                          <button
+                            onClick={() => {
+                              setShowDownloadNotification(true);
+                              setTimeout(() => setShowDownloadNotification(false), 3000);
+                            }}
+                            className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                          >
                             Download
                           </button>
                         </>
                       )}
                       {model.status === 'testing' && (
                         <>
-                          <button className="px-3 py-1 rounded-lg bg-green-600 text-white text-xs font-semibold hover:bg-green-700">
+                          <button
+                            onClick={() => {
+                              setShowPromoteNotification(true);
+                              setTimeout(() => setShowPromoteNotification(false), 3000);
+                            }}
+                            className="px-3 py-1 rounded-lg bg-green-600 text-white text-xs font-semibold hover:bg-green-700 transition-colors"
+                          >
                             Promote to Production
                           </button>
-                          <button className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50">
+                          <button
+                            onClick={() => setSelectedModel(model)}
+                            className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                          >
                             View Test Results
                           </button>
                         </>
                       )}
                       {model.status === 'retired' && (
-                        <button className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50">
+                        <button
+                          onClick={() => {
+                            alert(`Archiving model ${model.version} for ${model.agentName}`);
+                          }}
+                          className="px-3 py-1 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                        >
                             Archive
                           </button>
                       )}
@@ -1121,6 +1164,235 @@ export function AgentConfiguration() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {selectedAgent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedAgent(null)}>
+          <div className="bg-white rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-black mb-1">{selectedAgent.agentName} - Detailed Metrics</h2>
+                <p className="text-sm text-gray-600">Comprehensive performance analysis and health monitoring</p>
+              </div>
+              <button onClick={() => setSelectedAgent(null)} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <XCircle className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
+                <div className="text-sm font-semibold text-green-700 mb-2">Uptime</div>
+                <div className="text-3xl font-bold text-green-900">{selectedAgent.uptime}%</div>
+                <div className="text-xs text-green-600 mt-1">Last 30 days</div>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+                <div className="text-sm font-semibold text-blue-700 mb-2">Avg Response</div>
+                <div className="text-3xl font-bold text-blue-900">{selectedAgent.avgResponseTime}s</div>
+                <div className="text-xs text-blue-600 mt-1">p50 latency</div>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200">
+                <div className="text-sm font-semibold text-purple-700 mb-2">Success Rate</div>
+                <div className="text-3xl font-bold text-purple-900">{selectedAgent.successRate}%</div>
+                <div className="text-xs text-purple-600 mt-1">Last 24 hours</div>
+              </div>
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-4 border border-orange-200">
+                <div className="text-sm font-semibold text-orange-700 mb-2">Daily Volume</div>
+                <div className="text-3xl font-bold text-orange-900">{(selectedAgent.dailyCalls / 1000).toFixed(1)}K</div>
+                <div className="text-xs text-orange-600 mt-1">Requests/day</div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <h3 className="text-sm font-semibold text-black mb-3">Performance Metrics</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Error Rate:</span>
+                    <span className="font-bold text-black">{selectedAgent.errorRate}%</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Timeout Rate:</span>
+                    <span className="font-bold text-black">0.12%</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">p95 Response:</span>
+                    <span className="font-bold text-black">{(selectedAgent.avgResponseTime * 1.8).toFixed(1)}s</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">p99 Response:</span>
+                    <span className="font-bold text-black">{(selectedAgent.avgResponseTime * 2.5).toFixed(1)}s</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <h3 className="text-sm font-semibold text-black mb-3">Deployment Info</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Agent ID:</span>
+                    <span className="font-mono text-xs text-black">{selectedAgent.agentId}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Last Deployed:</span>
+                    <span className="font-bold text-black">{selectedAgent.lastDeployment}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Version:</span>
+                    <span className="font-bold text-black">v2.3.1</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Environment:</span>
+                    <span className="font-bold text-black">Production</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-6">
+              <h3 className="text-sm font-semibold text-black mb-3">Recent Activity</h3>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3 text-xs">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                  <span className="text-gray-600">2 hours ago</span>
+                  <span className="text-gray-800">Successfully processed 1,247 requests</span>
+                </div>
+                <div className="flex items-center space-x-3 text-xs">
+                  <AlertCircle className="w-4 h-4 text-yellow-600" />
+                  <span className="text-gray-600">6 hours ago</span>
+                  <span className="text-gray-800">Elevated latency detected (2.8s avg)</span>
+                </div>
+                <div className="flex items-center space-x-3 text-xs">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                  <span className="text-gray-600">12 hours ago</span>
+                  <span className="text-gray-800">Auto-scaled to handle traffic spike</span>
+                </div>
+                <div className="flex items-center space-x-3 text-xs">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                  <span className="text-gray-600">1 day ago</span>
+                  <span className="text-gray-800">Model updated to v2.3.1</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end space-x-3">
+              <button
+                onClick={() => setSelectedAgent(null)}
+                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition-colors"
+              >
+                Close
+              </button>
+              <button className="px-4 py-2 rounded-xl bg-black hover:bg-gray-800 text-white font-semibold transition-colors">
+                Export Report
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedModel && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedModel(null)}>
+          <div className="bg-white rounded-2xl p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-black mb-1">{selectedModel.agentName} - Model Details</h2>
+                <p className="text-sm text-gray-600">Version {selectedModel.version}</p>
+              </div>
+              <button onClick={() => setSelectedModel(null)} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <XCircle className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 border border-purple-200">
+                <div className="text-sm font-semibold text-purple-700 mb-2">Accuracy</div>
+                <div className="text-3xl font-bold text-purple-900">{selectedModel.accuracy}%</div>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+                <div className="text-sm font-semibold text-blue-700 mb-2">Features</div>
+                <div className="text-3xl font-bold text-blue-900">{selectedModel.features}</div>
+              </div>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
+                <div className="text-sm font-semibold text-green-700 mb-2">Training Data</div>
+                <div className="text-2xl font-bold text-green-900">{selectedModel.trainingDataSize}</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-6">
+              <h3 className="text-sm font-semibold text-black mb-3">Model Performance Metrics</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Precision:</span>
+                  <span className="font-bold text-black">97.8%</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Recall:</span>
+                  <span className="font-bold text-black">96.5%</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">F1 Score:</span>
+                  <span className="font-bold text-black">97.1%</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">AUC-ROC:</span>
+                  <span className="font-bold text-black">0.984</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Inference Time:</span>
+                  <span className="font-bold text-black">45ms</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Model Size:</span>
+                  <span className="font-bold text-black">234 MB</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-6">
+              <h3 className="text-sm font-semibold text-black mb-3">Training Details</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Deployed Date:</span>
+                  <span className="font-bold text-black">{selectedModel.deployedDate}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Framework:</span>
+                  <span className="font-bold text-black">TensorFlow 2.14</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Training Duration:</span>
+                  <span className="font-bold text-black">4.2 hours</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">Epochs:</span>
+                  <span className="font-bold text-black">50</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end space-x-3">
+              <button
+                onClick={() => setSelectedModel(null)}
+                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDownloadNotification && (
+        <div className="fixed top-4 right-4 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50 flex items-center space-x-3">
+          <CheckCircle className="w-5 h-5" />
+          <span className="font-semibold">Model download started! Check your downloads folder.</span>
+        </div>
+      )}
+
+      {showPromoteNotification && (
+        <div className="fixed top-4 right-4 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50 flex items-center space-x-3">
+          <CheckCircle className="w-5 h-5" />
+          <span className="font-semibold">Model promoted to production successfully!</span>
         </div>
       )}
     </div>
