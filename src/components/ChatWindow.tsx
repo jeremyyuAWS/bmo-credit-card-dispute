@@ -48,10 +48,19 @@ export function ChatWindow({
 
   useEffect(() => {
     if (isActive && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: scrollContainerRef.current.scrollHeight,
-        behavior: 'smooth'
-      });
+      const scrollToBottom = () => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTo({
+            top: scrollContainerRef.current.scrollHeight,
+            behavior: 'smooth'
+          });
+        }
+      };
+
+      scrollToBottom();
+
+      const timeoutId = setTimeout(scrollToBottom, 100);
+      return () => clearTimeout(timeoutId);
     }
   }, [messages, showingAgent, isActive]);
 
@@ -78,6 +87,13 @@ export function ChatWindow({
 
   const handleMessageComplete = () => {
     const nextIndex = currentIndex + 1;
+
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
 
     if (nextIndex < conversation.length) {
       const nextMessage = conversation[nextIndex];
