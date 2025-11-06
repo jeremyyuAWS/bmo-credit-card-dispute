@@ -318,11 +318,14 @@ function App() {
             />
             <div className="flex-1 overflow-hidden">
               <ChatWindow
-                conversation={currentScenario.conversation}
+                conversation={viewMode === 'customer' ? currentScenario.conversation : (currentScenario.bmoConversation || currentScenario.conversation)}
                 onAgentChange={setActiveAgent}
                 onComplete={handleComplete}
                 isActive={isPlaying && !pauseRequested}
                 playbackSpeed={playbackSpeed}
+                viewMode={viewMode}
+                customerName={currentScenario.customer?.name}
+                bmoTeamMember={currentScenario.bmoTeamMember}
               />
             </div>
           </div>

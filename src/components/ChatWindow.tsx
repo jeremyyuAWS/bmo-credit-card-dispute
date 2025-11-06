@@ -16,9 +16,25 @@ interface ChatWindowProps {
   onComplete: () => void;
   isActive: boolean;
   playbackSpeed?: number;
+  viewMode?: 'customer' | 'bmo-team';
+  customerName?: string;
+  bmoTeamMember?: {
+    name: string;
+    role: string;
+    initials: string;
+  };
 }
 
-export function ChatWindow({ conversation, onAgentChange, onComplete, isActive, playbackSpeed = 1 }: ChatWindowProps) {
+export function ChatWindow({
+  conversation,
+  onAgentChange,
+  onComplete,
+  isActive,
+  playbackSpeed = 1,
+  viewMode = 'customer',
+  customerName,
+  bmoTeamMember
+}: ChatWindowProps) {
   const [messages, setMessages] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -113,6 +129,9 @@ export function ChatWindow({ conversation, onAgentChange, onComplete, isActive, 
           delay={isLast ? msg.delay || 0 : 0}
           onComplete={isLast ? handleMessageComplete : undefined}
           playbackSpeed={playbackSpeed}
+          viewMode={viewMode}
+          customerName={customerName}
+          bmoTeamMember={bmoTeamMember}
         />
       );
     });

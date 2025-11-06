@@ -12,6 +12,11 @@
         "name": "Sarah Mitchell",
         "initials": "SM"
       },
+      "bmoTeamMember": {
+        "name": "Jordan Chen",
+        "role": "Dispute Resolution Specialist",
+        "initials": "JC"
+      },
       "conversation": [
         {
           "agent": "Fraud Sentinel",
@@ -59,6 +64,74 @@
           "speaker": "agent",
           "text": "Case closed ✅ This outcome has been added to our fraud prevention models to protect you better.",
           "delay": 1500
+        }
+      ],
+      "bmoConversation": [
+        {
+          "speaker": "user",
+          "text": "Show me the details on case #FR-2847 for Sarah Mitchell.",
+          "delay": 1000
+        },
+        {
+          "agent": "Fraud Sentinel",
+          "speaker": "agent",
+          "text": "Case FR-2847: Unauthorized $142 charge at Techtronix Store detected 11/06 at 14:23 EST. Card ending 4892. Geolocation mismatch — transaction in Dallas, customer home location Toronto. Velocity check passed. Merchant category: Electronics.",
+          "delay": 1500
+        },
+        {
+          "speaker": "user",
+          "text": "What's the dispute eligibility assessment?",
+          "delay": 1800
+        },
+        {
+          "agent": "Eligibility",
+          "speaker": "agent",
+          "text": "Dispute valid under Visa Rule 4863 (Cardholder Does Not Recognize). KYC verified, account in good standing. Customer confirmed non-authorization within 2 hours of transaction. Zero prior disputes in 24 months. Recommendation: Approve instant provisional credit.",
+          "delay": 2200
+        },
+        {
+          "speaker": "user",
+          "text": "Any compliance flags I should know about?",
+          "delay": 1500
+        },
+        {
+          "agent": "Compliance Guard",
+          "speaker": "agent",
+          "text": "No flags. Transaction falls below high-value threshold ($500). Reg E zero liability applies. FCBA provisional credit timeline compliant (within 10 business days, we're at 2 hours). OCC audit trail complete. All disclosures sent to customer automatically.",
+          "delay": 2000
+        },
+        {
+          "speaker": "user",
+          "text": "Proceed with resolution. What's the full action plan?",
+          "delay": 1600
+        },
+        {
+          "agent": "Resolution",
+          "speaker": "agent",
+          "text": "Executed: $142 provisional credit posted to account. Card *4892 blocked and flagged for reissuance. New card expedited (3 business days). Merchant chargeback filed automatically via Visa network. Customer notification sent via SMS and email.",
+          "delay": 2200
+        },
+        {
+          "speaker": "user",
+          "text": "Will this disrupt her recurring payments?",
+          "delay": 1400
+        },
+        {
+          "agent": "Recovery",
+          "speaker": "agent",
+          "text": "Recovery protocol initiated. Identified 3 active subscriptions: Netflix ($15.99), Spotify ($10.99), Little Scholars Daycare ($420/mo). All three merchants enrolled in automatic card updater program. New card number pushed to merchant systems within 24 hours. Zero service disruption expected.",
+          "delay": 2400
+        },
+        {
+          "speaker": "user",
+          "text": "What patterns should I watch for follow-up fraud?",
+          "delay": 1600
+        },
+        {
+          "agent": "Learning",
+          "speaker": "agent",
+          "text": "Analysis complete. This matches 'card-not-present electronics fraud' pattern — 847 similar cases last 90 days. Techtronix Store flagged as medium-risk merchant (2.1% fraud rate vs 0.8% network avg). Recommendation: Monitor Sarah's account for 72 hours for additional unauthorized attempts. Pattern logged for proactive detection across portfolio.",
+          "delay": 2500
         }
       ]
     },

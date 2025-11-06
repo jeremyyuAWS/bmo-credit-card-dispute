@@ -42,11 +42,11 @@ export function ScenarioSelector({
   ];
 
   return (
-    <div className="border-b border-gray-200 bg-white px-8 py-4">
+    <div className="border-b border-gray-200 bg-white px-8 py-4 transition-all">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-black mb-1">Demo Scenarios</h3>
-          <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>
+          {!isPlaying && <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>}
         </div>
 
         <div className="flex items-center space-x-3">
@@ -100,8 +100,9 @@ export function ScenarioSelector({
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-3 mt-4">
-        {scenarios.map((scenario) => (
+      {!isPlaying && (
+        <div className="grid grid-cols-4 gap-3 mt-4">
+          {scenarios.map((scenario) => (
           <button
             key={scenario.id}
             onClick={() => !disabled && onSelect(scenario.id)}
@@ -141,8 +142,9 @@ export function ScenarioSelector({
               </div>
             )}
           </button>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

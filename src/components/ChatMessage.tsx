@@ -7,9 +7,26 @@ interface ChatMessageProps {
   delay?: number;
   onComplete?: () => void;
   playbackSpeed?: number;
+  viewMode?: 'customer' | 'bmo-team';
+  customerName?: string;
+  bmoTeamMember?: {
+    name: string;
+    role: string;
+    initials: string;
+  };
 }
 
-export function ChatMessage({ speaker, text, agent, delay = 0, onComplete, playbackSpeed = 1 }: ChatMessageProps) {
+export function ChatMessage({
+  speaker,
+  text,
+  agent,
+  delay = 0,
+  onComplete,
+  playbackSpeed = 1,
+  viewMode = 'customer',
+  customerName,
+  bmoTeamMember
+}: ChatMessageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
@@ -40,16 +57,32 @@ export function ChatMessage({ speaker, text, agent, delay = 0, onComplete, playb
 
   if (!isTyping && !isVisible) return null;
 
+  const getUserLabel = () => {
+    if (viewMode === 'bmo-team' && bmoTeamMember) {
+      return bmoTeamMember.name;
+    }
+    return customerName || 'Customer';
+  };
+
   return (
     <div className={`flex ${speaker === 'user' ? 'justify-end' : 'justify-start'} mb-4 animate-fadeIn`}>
       <div className={`max-w-[75%] ${speaker === 'user' ? 'order-2' : 'order-1'}`}>
+        {speaker === 'user' && viewMode === 'bmo-team' && bmoTeamMember && (
+          <div className="text-xs text-gray-500 mb-1 font-medium text-right">
+            {bmoTeamMember.name} <span className="text-gray-400">({bmoTeamMember.role})</span>
+          </div>
+        )}
         {speaker === 'agent' && agent && (
-          <div className="text-xs text-gray-500 mb-1 font-medium">{agent}</div>
+          <div className="text-xs text-gray-500 mb-1 font-medium">
+            {agent} <span className="text-gray-400">(AI Agent)</span>
+          </div>
         )}
         <div
           className={`rounded-2xl px-5 py-3 shadow-sm ${
             speaker === 'user'
-              ? 'bg-black text-white'
+              ? viewMode === 'bmo-team'
+                ? 'bg-blue-600 text-white'
+                : 'bg-black text-white'
               : 'bg-white text-black border border-gray-200'
           }`}
         >
