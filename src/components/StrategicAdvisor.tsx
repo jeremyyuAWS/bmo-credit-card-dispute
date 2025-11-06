@@ -49,6 +49,7 @@ interface Safeguard {
 }
 
 export function StrategicAdvisor() {
+  const [activeSubTab, setActiveSubTab] = useState('overview');
   const [selectedTimeframe, setSelectedTimeframe] = useState<'90day' | '6month' | '12month'>('90day');
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null);
   const [expandedWorkflow, setExpandedWorkflow] = useState<string | null>(null);
@@ -463,7 +464,7 @@ export function StrategicAdvisor() {
   };
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-8 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold text-black mb-2">Strategic Advisory & Optimization Insights</h2>
@@ -475,6 +476,92 @@ export function StrategicAdvisor() {
           <div className="text-xs text-gray-400 mt-1">Industry Avg: {maturityScore.industry} • Target: {maturityScore.target}</div>
         </div>
       </div>
+
+      <div className="border-b border-gray-200 bg-white rounded-t-2xl">
+        <div className="flex space-x-6 px-6">
+          <button
+            onClick={() => setActiveSubTab('overview')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'overview'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <TrendingUp className="w-4 h-4" />
+              <span>Executive Overview</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('agents')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'agents'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <Brain className="w-4 h-4" />
+              <span>Recommended Agents</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('workflows')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'workflows'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <Zap className="w-4 h-4" />
+              <span>Workflow Optimization</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('compliance')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'compliance'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <Shield className="w-4 h-4" />
+              <span>Risk & Compliance</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('financial')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'financial'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <DollarSign className="w-4 h-4" />
+              <span>Financial Impact</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('roadmap')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeSubTab === 'roadmap'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <Calendar className="w-4 h-4" />
+              <span>Implementation Roadmap</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {activeSubTab === 'overview' && (
+        <div className="space-y-8">
 
       <div className="grid grid-cols-4 gap-4">
         {executiveKPIs.map((kpi, index) => (
@@ -577,7 +664,11 @@ export function StrategicAdvisor() {
           </div>
         </div>
       </div>
+        </div>
+      )}
 
+      {activeSubTab === 'agents' && (
+        <div className="space-y-8">
       <div>
         <h3 className="text-2xl font-bold text-black mb-4">Recommended Agent Investments</h3>
         <p className="text-sm text-gray-600 mb-6">Prioritized by ROI, implementation complexity, and strategic value to BMO</p>
@@ -696,7 +787,11 @@ export function StrategicAdvisor() {
           ))}
         </div>
       </div>
+        </div>
+      )}
 
+      {activeSubTab === 'workflows' && (
+        <div className="space-y-8">
       <div>
         <h3 className="text-2xl font-bold text-black mb-4">Workflow Enhancement Opportunities</h3>
         <p className="text-sm text-gray-600 mb-6">Process optimizations to improve speed, reduce costs, and enhance accuracy</p>
@@ -787,7 +882,11 @@ export function StrategicAdvisor() {
           ))}
         </div>
       </div>
+        </div>
+      )}
 
+      {activeSubTab === 'compliance' && (
+        <div className="space-y-8">
       <div>
         <h3 className="text-2xl font-bold text-black mb-4">Guardrails & Safeguards Assessment</h3>
         <p className="text-sm text-gray-600 mb-6">Compliance gaps and recommended safety enhancements</p>
@@ -854,7 +953,60 @@ export function StrategicAdvisor() {
           ))}
         </div>
       </div>
+        </div>
+      )}
 
+      {activeSubTab === 'financial' && (
+        <div className="space-y-8">
+          <div className="grid grid-cols-3 gap-6">
+            <div className="col-span-2 bg-white rounded-2xl border border-gray-200 p-6">
+              <h3 className="text-lg font-semibold text-black mb-6">Projected ROI - Recommended Initiatives</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={roiProjection}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="quarter" stroke="#6b7280" />
+                  <YAxis stroke="#6b7280" label={{ value: 'Savings ($M)', angle: -90, position: 'insideLeft' }} />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="savings" stroke="#000000" strokeWidth={3} name="Quarterly Savings" />
+                  <Line type="monotone" dataKey="cumulative" stroke="#059669" strokeWidth={3} name="Cumulative Savings" />
+                </LineChart>
+              </ResponsiveContainer>
+              <div className="mt-6 grid grid-cols-3 gap-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                  <div className="text-xs text-gray-600 mb-1">Year 1 Savings</div>
+                  <div className="text-2xl font-bold text-black">$18.1M</div>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                  <div className="text-xs text-gray-600 mb-1">Total Investment</div>
+                  <div className="text-2xl font-bold text-black">$2.3M</div>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                  <div className="text-xs text-gray-600 mb-1">Blended ROI</div>
+                  <div className="text-2xl font-bold text-black">687%</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-gray-200 p-6">
+              <h3 className="text-lg font-semibold text-black mb-6">Capability Assessment</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <RadarChart data={capabilityRadar}>
+                  <PolarGrid stroke="#e5e7eb" />
+                  <PolarAngleAxis dataKey="capability" tick={{ fontSize: 10 }} />
+                  <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10 }} />
+                  <Radar name="Current" dataKey="current" stroke="#000000" fill="#000000" fillOpacity={0.3} />
+                  <Radar name="Target" dataKey="target" stroke="#059669" fill="#059669" fillOpacity={0.1} />
+                  <Legend />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeSubTab === 'roadmap' && (
+        <div className="space-y-8">
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -984,6 +1136,8 @@ export function StrategicAdvisor() {
           </div>
         </div>
       </div>
+        </div>
+      )}
     </div>
   );
 }
