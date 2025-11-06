@@ -6,9 +6,10 @@ interface ChatMessageProps {
   agent?: string;
   delay?: number;
   onComplete?: () => void;
+  playbackSpeed?: number;
 }
 
-export function ChatMessage({ speaker, text, agent, delay = 0, onComplete }: ChatMessageProps) {
+export function ChatMessage({ speaker, text, agent, delay = 0, onComplete, playbackSpeed = 1 }: ChatMessageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
@@ -16,26 +17,26 @@ export function ChatMessage({ speaker, text, agent, delay = 0, onComplete }: Cha
   useEffect(() => {
     const showTimer = setTimeout(() => {
       setIsTyping(true);
-    }, delay);
+    }, delay / playbackSpeed);
 
     return () => clearTimeout(showTimer);
-  }, [delay]);
+  }, [delay, playbackSpeed]);
 
   useEffect(() => {
     if (!isTyping) return;
 
-    const typingDuration = Math.min(text.length * 15, 800);
+    const typingDuration = Math.min(text.length * 15, 800) / playbackSpeed;
     const typingTimer = setTimeout(() => {
       setIsTyping(false);
       setIsVisible(true);
       setDisplayedText(text);
       if (onComplete) {
-        setTimeout(onComplete, 700);
+        setTimeout(onComplete, 700 / playbackSpeed);
       }
     }, typingDuration);
 
     return () => clearTimeout(typingTimer);
-  }, [isTyping, text, onComplete]);
+  }, [isTyping, text, onComplete, playbackSpeed]);
 
   if (!isTyping && !isVisible) return null;
 

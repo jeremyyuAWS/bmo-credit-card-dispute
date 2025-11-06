@@ -15,9 +15,10 @@ interface ChatWindowProps {
   onAgentChange: (agent: string | null) => void;
   onComplete: () => void;
   isActive: boolean;
+  playbackSpeed?: number;
 }
 
-export function ChatWindow({ conversation, onAgentChange, onComplete, isActive }: ChatWindowProps) {
+export function ChatWindow({ conversation, onAgentChange, onComplete, isActive, playbackSpeed = 1 }: ChatWindowProps) {
   const [messages, setMessages] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -61,7 +62,7 @@ export function ChatWindow({ conversation, onAgentChange, onComplete, isActive }
         setTimeout(() => {
           setCurrentIndex(nextIndex);
           setMessages(prev => [...prev, nextIndex]);
-        }, 800);
+        }, 800 / playbackSpeed);
       } else {
         setCurrentIndex(nextIndex);
         setMessages(prev => [...prev, nextIndex]);
@@ -73,7 +74,7 @@ export function ChatWindow({ conversation, onAgentChange, onComplete, isActive }
       onAgentChange(null);
       setTimeout(() => {
         onComplete();
-      }, 1000);
+      }, 1000 / playbackSpeed);
     }
   };
 
@@ -111,6 +112,7 @@ export function ChatWindow({ conversation, onAgentChange, onComplete, isActive }
           agent={msg.agent}
           delay={isLast ? msg.delay || 0 : 0}
           onComplete={isLast ? handleMessageComplete : undefined}
+          playbackSpeed={playbackSpeed}
         />
       );
     });

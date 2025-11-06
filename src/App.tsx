@@ -7,6 +7,7 @@ import { HITLFeedbackHub } from './components/HITLFeedbackHub';
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { ResponsibleAITab } from './components/ResponsibleAITab';
 import { LyzrAgents } from './components/LyzrAgents';
+import { AgentConfiguration } from './components/AgentConfiguration';
 import scenariosData from './data/scenarios.json';
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [activeTab, setActiveTab] = useState('live-demo');
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [pauseRequested, setPauseRequested] = useState(false);
 
   const currentScenario = scenariosData.scenarios.find(s => s.id === selectedScenarioId) || scenariosData.scenarios[0];
 
@@ -26,13 +29,32 @@ function App() {
     setActiveAgent(null);
     setIsComplete(false);
     setIsPlaying(true);
+    setPauseRequested(false);
   };
 
   const handleComplete = () => {
     setIsComplete(true);
     setTimeout(() => {
       setIsPlaying(false);
+      setPauseRequested(false);
     }, 2000);
+  };
+
+  const handlePlayPause = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+      setPauseRequested(false);
+    } else {
+      setPauseRequested(!pauseRequested);
+    }
+  };
+
+  const handleRestart = () => {
+    setActiveAgent(null);
+    setIsComplete(false);
+    setIsPlaying(true);
+    setPauseRequested(false);
+    setSelectedScenarioId(selectedScenarioId);
   };
 
   return (
@@ -112,6 +134,16 @@ function App() {
             Lyzr Agents
           </button>
           <button
+            onClick={() => setActiveTab('agent-config')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeTab === 'agent-config'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            Agent Configuration
+          </button>
+          <button
             onClick={() => setActiveTab('responsible-ai')}
             className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
               activeTab === 'responsible-ai'
@@ -132,13 +164,19 @@ function App() {
               selectedScenario={selectedScenarioId}
               onSelect={handleScenarioSelect}
               disabled={isPlaying}
+              isPlaying={isPlaying && !pauseRequested}
+              onPlayPause={handlePlayPause}
+              onRestart={handleRestart}
+              playbackSpeed={playbackSpeed}
+              onSpeedChange={setPlaybackSpeed}
             />
             <div className="flex-1 overflow-hidden">
               <ChatWindow
                 conversation={currentScenario.conversation}
                 onAgentChange={setActiveAgent}
                 onComplete={handleComplete}
-                isActive={isPlaying}
+                isActive={isPlaying && !pauseRequested}
+                playbackSpeed={playbackSpeed}
               />
             </div>
           </div>
@@ -159,6 +197,12 @@ function App() {
         {activeTab === 'lyzr-agents' && (
           <div className="h-full overflow-y-auto bg-gray-50">
             <LyzrAgents />
+          </div>
+        )}
+
+        {activeTab === 'agent-config' && (
+          <div className="h-full overflow-y-auto bg-gray-50">
+            <AgentConfiguration />
           </div>
         )}
 

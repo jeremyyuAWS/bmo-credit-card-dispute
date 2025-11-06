@@ -1,4 +1,4 @@
-import { Play } from 'lucide-react';
+import { Play, Pause, RotateCcw, Gauge } from 'lucide-react';
 
 interface Scenario {
   id: string;
@@ -11,15 +11,88 @@ interface ScenarioSelectorProps {
   selectedScenario: string;
   onSelect: (scenarioId: string) => void;
   disabled?: boolean;
+  isPlaying?: boolean;
+  onPlayPause?: () => void;
+  onRestart?: () => void;
+  playbackSpeed?: number;
+  onSpeedChange?: (speed: number) => void;
 }
 
-export function ScenarioSelector({ scenarios, selectedScenario, onSelect, disabled }: ScenarioSelectorProps) {
+export function ScenarioSelector({
+  scenarios,
+  selectedScenario,
+  onSelect,
+  disabled,
+  isPlaying,
+  onPlayPause,
+  onRestart,
+  playbackSpeed = 1,
+  onSpeedChange
+}: ScenarioSelectorProps) {
+  const speedOptions = [
+    { value: 0.5, label: '0.5x' },
+    { value: 0.75, label: '0.75x' },
+    { value: 1, label: '1x' },
+    { value: 1.5, label: '1.5x' },
+    { value: 2, label: '2x' }
+  ];
+
   return (
     <div className="border-b border-gray-200 bg-white px-8 py-4">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-black mb-1">Demo Scenarios</h3>
           <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>
+        </div>
+
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onRestart}
+            disabled={disabled}
+            className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Restart scenario"
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span className="text-sm font-semibold">Restart</span>
+          </button>
+
+          <button
+            onClick={onPlayPause}
+            disabled={disabled}
+            className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-black text-white hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isPlaying ? (
+              <>
+                <Pause className="w-4 h-4" />
+                <span className="text-sm font-semibold">Pause</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-4 h-4" />
+                <span className="text-sm font-semibold">Play</span>
+              </>
+            )}
+          </button>
+
+          <div className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-gray-100 border border-gray-200">
+            <Gauge className="w-4 h-4 text-gray-600" />
+            <span className="text-xs text-gray-600">Speed:</span>
+            <div className="flex space-x-1">
+              {speedOptions.map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => onSpeedChange?.(option.value)}
+                  className={`px-2 py-1 rounded text-xs font-semibold transition-colors ${
+                    playbackSpeed === option.value
+                      ? 'bg-black text-white'
+                      : 'bg-white text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
