@@ -346,16 +346,6 @@ function App() {
               playbackSpeed={playbackSpeed}
               onSpeedChange={setPlaybackSpeed}
             />
-            {viewMode === 'bmo-team' && !isPlaying && (
-              <div className="px-8 py-4 bg-white border-b border-gray-200">
-                <PersonaDashboard
-                  metrics={personasData.personas.find(p => p.id === selectedPersonaRole)?.primaryMetrics || []}
-                  quickActions={personasData.personas.find(p => p.id === selectedPersonaRole)?.quickActions || []}
-                  personaColor={personasData.personas.find(p => p.id === selectedPersonaRole)?.color || 'gray'}
-                  personaName={personasData.personas.find(p => p.id === selectedPersonaRole)?.name || 'Team Member'}
-                />
-              </div>
-            )}
             <div className="flex-1 overflow-hidden flex">
               <div className="flex-1 overflow-y-auto">
                 <ChatWindow
