@@ -66,12 +66,12 @@ export function StrategicInsights() {
   const teamMembers: TeamMember[] = [
     {
       id: 'tm-1',
-      name: 'Sarah Chen',
+      name: 'Victoria Hayes',
       role: 'VP of AI & Innovation',
       department: 'Technology',
       expertise: ['AI/ML', 'Agent Development', 'Product Strategy'],
       availability: 'available',
-      avatar: 'SC'
+      avatar: 'VH'
     },
     {
       id: 'tm-2',

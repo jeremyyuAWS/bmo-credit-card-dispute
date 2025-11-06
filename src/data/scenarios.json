@@ -465,8 +465,8 @@
         "bmo": "Merchant relationship protection with rapid resolution"
       },
       "customer": {
-        "name": "Marcus Chen",
-        "initials": "MC"
+        "name": "Aaron Roberts",
+        "initials": "AR"
       },
       "bmoTeamMember": {
         "name": "Alex Thompson",
@@ -477,7 +477,7 @@
         {
           "agent": "Fraud Sentinel",
           "speaker": "agent",
-          "text": "Hello Marcus, we detected duplicate charges of $89.99 from 'StreamFlix' within 2 hours. Would you like us to investigate?",
+          "text": "Hello Aaron, we detected duplicate charges of $89.99 from 'StreamFlix' within 2 hours. Would you like us to investigate?",
           "delay": 1000
         },
         {
@@ -525,7 +525,7 @@
       "bmoConversation": [
         {
           "speaker": "user",
-          "text": "Review case #DUP-1423 for Marcus Chen.",
+          "text": "Review case #DUP-1423 for Aaron Roberts.",
           "delay": 1000
         },
         {

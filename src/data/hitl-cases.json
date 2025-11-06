@@ -3,7 +3,7 @@
     {
       "id": "case-001",
       "status": "pending-review",
-      "customer": "Marcus Chen",
+      "customer": "Aaron Roberts",
       "amount": "$1,847.50",
       "merchant": "Premium Electronics Ltd",
       "date": "2025-11-01",
@@ -203,7 +203,7 @@
     {
       "id": "case-011",
       "status": "pending-review",
-      "customer": "Diana Chen",
+      "customer": "James Brooks",
       "amount": "$875.00",
       "merchant": "Premium Auto Rentals",
       "date": "2025-11-02",

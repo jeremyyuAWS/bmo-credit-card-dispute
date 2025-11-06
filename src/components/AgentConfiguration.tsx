@@ -76,7 +76,7 @@ export function AgentConfiguration() {
       category: 'fraud',
       impact: 'Higher values reduce false positives but may miss some fraud',
       lastModified: '2025-01-15 14:23',
-      modifiedBy: 'Sarah Chen'
+      modifiedBy: 'Aaron Roberts'
     },
     {
       id: 'auto-approval-threshold',
@@ -104,7 +104,7 @@ export function AgentConfiguration() {
       category: 'automation',
       impact: 'Lower values send more cases to humans, reducing automation rate',
       lastModified: '2025-01-12 16:45',
-      modifiedBy: 'Sarah Chen'
+      modifiedBy: 'Aaron Roberts'
     },
     {
       id: 'high-value-alert',
@@ -132,7 +132,7 @@ export function AgentConfiguration() {
       category: 'fraud',
       impact: 'Lower limits catch suspicious activity but may inconvenience heavy users',
       lastModified: '2025-01-14 13:20',
-      modifiedBy: 'Sarah Chen'
+      modifiedBy: 'Aaron Roberts'
     },
     {
       id: 'ml-model-confidence',
