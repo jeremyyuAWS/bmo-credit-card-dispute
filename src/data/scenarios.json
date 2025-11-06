@@ -894,6 +894,8 @@
       "id": "fraud-sentinel",
       "name": "Fraud Sentinel",
       "icon": "shield-alert",
+      "color": "red",
+      "colorClass": "bg-red-100 text-red-700 border-red-300",
       "description": "Detect anomaly & notify user",
       "reasoning": "Analyzes transaction patterns, location data, and spending behavior to identify anomalies before customers notice them."
     },
@@ -901,6 +903,8 @@
       "id": "outreach",
       "name": "Outreach",
       "icon": "message-square",
+      "color": "green",
+      "colorClass": "bg-green-100 text-green-700 border-green-300",
       "description": "Confirm and collect details",
       "reasoning": "Engages customers with empathetic, natural language to confirm identity and gather dispute context efficiently."
     },
@@ -908,6 +912,8 @@
       "id": "eligibility",
       "name": "Eligibility",
       "icon": "check-circle",
+      "color": "blue",
+      "colorClass": "bg-blue-100 text-blue-700 border-blue-300",
       "description": "Validate claim",
       "reasoning": "Verifies KYC status, merchant reputation, transaction metadata, and card network rules to determine dispute validity."
     },
@@ -915,6 +921,8 @@
       "id": "compliance-guard",
       "name": "Compliance Guard",
       "icon": "scale",
+      "color": "purple",
+      "colorClass": "bg-purple-100 text-purple-700 border-purple-300",
       "description": "Check policy rules",
       "reasoning": "Cross-references decisions against OCC, FINRA, Visa/Mastercard regulations, and internal policies to ensure zero audit risk."
     },
@@ -922,6 +930,8 @@
       "id": "resolution",
       "name": "Resolution",
       "icon": "dollar-sign",
+      "color": "teal",
+      "colorClass": "bg-teal-100 text-teal-700 border-teal-300",
       "description": "Execute refund + reissue card",
       "reasoning": "Processes provisional credits, blocks compromised cards, triggers reissuance, and orchestrates backend systems automatically."
     },
@@ -929,6 +939,8 @@
       "id": "recovery",
       "name": "Recovery",
       "icon": "refresh-cw",
+      "color": "orange",
+      "colorClass": "bg-orange-100 text-orange-700 border-orange-300",
       "description": "Reconnect subscriptions",
       "reasoning": "Identifies recurring payment relationships and proactively reconnects trusted merchants to prevent service disruption."
     },
@@ -936,6 +948,8 @@
       "id": "learning",
       "name": "Learning",
       "icon": "brain",
+      "color": "indigo",
+      "colorClass": "bg-indigo-100 text-indigo-700 border-indigo-300",
       "description": "Feed insights to fraud predictor",
       "reasoning": "Captures case features and outcomes to retrain fraud detection models, creating a continuous improvement loop."
     }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CheckCircle2, TrendingUp, DollarSign, Users } from 'lucide-react';
+import scenariosData from '../data/scenarios.json';
 
 interface ChatMessageProps {
   speaker: 'user' | 'agent' | 'summary';
@@ -48,7 +49,10 @@ export function ChatMessage({
   useEffect(() => {
     if (!isTyping) return;
 
-    const typingDuration = Math.min(text.length * 15, 800) / playbackSpeed;
+    const typingDuration = speaker === 'user'
+      ? Math.min(text.length * 20, 1200) / playbackSpeed
+      : Math.min(text.length * 15, 800) / playbackSpeed;
+
     const typingTimer = setTimeout(() => {
       setIsTyping(false);
       setIsVisible(true);
@@ -59,7 +63,7 @@ export function ChatMessage({
     }, typingDuration);
 
     return () => clearTimeout(typingTimer);
-  }, [isTyping, text, onComplete, playbackSpeed]);
+  }, [isTyping, text, onComplete, playbackSpeed, speaker]);
 
   if (!isTyping && !isVisible) return null;
 
@@ -78,6 +82,11 @@ export function ChatMessage({
       case 'users': return Users;
       default: return CheckCircle2;
     }
+  };
+
+  const getAgentColor = (agentName: string) => {
+    const agentData = scenariosData.agents.find(a => a.name === agentName);
+    return agentData?.colorClass || 'bg-gray-100 text-gray-700 border-gray-300';
   };
 
   if (speaker === 'summary' && summaryData) {
@@ -122,12 +131,14 @@ export function ChatMessage({
           </div>
         )}
         <div
-          className={`rounded-2xl px-5 py-3 shadow-sm ${
+          className={`rounded-2xl px-5 py-3 shadow-sm border-2 ${
             speaker === 'user'
               ? viewMode === 'bmo-team'
-                ? 'bg-blue-600 text-white'
-                : 'bg-black text-white'
-              : 'bg-white text-black border border-gray-200'
+                ? 'bg-blue-600 text-white border-blue-600'
+                : 'bg-black text-white border-black'
+              : agent
+              ? getAgentColor(agent)
+              : 'bg-white text-black border-gray-200'
           }`}
         >
           {isTyping ? (

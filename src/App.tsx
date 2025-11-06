@@ -11,6 +11,7 @@ import { AgentConfiguration } from './components/AgentConfiguration';
 import { StrategicAdvisor } from './components/StrategicAdvisor';
 import { PersonaSelector } from './components/PersonaSelector';
 import { PersonaDashboard } from './components/PersonaDashboard';
+import { AgentPanel } from './components/AgentPanel';
 import scenariosData from './data/scenarios.json';
 import personasData from './data/personas.json';
 
@@ -70,7 +71,7 @@ function App() {
 
   const getAvailableTabs = () => {
     if (viewMode === 'customer') {
-      return ['live-demo', 'analytics', 'responsible-ai'];
+      return ['live-demo', 'responsible-ai'];
     }
     return currentPersonaRole?.availableTabs || currentPersona.availableTabs;
   };
@@ -93,7 +94,7 @@ function App() {
   const handleViewModeChange = (mode: ViewMode) => {
     setViewMode(mode);
     const newAvailableTabs = mode === 'customer'
-      ? ['live-demo', 'analytics', 'responsible-ai']
+      ? ['live-demo', 'responsible-ai']
       : bmoPersonas[0].availableTabs;
 
     if (!newAvailableTabs.includes(activeTab)) {
@@ -354,18 +355,21 @@ function App() {
                 />
               </div>
             )}
-            <div className="flex-1 overflow-hidden">
-              <ChatWindow
-                conversation={getPersonaConversation()}
-                onAgentChange={setActiveAgent}
-                onComplete={handleComplete}
-                isActive={isPlaying && !pauseRequested}
-                playbackSpeed={playbackSpeed}
-                viewMode={viewMode}
-                customerName={currentScenario.customer?.name}
-                bmoTeamMember={currentScenario.bmoTeamMember}
-                priorityAgents={currentPersonaRole?.priorityAgents || []}
-              />
+            <div className="flex-1 overflow-hidden flex">
+              <div className="flex-1 overflow-y-auto">
+                <ChatWindow
+                  conversation={getPersonaConversation()}
+                  onAgentChange={setActiveAgent}
+                  onComplete={handleComplete}
+                  isActive={isPlaying && !pauseRequested}
+                  playbackSpeed={playbackSpeed}
+                  viewMode={viewMode}
+                  customerName={currentScenario.customer?.name}
+                  bmoTeamMember={currentScenario.bmoTeamMember}
+                  priorityAgents={currentPersonaRole?.priorityAgents || []}
+                />
+              </div>
+              {isPlaying && <AgentPanel activeAgent={activeAgent} />}
             </div>
           </div>
         )}
@@ -402,7 +406,7 @@ function App() {
 
         {activeTab === 'responsible-ai' && (
           <div className="h-full overflow-y-auto bg-gray-50">
-            <ResponsibleAITab />
+            <ResponsibleAITab viewMode={viewMode} />
           </div>
         )}
       </div>
