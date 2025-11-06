@@ -4,7 +4,8 @@ import {
   Users, Shield, Zap, AlertCircle, Clock, XCircle, TrendingDown, Sparkles,
   Brain, Activity, Bell, Lock, Globe, Phone, MessageSquare, RefreshCw,
   UserX, CreditCard, Mail, Wifi, WifiOff, TrendingUpIcon, ChevronRight,
-  ShieldAlert, BadgeAlert, Workflow, Settings
+  ShieldAlert, BadgeAlert, Workflow, Settings, PlayCircle, FileText, UserPlus,
+  Calendar, CheckSquare, Send, X, Loader
 } from 'lucide-react';
 
 interface ActionableInsight {
@@ -23,9 +24,119 @@ interface ActionableInsight {
   confidence: number;
 }
 
+interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  department: string;
+  expertise: string[];
+  availability: 'available' | 'busy' | 'away';
+  avatar: string;
+}
+
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  assignedTo: string;
+  dueDate: string;
+  status: 'pending' | 'in-progress' | 'completed';
+  priority: 'critical' | 'high' | 'medium';
+}
+
+interface ActionPlan {
+  insightId: string;
+  status: 'draft' | 'approved' | 'in-progress' | 'completed';
+  approvedBy?: string;
+  approvedAt?: string;
+  tasks: Task[];
+  estimatedBudget?: string;
+  expectedCompletion?: string;
+}
+
 export function StrategicInsights() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [expandedInsight, setExpandedInsight] = useState<string | null>(null);
+  const [actionPlans, setActionPlans] = useState<Map<string, ActionPlan>>(new Map());
+  const [showAssignmentModal, setShowAssignmentModal] = useState(false);
+  const [selectedInsightForAction, setSelectedInsightForAction] = useState<ActionableInsight | null>(null);
+  const [isGeneratingPlan, setIsGeneratingPlan] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const teamMembers: TeamMember[] = [
+    {
+      id: 'tm-1',
+      name: 'Sarah Chen',
+      role: 'VP of AI & Innovation',
+      department: 'Technology',
+      expertise: ['AI/ML', 'Agent Development', 'Product Strategy'],
+      availability: 'available',
+      avatar: 'SC'
+    },
+    {
+      id: 'tm-2',
+      name: 'Michael Rodriguez',
+      role: 'Director of Fraud Prevention',
+      department: 'Risk Management',
+      expertise: ['Fraud Detection', 'Risk Analytics', 'Compliance'],
+      availability: 'available',
+      avatar: 'MR'
+    },
+    {
+      id: 'tm-3',
+      name: 'Emily Thompson',
+      role: 'Lead ML Engineer',
+      department: 'Technology',
+      expertise: ['Machine Learning', 'Python', 'Model Training'],
+      availability: 'busy',
+      avatar: 'ET'
+    },
+    {
+      id: 'tm-4',
+      name: 'David Park',
+      role: 'Senior Compliance Officer',
+      department: 'Legal & Compliance',
+      expertise: ['Regulatory Compliance', 'Banking Law', 'Risk Assessment'],
+      availability: 'available',
+      avatar: 'DP'
+    },
+    {
+      id: 'tm-5',
+      name: 'Jessica Williams',
+      role: 'Product Manager - Fraud',
+      department: 'Product',
+      expertise: ['Product Strategy', 'UX Design', 'Customer Research'],
+      availability: 'available',
+      avatar: 'JW'
+    },
+    {
+      id: 'tm-6',
+      name: 'Alex Kumar',
+      role: 'Senior Data Scientist',
+      department: 'Analytics',
+      expertise: ['Data Science', 'Pattern Recognition', 'Statistical Analysis'],
+      availability: 'available',
+      avatar: 'AK'
+    },
+    {
+      id: 'tm-7',
+      name: 'Rachel Martinez',
+      role: 'Customer Experience Lead',
+      department: 'Customer Success',
+      expertise: ['CX Strategy', 'Voice of Customer', 'Service Design'],
+      availability: 'available',
+      avatar: 'RM'
+    },
+    {
+      id: 'tm-8',
+      name: 'James Foster',
+      role: 'Infrastructure Architect',
+      department: 'Technology',
+      expertise: ['System Design', 'Cloud Architecture', 'DevOps'],
+      availability: 'busy',
+      avatar: 'JF'
+    }
+  ];
 
   const insights: ActionableInsight[] = [
     {
@@ -210,6 +321,93 @@ export function StrategicInsights() {
     }
   ];
 
+  const generateActionPlan = (insight: ActionableInsight) => {
+    setIsGeneratingPlan(true);
+    setSelectedInsightForAction(insight);
+
+    setTimeout(() => {
+      const tasks = generateTasksForInsight(insight);
+      const newPlan: ActionPlan = {
+        insightId: insight.id,
+        status: 'draft',
+        tasks: tasks,
+        estimatedBudget: calculateBudget(insight),
+        expectedCompletion: insight.timeline
+      };
+
+      setActionPlans(new Map(actionPlans.set(insight.id, newPlan)));
+      setIsGeneratingPlan(false);
+      setShowAssignmentModal(true);
+    }, 2000);
+  };
+
+  const generateTasksForInsight = (insight: ActionableInsight): Task[] => {
+    const baseDate = new Date();
+    const tasks: Task[] = [];
+
+    const steps = insight.implementation.split(/\d\)/).filter(s => s.trim());
+
+    steps.forEach((step, index) => {
+      const dueDate = new Date(baseDate);
+      dueDate.setDate(dueDate.getDate() + (index + 1) * 7);
+
+      tasks.push({
+        id: `task-${insight.id}-${index}`,
+        title: step.trim().substring(0, 80),
+        description: step.trim(),
+        assignedTo: '',
+        dueDate: dueDate.toISOString().split('T')[0],
+        status: 'pending',
+        priority: index === 0 ? 'critical' : 'high'
+      });
+    });
+
+    return tasks;
+  };
+
+  const calculateBudget = (insight: ActionableInsight): string => {
+    const budgetMap: Record<string, string> = {
+      'critical': '$150K - $250K',
+      'high': '$80K - $150K',
+      'medium': '$40K - $80K'
+    };
+    return budgetMap[insight.priority] || '$50K - $100K';
+  };
+
+  const assignTaskToMember = (taskId: string, memberId: string) => {
+    if (!selectedInsightForAction) return;
+
+    const plan = actionPlans.get(selectedInsightForAction.id);
+    if (!plan) return;
+
+    const updatedTasks = plan.tasks.map(task =>
+      task.id === taskId ? { ...task, assignedTo: memberId } : task
+    );
+
+    const updatedPlan = { ...plan, tasks: updatedTasks };
+    setActionPlans(new Map(actionPlans.set(selectedInsightForAction.id, updatedPlan)));
+  };
+
+  const approveAndLaunchPlan = () => {
+    if (!selectedInsightForAction) return;
+
+    const plan = actionPlans.get(selectedInsightForAction.id);
+    if (!plan) return;
+
+    const updatedPlan: ActionPlan = {
+      ...plan,
+      status: 'approved',
+      approvedBy: 'Executive Leadership',
+      approvedAt: new Date().toISOString()
+    };
+
+    setActionPlans(new Map(actionPlans.set(selectedInsightForAction.id, updatedPlan)));
+    setShowAssignmentModal(false);
+    setShowSuccessMessage(true);
+
+    setTimeout(() => setShowSuccessMessage(false), 5000);
+  };
+
   const filteredInsights = selectedCategory === 'all'
     ? insights
     : insights.filter(i => i.category === selectedCategory);
@@ -253,6 +451,15 @@ export function StrategicInsights() {
     }
   };
 
+  const getAvailabilityColor = (availability: string) => {
+    switch (availability) {
+      case 'available': return 'bg-green-100 text-green-800';
+      case 'busy': return 'bg-yellow-100 text-yellow-800';
+      case 'away': return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   const categoryStats = {
     'edge-case': insights.filter(i => i.category === 'edge-case').length,
     'agent-optimization': insights.filter(i => i.category === 'agent-optimization').length,
@@ -262,6 +469,16 @@ export function StrategicInsights() {
 
   return (
     <div className="h-full overflow-y-auto bg-gray-50">
+      {showSuccessMessage && (
+        <div className="fixed top-4 right-4 z-50 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 animate-slide-in">
+          <CheckCircle className="w-6 h-6" />
+          <div>
+            <div className="font-bold">Action Plan Approved!</div>
+            <div className="text-sm text-green-100">Team members have been notified and tasks assigned.</div>
+          </div>
+        </div>
+      )}
+
       <div className="p-8 space-y-6">
         <div>
           <h2 className="text-2xl font-bold text-black mb-2">Strategic Insights & Agentic Opportunities</h2>
@@ -362,6 +579,7 @@ export function StrategicInsights() {
           {filteredInsights.map((insight) => {
             const Icon = getCategoryIcon(insight.category);
             const isExpanded = expandedInsight === insight.id;
+            const plan = actionPlans.get(insight.id);
 
             return (
               <div
@@ -388,6 +606,11 @@ export function StrategicInsights() {
                           <span className="text-xs text-gray-500">
                             {insight.confidence}% confidence
                           </span>
+                          {plan && (
+                            <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-300">
+                              {plan.status === 'approved' ? 'APPROVED' : 'DRAFT'}
+                            </span>
+                          )}
                         </div>
                         <p className="text-sm text-gray-700 mb-2">
                           <strong className="text-black">Problem:</strong> {insight.problem}
@@ -451,6 +674,74 @@ export function StrategicInsights() {
                         </div>
                       </div>
                     </div>
+
+                    {!plan && (
+                      <div className="flex items-center justify-between bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-5 border-2 border-green-200">
+                        <div className="flex items-center space-x-3">
+                          <PlayCircle className="w-8 h-8 text-green-600" />
+                          <div>
+                            <div className="font-bold text-black mb-1">Ready to Take Action?</div>
+                            <div className="text-sm text-gray-600">Generate an action plan and assign tasks to your team</div>
+                          </div>
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            generateActionPlan(insight);
+                          }}
+                          disabled={isGeneratingPlan}
+                          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isGeneratingPlan && selectedInsightForAction?.id === insight.id ? (
+                            <>
+                              <Loader className="w-5 h-5 animate-spin" />
+                              <span>Analyzing...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-5 h-5" />
+                              <span>Generate Action Plan</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    )}
+
+                    {plan && plan.status === 'approved' && (
+                      <div className="bg-green-50 rounded-xl p-5 border-2 border-green-200">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <CheckCircle className="w-6 h-6 text-green-600" />
+                          <div>
+                            <div className="font-bold text-black">Action Plan Approved</div>
+                            <div className="text-sm text-gray-600">Approved by {plan.approvedBy} on {new Date(plan.approvedAt!).toLocaleDateString()}</div>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          {plan.tasks.map(task => {
+                            const assignedMember = teamMembers.find(m => m.id === task.assignedTo);
+                            return (
+                              <div key={task.id} className="bg-white rounded-lg p-3 flex items-center justify-between">
+                                <div className="flex items-center space-x-3">
+                                  <CheckSquare className="w-4 h-4 text-gray-400" />
+                                  <div>
+                                    <div className="text-sm font-semibold text-black">{task.title}</div>
+                                    <div className="text-xs text-gray-500">Due: {task.dueDate}</div>
+                                  </div>
+                                </div>
+                                {assignedMember && (
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold">
+                                      {assignedMember.avatar}
+                                    </div>
+                                    <span className="text-sm text-gray-700">{assignedMember.name}</span>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -473,6 +764,151 @@ export function StrategicInsights() {
           </div>
         </div>
       </div>
+
+      {showAssignmentModal && selectedInsightForAction && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-6">
+          <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 px-8 py-6 flex items-center justify-between text-white">
+              <div>
+                <h2 className="text-2xl font-bold">Action Plan: {selectedInsightForAction.title}</h2>
+                <p className="text-sm text-green-100 mt-1">Assign tasks to team members and approve implementation</p>
+              </div>
+              <button
+                onClick={() => setShowAssignmentModal(false)}
+                className="p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-8 overflow-y-auto max-h-[calc(90vh-200px)]">
+              <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-xs text-gray-600 mb-1">Timeline</div>
+                  <div className="text-lg font-bold text-black">{selectedInsightForAction.timeline}</div>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-xs text-gray-600 mb-1">Estimated Budget</div>
+                  <div className="text-lg font-bold text-black">{actionPlans.get(selectedInsightForAction.id)?.estimatedBudget}</div>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-xs text-gray-600 mb-1">Confidence Score</div>
+                  <div className="text-lg font-bold text-black">{selectedInsightForAction.confidence}%</div>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-lg font-bold text-black mb-4 flex items-center space-x-2">
+                  <Users className="w-5 h-5" />
+                  <span>Available Team Members</span>
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {teamMembers.map(member => (
+                    <div key={member.id} className="bg-gray-50 rounded-lg p-4 flex items-start space-x-3">
+                      <div className="w-12 h-12 rounded-full bg-blue-600 text-white text-lg flex items-center justify-center font-bold flex-shrink-0">
+                        {member.avatar}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-bold text-black">{member.name}</div>
+                        <div className="text-sm text-gray-600">{member.role}</div>
+                        <div className="text-xs text-gray-500 mt-1">{member.department}</div>
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {member.expertise.map(skill => (
+                            <span key={skill} className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                        <span className={`inline-block mt-2 text-xs px-2 py-1 rounded-full font-semibold ${getAvailabilityColor(member.availability)}`}>
+                          {member.availability}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-black mb-4 flex items-center space-x-2">
+                  <CheckSquare className="w-5 h-5" />
+                  <span>Implementation Tasks</span>
+                </h3>
+                <div className="space-y-3">
+                  {actionPlans.get(selectedInsightForAction.id)?.tasks.map(task => {
+                    const assignedMember = teamMembers.find(m => m.id === task.assignedTo);
+
+                    return (
+                      <div key={task.id} className="bg-white border-2 border-gray-200 rounded-xl p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex-1">
+                            <div className="font-semibold text-black mb-1">{task.title}</div>
+                            <div className="text-sm text-gray-600 mb-2">{task.description}</div>
+                            <div className="flex items-center space-x-4 text-xs text-gray-500">
+                              <div className="flex items-center space-x-1">
+                                <Calendar className="w-3 h-3" />
+                                <span>Due: {task.dueDate}</span>
+                              </div>
+                              <span className={`px-2 py-1 rounded-full font-bold ${getPriorityColor(task.priority)}`}>
+                                {task.priority}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="border-t border-gray-200 pt-3">
+                          <div className="text-xs font-semibold text-gray-600 mb-2">Assign to:</div>
+                          <div className="flex flex-wrap gap-2">
+                            {teamMembers.filter(m => m.availability !== 'away').map(member => (
+                              <button
+                                key={member.id}
+                                onClick={() => assignTaskToMember(task.id, member.id)}
+                                className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-all ${
+                                  task.assignedTo === member.id
+                                    ? 'bg-green-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                              >
+                                <div className={`w-6 h-6 rounded-full ${task.assignedTo === member.id ? 'bg-white text-green-600' : 'bg-blue-600 text-white'} text-xs flex items-center justify-center font-bold`}>
+                                  {member.avatar}
+                                </div>
+                                <span className="font-semibold">{member.name}</span>
+                                {task.assignedTo === member.id && <CheckCircle className="w-4 h-4" />}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 border-t border-gray-200 px-8 py-5 flex items-center justify-between">
+              <div className="text-sm text-gray-600">
+                {actionPlans.get(selectedInsightForAction.id)?.tasks.filter(t => t.assignedTo).length || 0} of{' '}
+                {actionPlans.get(selectedInsightForAction.id)?.tasks.length || 0} tasks assigned
+              </div>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => setShowAssignmentModal(false)}
+                  className="px-6 py-3 rounded-xl font-semibold text-gray-700 hover:bg-gray-200 transition-all"
+                >
+                  Save as Draft
+                </button>
+                <button
+                  onClick={approveAndLaunchPlan}
+                  disabled={!actionPlans.get(selectedInsightForAction.id)?.tasks.every(t => t.assignedTo)}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center space-x-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>Approve & Launch</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
