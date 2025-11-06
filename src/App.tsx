@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HelpCircle } from 'lucide-react';
+import { HelpCircle, Users, User } from 'lucide-react';
 import { ChatWindow } from './components/ChatWindow';
 import { ScenarioSelector } from './components/ScenarioSelector';
 import { WelcomeModal } from './components/WelcomeModal';
@@ -11,6 +11,43 @@ import { AgentConfiguration } from './components/AgentConfiguration';
 import { StrategicAdvisor } from './components/StrategicAdvisor';
 import scenariosData from './data/scenarios.json';
 
+type ViewMode = 'customer' | 'bmo-team';
+type BMOPersona = 'cardholder-resolution' | 'dispute-fraud' | 'transaction-integrity' | 'consumer-protection';
+
+interface PersonaConfig {
+  id: BMOPersona;
+  name: string;
+  description: string;
+  availableTabs: string[];
+}
+
+const bmoPersonas: PersonaConfig[] = [
+  {
+    id: 'cardholder-resolution',
+    name: 'Cardholder Resolution Services',
+    description: 'Customer service and dispute resolution',
+    availableTabs: ['live-demo', 'hitl', 'analytics', 'lyzr-agents', 'responsible-ai']
+  },
+  {
+    id: 'dispute-fraud',
+    name: 'Dispute & Fraud Management',
+    description: 'Fraud detection and dispute investigation',
+    availableTabs: ['live-demo', 'hitl', 'analytics', 'agent-config', 'lyzr-agents', 'responsible-ai']
+  },
+  {
+    id: 'transaction-integrity',
+    name: 'Transaction Integrity',
+    description: 'Transaction monitoring and compliance',
+    availableTabs: ['analytics', 'agent-config', 'strategic-insights', 'lyzr-agents', 'responsible-ai']
+  },
+  {
+    id: 'consumer-protection',
+    name: 'Consumer Protection Services',
+    description: 'Regulatory compliance and customer protection',
+    availableTabs: ['hitl', 'analytics', 'strategic-insights', 'lyzr-agents', 'responsible-ai']
+  }
+];
+
 function App() {
   const [selectedScenarioId, setSelectedScenarioId] = useState(scenariosData.scenarios[0].id);
   const [activeAgent, setActiveAgent] = useState<string | null>(null);
@@ -20,8 +57,39 @@ function App() {
   const [activeTab, setActiveTab] = useState('live-demo');
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [pauseRequested, setPauseRequested] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('customer');
+  const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
 
   const currentScenario = scenariosData.scenarios.find(s => s.id === selectedScenarioId) || scenariosData.scenarios[0];
+  const currentPersona = bmoPersonas.find(p => p.id === selectedPersona) || bmoPersonas[0];
+
+  const getAvailableTabs = () => {
+    if (viewMode === 'customer') {
+      return ['live-demo', 'analytics', 'responsible-ai'];
+    }
+    return currentPersona.availableTabs;
+  };
+
+  const availableTabs = getAvailableTabs();
+
+  const handleViewModeChange = (mode: ViewMode) => {
+    setViewMode(mode);
+    const newAvailableTabs = mode === 'customer'
+      ? ['live-demo', 'analytics', 'responsible-ai']
+      : bmoPersonas[0].availableTabs;
+
+    if (!newAvailableTabs.includes(activeTab)) {
+      setActiveTab(newAvailableTabs[0]);
+    }
+  };
+
+  const handlePersonaChange = (personaId: BMOPersona) => {
+    setSelectedPersona(personaId);
+    const persona = bmoPersonas.find(p => p.id === personaId);
+    if (persona && !persona.availableTabs.includes(activeTab)) {
+      setActiveTab(persona.availableTabs[0]);
+    }
+  };
 
   const handleScenarioSelect = (scenarioId: string) => {
     if (isPlaying) return;
@@ -69,7 +137,32 @@ function App() {
               <p className="text-sm text-gray-600 mt-1">Agentic AI Demo — Bank of Montreal</p>
             </div>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center bg-gray-100 rounded-xl p-1">
+              <button
+                onClick={() => handleViewModeChange('customer')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  viewMode === 'customer'
+                    ? 'bg-white text-black shadow-sm'
+                    : 'text-gray-600 hover:text-black'
+                }`}
+              >
+                <User className="w-4 h-4" />
+                <span>Customer</span>
+              </button>
+              <button
+                onClick={() => handleViewModeChange('bmo-team')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  viewMode === 'bmo-team'
+                    ? 'bg-white text-black shadow-sm'
+                    : 'text-gray-600 hover:text-black'
+                }`}
+              >
+                <Users className="w-4 h-4" />
+                <span>BMO Team</span>
+              </button>
+            </div>
+
             <button
               onClick={() => setShowWelcome(true)}
               className="flex items-center space-x-2 px-4 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
@@ -77,7 +170,8 @@ function App() {
               <HelpCircle className="w-4 h-4 text-black" />
               <span className="text-sm font-medium text-black">Help</span>
             </button>
-            {activeTab === 'live-demo' && (
+
+            {viewMode === 'customer' && activeTab === 'live-demo' && (
               <div className="flex items-center space-x-3 pl-3 border-l border-gray-200">
                 <div className="text-right">
                   <div className="text-xs text-gray-500">Customer</div>
@@ -92,78 +186,119 @@ function App() {
         </div>
       </header>
 
+      {viewMode === 'bmo-team' && (
+        <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">BMO Team Persona</div>
+              <div className="flex items-center space-x-3">
+                <select
+                  value={selectedPersona}
+                  onChange={(e) => handlePersonaChange(e.target.value as BMOPersona)}
+                  className="px-4 py-2 bg-white border border-gray-300 rounded-xl text-sm font-semibold text-black hover:border-black transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-black"
+                >
+                  {bmoPersonas.map(persona => (
+                    <option key={persona.id} value={persona.id}>
+                      {persona.name}
+                    </option>
+                  ))}
+                </select>
+                <span className="text-sm text-gray-600">{currentPersona.description}</span>
+              </div>
+            </div>
+            <div className="text-xs text-gray-500">
+              {currentPersona.availableTabs.length} tabs available
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="border-b border-gray-200 bg-white">
         <div className="flex space-x-6 px-8">
-          <button
-            onClick={() => setActiveTab('live-demo')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'live-demo'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Live Demo
-          </button>
-          <button
-            onClick={() => setActiveTab('hitl')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'hitl'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Case Review
-          </button>
-          <button
-            onClick={() => setActiveTab('analytics')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'analytics'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Analytics
-          </button>
-          <button
-            onClick={() => setActiveTab('lyzr-agents')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'lyzr-agents'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Lyzr Agents
-          </button>
-          <button
-            onClick={() => setActiveTab('agent-config')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'agent-config'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Agent Configuration
-          </button>
-          <button
-            onClick={() => setActiveTab('strategic-insights')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'strategic-insights'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Strategic Insights
-          </button>
-          <button
-            onClick={() => setActiveTab('responsible-ai')}
-            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
-              activeTab === 'responsible-ai'
-                ? 'border-black text-black'
-                : 'border-transparent text-gray-600 hover:text-black'
-            }`}
-          >
-            Responsible AI
-          </button>
+          {availableTabs.includes('live-demo') && (
+            <button
+              onClick={() => setActiveTab('live-demo')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'live-demo'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Live Demo
+            </button>
+          )}
+          {availableTabs.includes('hitl') && (
+            <button
+              onClick={() => setActiveTab('hitl')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'hitl'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Case Review
+            </button>
+          )}
+          {availableTabs.includes('analytics') && (
+            <button
+              onClick={() => setActiveTab('analytics')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'analytics'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Analytics
+            </button>
+          )}
+          {availableTabs.includes('lyzr-agents') && (
+            <button
+              onClick={() => setActiveTab('lyzr-agents')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'lyzr-agents'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Lyzr Agents
+            </button>
+          )}
+          {availableTabs.includes('agent-config') && (
+            <button
+              onClick={() => setActiveTab('agent-config')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'agent-config'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Agent Configuration
+            </button>
+          )}
+          {availableTabs.includes('strategic-insights') && (
+            <button
+              onClick={() => setActiveTab('strategic-insights')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'strategic-insights'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Strategic Insights
+            </button>
+          )}
+          {availableTabs.includes('responsible-ai') && (
+            <button
+              onClick={() => setActiveTab('responsible-ai')}
+              className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+                activeTab === 'responsible-ai'
+                  ? 'border-black text-black'
+                  : 'border-transparent text-gray-600 hover:text-black'
+              }`}
+            >
+              Responsible AI
+            </button>
+          )}
         </div>
       </div>
 
