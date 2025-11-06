@@ -37,15 +37,19 @@ export function ChatMessage({
   const [isVisible, setIsVisible] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [hasStartedTyping, setHasStartedTyping] = useState(false);
 
   useEffect(() => {
+    if (hasStartedTyping) return;
+
     const showTimer = setTimeout(() => {
       setIsVisible(true);
       setCurrentCharIndex(0);
+      setHasStartedTyping(true);
     }, delay / playbackSpeed);
 
     return () => clearTimeout(showTimer);
-  }, [delay, playbackSpeed]);
+  }, [delay, playbackSpeed, hasStartedTyping]);
 
   useEffect(() => {
     if (!isVisible || currentCharIndex >= text.length) return;
@@ -63,11 +67,11 @@ export function ChatMessage({
   }, [isVisible, currentCharIndex, text, playbackSpeed, speaker]);
 
   useEffect(() => {
-    if (isVisible && currentCharIndex >= text.length && onComplete) {
+    if (isVisible && currentCharIndex >= text.length && onComplete && hasStartedTyping) {
       const completeTimer = setTimeout(onComplete, 700 / playbackSpeed);
       return () => clearTimeout(completeTimer);
     }
-  }, [currentCharIndex, text.length, onComplete, isVisible, playbackSpeed]);
+  }, [currentCharIndex, text.length, onComplete, isVisible, playbackSpeed, hasStartedTyping]);
 
   if (!isVisible) return null;
 
