@@ -12,34 +12,34 @@ export function StrategicInsights() {
         <div className="bg-white rounded-xl border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
             <TrendingUp className="w-5 h-5 text-green-600" />
-            <span className="text-xs font-semibold text-gray-600">Competitive Position</span>
+            <span className="text-xs font-semibold text-gray-600">Resolution Speed</span>
           </div>
-          <div className="text-2xl font-bold text-black">#1</div>
-          <div className="text-xs text-gray-600 mt-1">Innovation ranking</div>
+          <div className="text-2xl font-bold text-black">2.3 min</div>
+          <div className="text-xs text-gray-600 mt-1">vs. 4.2 hrs industry avg</div>
         </div>
         <div className="bg-white rounded-xl border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
             <DollarSign className="w-5 h-5 text-blue-600" />
-            <span className="text-xs font-semibold text-gray-600">ROI Performance</span>
+            <span className="text-xs font-semibold text-gray-600">Cost Efficiency</span>
           </div>
-          <div className="text-2xl font-bold text-black">8.5x</div>
-          <div className="text-xs text-gray-600 mt-1">Speed advantage</div>
+          <div className="text-2xl font-bold text-black">$3.20</div>
+          <div className="text-xs text-gray-600 mt-1">per case (73% reduction)</div>
         </div>
         <div className="bg-white rounded-xl border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <Users className="w-5 h-5 text-purple-600" />
-            <span className="text-xs font-semibold text-gray-600">Customer Impact</span>
+            <Users className="w-5 h-5 text-green-600" />
+            <span className="text-xs font-semibold text-gray-600">Customer Satisfaction</span>
           </div>
-          <div className="text-2xl font-bold text-black">Elite</div>
-          <div className="text-xs text-gray-600 mt-1">Satisfaction tier</div>
+          <div className="text-2xl font-bold text-black">94%</div>
+          <div className="text-xs text-gray-600 mt-1">CSAT score (+12pts YoY)</div>
         </div>
         <div className="bg-white rounded-xl border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <Shield className="w-5 h-5 text-orange-600" />
-            <span className="text-xs font-semibold text-gray-600">Risk Profile</span>
+            <Shield className="w-5 h-5 text-green-600" />
+            <span className="text-xs font-semibold text-gray-600">Automation Rate</span>
           </div>
-          <div className="text-2xl font-bold text-black">Low</div>
-          <div className="text-xs text-gray-600 mt-1">Continuously declining</div>
+          <div className="text-2xl font-bold text-black">87%</div>
+          <div className="text-xs text-gray-600 mt-1">straight-through processing</div>
         </div>
       </div>
 
