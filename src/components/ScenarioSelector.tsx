@@ -1,9 +1,13 @@
-import { Play, Pause, RotateCcw, Gauge } from 'lucide-react';
+import { Play, Pause, RotateCcw, Gauge, TrendingUp, Users } from 'lucide-react';
 
 interface Scenario {
   id: string;
   title: string;
   description: string;
+  valueProps?: {
+    customer: string;
+    bmo: string;
+  };
 }
 
 interface ScenarioSelectorProps {
@@ -119,6 +123,23 @@ export function ScenarioSelector({
             <p className={`text-xs ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-600'}`}>
               {scenario.description}
             </p>
+
+            {scenario.valueProps && (
+              <div className="mt-3 pt-3 border-t border-gray-300 space-y-2">
+                <div className="flex items-start space-x-2">
+                  <Users className={`w-3 h-3 mt-0.5 flex-shrink-0 ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-500'}`} />
+                  <span className={`text-xs ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {scenario.valueProps.customer}
+                  </span>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <TrendingUp className={`w-3 h-3 mt-0.5 flex-shrink-0 ${selectedScenario === scenario.id ? 'text-gray-300' : 'text-gray-500'}`} />
+                  <span className={`text-xs font-semibold ${selectedScenario === scenario.id ? 'text-white' : 'text-black'}`}>
+                    {scenario.valueProps.bmo}
+                  </span>
+                </div>
+              </div>
+            )}
           </button>
         ))}
       </div>
