@@ -114,6 +114,7 @@ export function ChatWindow({
   const renderMessages = () => {
     const elements: JSX.Element[] = [];
     let lastAgent: string | null = null;
+    const renderedAgents = new Set<string>();
 
     messages.forEach((index, arrayIndex) => {
       const msg = conversation[index];
@@ -131,6 +132,7 @@ export function ChatWindow({
           />
         );
         lastAgent = msg.agent;
+        renderedAgents.add(msg.agent);
       }
 
       elements.push(
@@ -150,7 +152,7 @@ export function ChatWindow({
       );
     });
 
-    if (showingAgent && (!messages.length || conversation[messages[messages.length - 1]]?.agent !== showingAgent)) {
+    if (showingAgent && !renderedAgents.has(showingAgent)) {
       elements.push(
         <AgentCard
           key={`agent-upcoming-${showingAgent}`}
