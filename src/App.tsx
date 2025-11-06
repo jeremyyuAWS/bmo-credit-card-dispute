@@ -8,6 +8,7 @@ import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { ResponsibleAITab } from './components/ResponsibleAITab';
 import { LyzrAgents } from './components/LyzrAgents';
 import { AgentConfiguration } from './components/AgentConfiguration';
+import { StrategicAdvisor } from './components/StrategicAdvisor';
 import scenariosData from './data/scenarios.json';
 
 function App() {
@@ -144,6 +145,16 @@ function App() {
             Agent Configuration
           </button>
           <button
+            onClick={() => setActiveTab('strategic-insights')}
+            className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
+              activeTab === 'strategic-insights'
+                ? 'border-black text-black'
+                : 'border-transparent text-gray-600 hover:text-black'
+            }`}
+          >
+            Strategic Insights
+          </button>
+          <button
             onClick={() => setActiveTab('responsible-ai')}
             className={`py-4 px-2 border-b-2 text-sm font-semibold transition-colors ${
               activeTab === 'responsible-ai'
@@ -203,6 +214,12 @@ function App() {
         {activeTab === 'agent-config' && (
           <div className="h-full overflow-y-auto bg-gray-50">
             <AgentConfiguration />
+          </div>
+        )}
+
+        {activeTab === 'strategic-insights' && (
+          <div className="h-full overflow-y-auto bg-gray-50">
+            <StrategicAdvisor />
           </div>
         )}
 
