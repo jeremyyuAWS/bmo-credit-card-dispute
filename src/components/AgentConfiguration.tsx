@@ -4,7 +4,7 @@ import {
   DollarSign, CheckCircle, Info, RotateCcw, Sliders, Activity,
   Database, Cloud, Server, Cpu, GitBranch, LineChart, BarChart3,
   Clock, AlertCircle, CheckSquare, XCircle, Play, Pause, RefreshCw,
-  Eye, Target, Layers, Code, Package, HardDrive, Network, Gauge
+  Eye, Target, Layers, Code, Package, HardDrive, Network, Gauge, Calendar
 } from 'lucide-react';
 import { LineChart as RechartsLine, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
@@ -757,16 +757,17 @@ export function AgentConfiguration() {
             <div className="bg-white rounded-2xl border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-black mb-4">Agent Success Rates (24h)</h3>
               <ResponsiveContainer width="100%" height={250}>
-                <AreaChart data={performanceHistory}>
+                <RechartsLine data={performanceHistory}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis dataKey="time" stroke="#6b7280" tick={{ fontSize: 12 }} />
-                  <YAxis stroke="#6b7280" domain={[95, 100]} tick={{ fontSize: 12 }} />
+                  <YAxis stroke="#6b7280" domain={[95, 100]} tick={{ fontSize: 12 }} label={{ value: 'Success Rate (%)', angle: -90, position: 'insideLeft', fontSize: 12 }} />
                   <Tooltip />
                   <Legend />
-                  <Area type="monotone" dataKey="fraudSentinel" stackId="1" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} name="Fraud Sentinel" />
-                  <Area type="monotone" dataKey="eligibility" stackId="2" stroke="#10b981" fill="#10b981" fillOpacity={0.6} name="Eligibility" />
-                  <Area type="monotone" dataKey="compliance" stackId="3" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.6} name="Compliance" />
-                </AreaChart>
+                  <Line type="monotone" dataKey="fraudSentinel" stroke="#ef4444" strokeWidth={3} name="Fraud Sentinel" dot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="eligibility" stroke="#10b981" strokeWidth={3} name="Eligibility" dot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="compliance" stroke="#f59e0b" strokeWidth={3} name="Compliance" dot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="resolution" stroke="#000000" strokeWidth={3} name="Resolution" dot={{ r: 4 }} />
+                </RechartsLine>
               </ResponsiveContainer>
             </div>
 
