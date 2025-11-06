@@ -88,11 +88,11 @@ export function ChatWindow({
         onAgentChange(nextMessage.agent);
         setTimeout(() => {
           setCurrentIndex(nextIndex);
-          setMessages(prev => [...prev, nextIndex]);
+          setMessages(prev => prev.includes(nextIndex) ? prev : [...prev, nextIndex]);
         }, 800 / playbackSpeed);
       } else {
         setCurrentIndex(nextIndex);
-        setMessages(prev => [...prev, nextIndex]);
+        setMessages(prev => prev.includes(nextIndex) ? prev : [...prev, nextIndex]);
         if (nextMessage?.agent) {
           setShowingAgent(nextMessage.agent);
           onAgentChange(nextMessage.agent);

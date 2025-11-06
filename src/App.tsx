@@ -64,7 +64,7 @@ function App() {
   const [pauseRequested, setPauseRequested] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('customer');
   const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
-  const [selectedPersonaRole, setSelectedPersonaRole] = useState('dispute-specialist');
+  const [selectedPersonaRole, setSelectedPersonaRole] = useState('fraud-analyst');
 
   const currentPersona = bmoPersonas.find(p => p.id === selectedPersona) || bmoPersonas[0];
   const currentPersonaRole = personasData.personas.find(p => p.id === selectedPersonaRole);
@@ -259,7 +259,9 @@ function App() {
                 Personalized Role View
               </div>
               <PersonaSelector
-                personas={personasData.personas}
+                personas={personasData.personas.filter(p =>
+                  ['fraud-analyst', 'operations-manager', 'executive'].includes(p.id)
+                )}
                 selectedPersona={selectedPersonaRole}
                 onSelect={handlePersonaRoleChange}
               />
