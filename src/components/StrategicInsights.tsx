@@ -1,274 +1,475 @@
-import { TrendingUp, Target, AlertTriangle, Lightbulb, CheckCircle, ArrowRight, DollarSign, Users, Shield, Zap } from 'lucide-react';
+import { useState } from 'react';
+import {
+  TrendingUp, Target, AlertTriangle, Lightbulb, CheckCircle, ArrowRight, DollarSign,
+  Users, Shield, Zap, AlertCircle, Clock, XCircle, TrendingDown, Sparkles,
+  Brain, Activity, Bell, Lock, Globe, Phone, MessageSquare, RefreshCw,
+  UserX, CreditCard, Mail, Wifi, WifiOff, TrendingUpIcon, ChevronRight,
+  ShieldAlert, BadgeAlert, Workflow, Settings
+} from 'lucide-react';
+
+interface ActionableInsight {
+  id: string;
+  category: 'edge-case' | 'agent-optimization' | 'threat-detection' | 'outage-response';
+  priority: 'critical' | 'high' | 'medium';
+  title: string;
+  problem: string;
+  impact: string;
+  currentState: string;
+  recommendation: string;
+  agenticSolution: string;
+  implementation: string;
+  timeline: string;
+  estimatedValue: string;
+  confidence: number;
+}
 
 export function StrategicInsights() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [expandedInsight, setExpandedInsight] = useState<string | null>(null);
+
+  const insights: ActionableInsight[] = [
+    {
+      id: 'elder-fraud-1',
+      category: 'edge-case',
+      priority: 'critical',
+      title: 'Elder Fraud Detection & Family Notification',
+      problem: 'Customers 65+ are 3x more likely to fall victim to romance scams, tech support fraud, and grandparent scams. Current workflow lacks age-aware fraud detection.',
+      impact: 'Vulnerable customers lose significant amounts before disputes are filed. Reputational risk if BMO appears negligent.',
+      currentState: 'Generic fraud detection treats all demographics equally. No proactive family notification mechanism.',
+      recommendation: 'Build dedicated "Elder Protection Agent" with behavioral pattern recognition, velocity alerts for unusual large transfers, and automatic family notification protocols.',
+      agenticSolution: 'Agent monitors transactions for customers 65+, detects anomalies like first-time wire transfers >$5K, Zelle payments to new recipients, or rapid succession of gift card purchases. Automatically sends SMS/email alerts to pre-designated family members or trusted contacts within 15 minutes.',
+      implementation: '1) Train ML model on elder fraud patterns, 2) Add customer profile fields for trusted contacts, 3) Deploy new "Elder Protection" agent with family notification API, 4) Create compliance framework for privacy compliance',
+      timeline: '6-8 weeks to production',
+      estimatedValue: 'Prevent high-value fraud, enhance brand reputation as elder-friendly bank, reduce liability exposure',
+      confidence: 94
+    },
+    {
+      id: 'crypto-scam-1',
+      category: 'threat-detection',
+      priority: 'critical',
+      title: 'Cryptocurrency Investment Scam Workflow',
+      problem: 'Pig butchering scams and fake crypto investment platforms are emerging rapidly. Victims send multiple payments before realizing fraud. Current agents lack crypto-specific pattern recognition.',
+      impact: 'Customers lose life savings. Chargebacks difficult once funds reach crypto exchanges.',
+      currentState: 'Fraud Sentinel flags velocity but misses the specific pattern: gradual trust-building payments followed by large "investment" transfers.',
+      recommendation: 'Create "Crypto Scam Sentinel" sub-agent with specialized detection for multi-stage crypto fraud patterns.',
+      agenticSolution: 'Agent recognizes patterns: small test transfers to crypto exchanges, followed by increasing amounts over 2-4 weeks, combined with new payee relationships and social engineering indicators (urgent language in payment memos). Triggers HITL review and customer education call BEFORE large transfer approval.',
+      implementation: '1) Analyze crypto scam case history, 2) Build pattern detection ruleset, 3) Integrate with crypto exchange blocklists, 4) Create educational intervention scripts for customer outreach',
+      timeline: '4-6 weeks to production',
+      estimatedValue: 'Prevent devastating losses, reduce dispute volume, demonstrate proactive protection',
+      confidence: 91
+    },
+    {
+      id: 'authorized-push-1',
+      category: 'edge-case',
+      priority: 'high',
+      title: 'Authorized Push Payment (APP) Fraud Expansion',
+      problem: 'Customers are tricked into authorizing legitimate payments to fraudsters (fake invoices, impersonation). Technically not "unauthorized" so current eligibility rules reject disputes.',
+      impact: 'Growing complaint volume. Customers angry that BMO won\'t help with social engineering fraud.',
+      currentState: 'Eligibility Agent correctly identifies payment as "authorized" and denies claim. No investigation of social engineering.',
+      recommendation: 'Build "Social Engineering Investigator" agent that evaluates manipulation tactics separate from authorization status.',
+      agenticSolution: 'Agent analyzes: rushed timeline, atypical payment patterns, merchant/payee verification gaps, customer statements for manipulation indicators. If social engineering score >70%, escalates to HITL for manual investigation and potential goodwill credit. Tracks emerging scam patterns across customer base.',
+      implementation: '1) Define social engineering indicators, 2) Build scoring model, 3) Create HITL investigation queue, 4) Develop customer education materials for common scams',
+      timeline: '8-10 weeks to production',
+      estimatedValue: 'Improve customer satisfaction in edge cases, competitive differentiation, reduce escalations',
+      confidence: 87
+    },
+    {
+      id: 'outreach-low-csat',
+      category: 'agent-optimization',
+      priority: 'high',
+      title: 'Outreach Agent - Low CSAT in Denied Claims',
+      problem: 'When disputes are denied, customers rate Outreach Agent communications poorly. Language feels robotic and unsympathetic despite technically accurate explanations.',
+      impact: 'CSAT drops to 62% for denied claims vs 94% for approved claims. NPS impact.',
+      currentState: 'Outreach Agent uses template language explaining denial reasons. Lacks empathy and alternative solution suggestions.',
+      recommendation: 'Retrain Outreach Agent with advanced empathy model and solution-oriented responses for denials.',
+      agenticSolution: 'Enhanced agent responses include: 1) Empathetic acknowledgment of frustration, 2) Clear plain-language explanation (not legalese), 3) Alternative options (merchant negotiation, partial credit consideration), 4) Proactive help with prevention (setting up alerts, card controls). Includes sentiment analysis to adjust tone based on customer emotion.',
+      implementation: '1) Collect denied claim transcripts, 2) Train empathy-enhanced language model, 3) Add alternative solution recommendation logic, 4) A/B test with control group',
+      timeline: '3-4 weeks to production',
+      estimatedValue: 'Improve denied claim CSAT from 62% to target 78%, reduce complaint escalations',
+      confidence: 89
+    },
+    {
+      id: 'fraud-confidence-1',
+      category: 'agent-optimization',
+      priority: 'high',
+      title: 'Fraud Sentinel - Low Confidence on Cross-Border Transactions',
+      problem: 'Fraud Sentinel confidence drops below 60% for international transactions, triggering excessive HITL reviews (18% vs 4% overall). Slows resolution time.',
+      impact: 'Manual review bottleneck. Customer wait times increase for legitimate travel transactions.',
+      currentState: 'Agent lacks sufficient training data on legitimate cross-border patterns. Treats all international charges as high-risk.',
+      recommendation: 'Enhance Fraud Sentinel with geo-intelligence layer and travel notification integration.',
+      agenticSolution: 'Enhanced agent checks: 1) Customer travel notification history (API integration with mobile app), 2) Airline/hotel booking patterns from same card, 3) Progressive transaction patterns (airport → taxi → hotel), 4) Time zone consistency. Confidence increases from 58% to 87% for legitimate travel, reducing HITL escalations by 75%.',
+      implementation: '1) Integrate travel notification API, 2) Add merchant category analysis, 3) Retrain model with travel transaction corpus, 4) Deploy geo-pattern recognition',
+      timeline: '5-6 weeks to production',
+      estimatedValue: 'Reduce HITL volume by 14 percentage points, improve customer experience during travel',
+      confidence: 93
+    },
+    {
+      id: 'deep-fake-voice',
+      category: 'threat-detection',
+      priority: 'critical',
+      title: 'AI Deep-Fake Voice Phishing Detection',
+      problem: 'Emerging threat: Fraudsters use AI voice cloning to impersonate customers during phone verification. Call center agents unable to detect deep-fakes.',
+      impact: 'Account takeover risk. If fraudster passes voice verification, they can authorize large transactions or card changes.',
+      currentState: 'No deep-fake detection capability. Relying on human agents to detect voice anomalies (not effective).',
+      recommendation: 'Deploy "Voice Biometric Validation Agent" with deep-fake detection algorithms.',
+      agenticSolution: 'Agent analyzes voice calls in real-time for: 1) AI synthesis artifacts (unnatural cadence, frequency anomalies), 2) Compares against customer voice biometric baseline, 3) Cross-references with behavioral patterns (rushed requests, unusual account changes), 4) Flags suspicious calls for secondary authentication (one-time code to registered device). Blocks account changes if deep-fake score >75%.',
+      implementation: '1) Integrate voice biometric analysis API, 2) Build deep-fake detection model, 3) Add secondary authentication triggers, 4) Train call center staff on new workflow',
+      timeline: '10-12 weeks to production',
+      estimatedValue: 'Prevent account takeover fraud, stay ahead of emerging AI-based threats, industry leadership',
+      confidence: 82
+    },
+    {
+      id: 'merchant-dispute-decline',
+      category: 'edge-case',
+      priority: 'medium',
+      title: 'Merchant Dispute Representment Defense',
+      problem: 'When merchants challenge disputes (representments), BMO auto-accepts merchant evidence without customer counter-argument collection. Win rate drops from 83% to 34%.',
+      impact: 'Customers frustrated when initially-approved disputes are reversed. Increases complaints and defection risk.',
+      currentState: 'Resolution Agent approves initial dispute, but no follow-up agent handles merchant representment. Customer unaware they need to provide additional evidence.',
+      recommendation: 'Create "Representment Defense Agent" that proactively collects customer counter-evidence.',
+      agenticSolution: 'When merchant submits representment, agent immediately contacts customer via SMS/email: "Merchant challenged your dispute with evidence. We need your response within 72 hours to maintain your refund." Guides customer through counter-evidence collection (screenshots, receipts, communication logs). Auto-formats documentation for card network submission. Tracks deadlines to prevent auto-reversals.',
+      implementation: '1) Build merchant representment detection webhook, 2) Create customer notification templates, 3) Develop evidence collection portal, 4) Add deadline tracking and auto-submission',
+      timeline: '6-8 weeks to production',
+      estimatedValue: 'Improve representment win rate to 68%, reduce dispute reversals, enhance customer trust',
+      confidence: 90
+    },
+    {
+      id: 'subscription-trap',
+      category: 'edge-case',
+      priority: 'medium',
+      title: 'Subscription Trap & Dark Pattern Detection',
+      problem: 'Customers dispute recurring charges from merchants using "dark patterns" (hidden auto-renewal, difficult cancellation). Current eligibility rules side with merchants showing terms acceptance.',
+      impact: 'Customers blame BMO for not protecting them from predatory merchant practices. Reputational risk.',
+      currentState: 'Eligibility Agent sees valid merchant agreement, approves charge. Doesn\'t evaluate merchant ethics or cancellation difficulty.',
+      recommendation: 'Build "Merchant Ethics Scoring Agent" that flags predatory subscription practices.',
+      agenticSolution: 'Agent maintains database of merchant complaint patterns. Tracks: cancellation difficulty scores, FTC enforcement actions, consumer complaint volume, dark pattern detection (free trial to auto-renewal without clear notice). If merchant ethics score <40%, escalates to HITL for goodwill credit consideration. Flags merchant for proactive customer warnings on future transactions.',
+      implementation: '1) Build merchant ethics database from public sources, 2) Create complaint pattern aggregation, 3) Define dark pattern detection rules, 4) Add HITL escalation workflow',
+      timeline: '7-9 weeks to production',
+      estimatedValue: 'Differentiate as consumer-protection leader, reduce subscription disputes, improve NPS',
+      confidence: 85
+    },
+    {
+      id: 'system-outage-response',
+      category: 'outage-response',
+      priority: 'critical',
+      title: 'Automated Outage Response & Customer Communication',
+      problem: 'When card network or core banking systems have outages, customers cannot complete transactions but agents go offline without proactive communication.',
+      impact: 'Customer panic, call center overload, social media complaints amplify during outages.',
+      currentState: 'Manual outage response. Agents stop processing. No automated customer notification.',
+      recommendation: 'Deploy "Outage Response Orchestrator" that detects system failures and executes communication playbook.',
+      agenticSolution: 'Agent monitors system health endpoints. When outage detected: 1) Immediately sends SMS/push notification to affected customers with status update and ETA, 2) Pauses new dispute intake and queues requests, 3) Provides self-service FAQ via chatbot, 4) Sends recovery notification when systems restored with expedited processing offer. Logs all impacts for post-incident review.',
+      implementation: '1) Integrate system health monitoring APIs, 2) Build notification distribution system, 3) Create outage communication templates, 4) Develop queue management logic',
+      timeline: '5-6 weeks to production',
+      estimatedValue: 'Reduce call center volume during outages by 60%, improve customer communication, demonstrate operational excellence',
+      confidence: 95
+    },
+    {
+      id: 'compliance-tuning',
+      category: 'agent-optimization',
+      priority: 'high',
+      title: 'Compliance Guard - Over-Conservative Rule Application',
+      problem: 'Compliance Guard rejects 12% of legitimate disputes due to over-conservative regulatory interpretation, creating friction and delays.',
+      impact: 'Customers wait unnecessarily. Operations team must manually override, defeating automation purpose.',
+      currentState: 'Agent applies "maximum safety" approach to ambiguous regulatory scenarios, erring toward rejection.',
+      recommendation: 'Fine-tune Compliance Guard with regulatory expert feedback loop and risk-based decision framework.',
+      agenticSolution: 'Enhanced agent uses confidence-weighted compliance analysis: 1) Clear violations = auto-reject, 2) Ambiguous cases = consult regulatory decision tree with precedent matching, 3) Low-risk scenarios = approve with documentation flag for audit review. HITL escalation only for genuinely novel regulatory questions. Monthly calibration sessions with compliance officers to update decision trees.',
+      implementation: '1) Analyze over-rejection cases with legal team, 2) Build regulatory precedent database, 3) Create risk-tiered decision framework, 4) Add quarterly compliance calibration process',
+      timeline: '8-10 weeks to production',
+      estimatedValue: 'Reduce false rejections from 12% to 3%, maintain zero compliance violations, improve efficiency',
+      confidence: 88
+    },
+    {
+      id: 'synthetic-identity',
+      category: 'threat-detection',
+      priority: 'critical',
+      title: 'Synthetic Identity Fraud Ring Detection',
+      problem: 'Organized fraud rings create synthetic identities (real SSN + fake info) and slowly build credit before bust-out. Current fraud detection evaluates accounts individually, missing network patterns.',
+      impact: 'Multi-account fraud rings can steal hundreds of thousands before detection.',
+      currentState: 'Fraud Sentinel analyzes individual transactions. Lacks cross-account pattern recognition.',
+      recommendation: 'Build "Fraud Ring Analyzer" that identifies connected synthetic identity networks.',
+      agenticSolution: 'Agent analyzes patterns across accounts: 1) Shared device fingerprints, IP addresses, mailing addresses, 2) Similar transaction patterns (same merchants, amounts, timing), 3) Linked authorized users or beneficiaries, 4) Rapid credit utilization patterns. Maps relationship networks and flags entire rings for investigation. When one account in ring triggers fraud alert, proactively reviews all connected accounts.',
+      implementation: '1) Build graph database for account relationships, 2) Develop network analysis algorithms, 3) Create ring detection scoring model, 4) Integrate with identity verification services',
+      timeline: '12-14 weeks to production',
+      estimatedValue: 'Detect fraud rings before bust-out phase, prevent major losses, enable law enforcement collaboration',
+      confidence: 86
+    },
+    {
+      id: 'dispute-fatigue',
+      category: 'edge-case',
+      priority: 'medium',
+      title: 'Serial Disputer Detection & Intervention',
+      problem: 'Small percentage of customers file excessive disputes (>10 per year), often for buyer\'s remorse rather than fraud. Abusing dispute process.',
+      impact: 'Resource drain, merchant complaints, potential card network penalties if dispute abuse rates are high.',
+      currentState: 'Each dispute treated independently. No pattern recognition for serial disputers.',
+      recommendation: 'Create "Dispute Pattern Analyzer" that flags potential abuse and triggers intervention.',
+      agenticSolution: 'Agent tracks dispute frequency, approval rates, merchant types. Pattern recognition for: 1) Buyer\'s remorse indicators (disputes on legitimate merchants, items received but unwanted), 2) Consistent low-value disputes, 3) Disputes filed immediately after purchase. When pattern score >80%, triggers HITL review and customer education call explaining proper dispute usage. May recommend merchant return policies instead. Flags account for enhanced scrutiny.',
+      implementation: '1) Build historical dispute pattern analysis, 2) Create abuse scoring algorithm, 3) Develop customer intervention workflow, 4) Add educational content on proper dispute usage',
+      timeline: '6-7 weeks to production',
+      estimatedValue: 'Reduce dispute abuse, maintain merchant relationships, comply with card network standards',
+      confidence: 83
+    }
+  ];
+
+  const filteredInsights = selectedCategory === 'all'
+    ? insights
+    : insights.filter(i => i.category === selectedCategory);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'edge-case': return Sparkles;
+      case 'agent-optimization': return Settings;
+      case 'threat-detection': return ShieldAlert;
+      case 'outage-response': return AlertCircle;
+      default: return Target;
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'edge-case': return 'from-purple-500 to-purple-700';
+      case 'agent-optimization': return 'from-blue-500 to-blue-700';
+      case 'threat-detection': return 'from-red-500 to-red-700';
+      case 'outage-response': return 'from-orange-500 to-orange-700';
+      default: return 'from-gray-500 to-gray-700';
+    }
+  };
+
+  const getCategoryBorderColor = (category: string) => {
+    switch (category) {
+      case 'edge-case': return 'border-purple-200 bg-purple-50';
+      case 'agent-optimization': return 'border-blue-200 bg-blue-50';
+      case 'threat-detection': return 'border-red-200 bg-red-50';
+      case 'outage-response': return 'border-orange-200 bg-orange-50';
+      default: return 'border-gray-200 bg-gray-50';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'critical': return 'bg-red-100 text-red-800 border-red-300';
+      case 'high': return 'bg-orange-100 text-orange-800 border-orange-300';
+      case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+      default: return 'bg-gray-100 text-gray-800 border-gray-300';
+    }
+  };
+
+  const categoryStats = {
+    'edge-case': insights.filter(i => i.category === 'edge-case').length,
+    'agent-optimization': insights.filter(i => i.category === 'agent-optimization').length,
+    'threat-detection': insights.filter(i => i.category === 'threat-detection').length,
+    'outage-response': insights.filter(i => i.category === 'outage-response').length,
+  };
+
   return (
-    <div className="p-8 space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-black mb-2">Strategic Insights & Recommendations</h2>
-        <p className="text-sm text-gray-600">Executive analysis of AI-driven fraud resolution workflow with strategic recommendations</p>
-      </div>
-
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <TrendingUp className="w-5 h-5 text-green-600" />
-            <span className="text-xs font-semibold text-gray-600">Resolution Speed</span>
-          </div>
-          <div className="text-2xl font-bold text-black">2.3 min</div>
-          <div className="text-xs text-gray-600 mt-1">vs. 4.2 hrs industry avg</div>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <DollarSign className="w-5 h-5 text-blue-600" />
-            <span className="text-xs font-semibold text-gray-600">Cost Efficiency</span>
-          </div>
-          <div className="text-2xl font-bold text-black">$3.20</div>
-          <div className="text-xs text-gray-600 mt-1">per case (73% reduction)</div>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Users className="w-5 h-5 text-green-600" />
-            <span className="text-xs font-semibold text-gray-600">Customer Satisfaction</span>
-          </div>
-          <div className="text-2xl font-bold text-black">94%</div>
-          <div className="text-xs text-gray-600 mt-1">CSAT score (+12pts YoY)</div>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Shield className="w-5 h-5 text-green-600" />
-            <span className="text-xs font-semibold text-gray-600">Automation Rate</span>
-          </div>
-          <div className="text-2xl font-bold text-black">87%</div>
-          <div className="text-xs text-gray-600 mt-1">straight-through processing</div>
-        </div>
-      </div>
-
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border-2 border-blue-200 p-6">
-        <div className="flex items-center space-x-3 mb-4">
-          <Target className="w-6 h-6 text-blue-600" />
-          <h3 className="text-lg font-bold text-black">Workflow Analysis: Fraudulent Charge Resolution</h3>
+    <div className="h-full overflow-y-auto bg-gray-50">
+      <div className="p-8 space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold text-black mb-2">Strategic Insights & Agentic Opportunities</h2>
+          <p className="text-sm text-gray-600">AI-powered recommendations for new workflows, agent optimization, and emerging threat response</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div>
-            <h4 className="font-semibold text-black mb-3">Current State Performance</h4>
-            <div className="space-y-3">
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Time to Resolution</span>
-                  <CheckCircle className="w-4 h-4 text-green-600" />
+        <div className="bg-gradient-to-br from-black to-gray-800 rounded-2xl p-6 text-white">
+          <div className="flex items-start space-x-4">
+            <Brain className="w-10 h-10 text-white flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="text-lg font-bold mb-2">What Agentic AI Can Do For BMO</h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                Beyond automating existing workflows, agentic AI identifies gaps, anticipates threats, and prescribes solutions in real-time.
+                This dashboard surfaces actionable opportunities where deploying new agents or optimizing existing ones will deliver measurable impact.
+              </p>
+              <div className="grid grid-cols-4 gap-3">
+                <div className="bg-white bg-opacity-10 rounded-lg p-3">
+                  <div className="text-2xl font-bold">{categoryStats['edge-case']}</div>
+                  <div className="text-xs text-gray-300">Edge Case Workflows</div>
                 </div>
-                <p className="text-sm text-gray-700">Minutes vs industry hours - creates significant customer satisfaction advantage and reduces operational burden</p>
-              </div>
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Automation Rate</span>
-                  <CheckCircle className="w-4 h-4 text-green-600" />
+                <div className="bg-white bg-opacity-10 rounded-lg p-3">
+                  <div className="text-2xl font-bold">{categoryStats['agent-optimization']}</div>
+                  <div className="text-xs text-gray-300">Agent Optimizations</div>
                 </div>
-                <p className="text-sm text-gray-700">Near-complete automation enables staff reallocation to complex investigations and relationship management</p>
-              </div>
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Cost Structure</span>
-                  <CheckCircle className="w-4 h-4 text-green-600" />
+                <div className="bg-white bg-opacity-10 rounded-lg p-3">
+                  <div className="text-2xl font-bold">{categoryStats['threat-detection']}</div>
+                  <div className="text-xs text-gray-300">Emerging Threats</div>
                 </div>
-                <p className="text-sm text-gray-700">Dramatic per-case cost reduction creates sustainable competitive moat and improves unit economics</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-black mb-3">Agent Orchestration Insights</h4>
-            <div className="space-y-3">
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Detection Agent</span>
-                  <span className="text-xs font-bold text-red-600">Fraud Sentinel</span>
+                <div className="bg-white bg-opacity-10 rounded-lg p-3">
+                  <div className="text-2xl font-bold">{categoryStats['outage-response']}</div>
+                  <div className="text-xs text-gray-300">Operational Response</div>
                 </div>
-                <p className="text-sm text-gray-700">Real-time monitoring prevents fraud before customer awareness - proactive protection drives brand loyalty</p>
-              </div>
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Compliance Layer</span>
-                  <span className="text-xs font-bold text-purple-600">Always Active</span>
-                </div>
-                <p className="text-sm text-gray-700">Embedded regulatory validation eliminates audit risk and reduces compliance overhead costs</p>
-              </div>
-              <div className="bg-white rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-gray-600">Learning Loop</span>
-                  <span className="text-xs font-bold text-indigo-600">Continuous</span>
-                </div>
-                <p className="text-sm text-gray-700">Pattern recognition improves with every case - creates compounding accuracy advantage over time</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <div className="flex items-center space-x-3 mb-4">
-          <Lightbulb className="w-6 h-6 text-orange-500" />
-          <h3 className="text-lg font-bold text-black">Strategic Recommendations</h3>
+        <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="flex items-center space-x-2 mb-4">
+            <Target className="w-5 h-5 text-black" />
+            <span className="font-semibold text-black">Filter by Category</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                selectedCategory === 'all'
+                  ? 'bg-black text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              All Insights ({insights.length})
+            </button>
+            <button
+              onClick={() => setSelectedCategory('edge-case')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                selectedCategory === 'edge-case'
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
+              }`}
+            >
+              Edge Cases ({categoryStats['edge-case']})
+            </button>
+            <button
+              onClick={() => setSelectedCategory('agent-optimization')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                selectedCategory === 'agent-optimization'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+              }`}
+            >
+              Agent Tuning ({categoryStats['agent-optimization']})
+            </button>
+            <button
+              onClick={() => setSelectedCategory('threat-detection')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                selectedCategory === 'threat-detection'
+                  ? 'bg-red-600 text-white'
+                  : 'bg-red-50 text-red-700 hover:bg-red-100'
+              }`}
+            >
+              Emerging Threats ({categoryStats['threat-detection']})
+            </button>
+            <button
+              onClick={() => setSelectedCategory('outage-response')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                selectedCategory === 'outage-response'
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-orange-50 text-orange-700 hover:bg-orange-100'
+              }`}
+            >
+              Outage Response ({categoryStats['outage-response']})
+            </button>
+          </div>
         </div>
 
         <div className="space-y-4">
-          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-4 border-l-4 border-green-500">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-black mb-2">Leverage Market Leadership for Premium Card Growth</h4>
-                <p className="text-sm text-gray-700 mb-2">
-                  <strong>Opportunity:</strong> Industry-leading fraud resolution speed creates differentiation for premium card products. Marketing can emphasize "instant protection" as key value proposition.
-                </p>
-                <p className="text-sm text-gray-700">
-                  <strong>Action:</strong> Launch targeted campaign positioning BMO as technology leader in fraud protection. Expected to drive premium card acquisition and increase share of wallet.
-                </p>
-              </div>
-            </div>
-          </div>
+          {filteredInsights.map((insight) => {
+            const Icon = getCategoryIcon(insight.category);
+            const isExpanded = expandedInsight === insight.id;
 
-          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border-l-4 border-blue-500">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-black mb-2">Expand Multi-Agent Framework to Additional Use Cases</h4>
-                <p className="text-sm text-gray-700 mb-2">
-                  <strong>Opportunity:</strong> Proven ROI and customer satisfaction justify expansion to loan origination, credit line increases, and payment disputes.
-                </p>
-                <p className="text-sm text-gray-700">
-                  <strong>Action:</strong> Prioritize high-volume, rules-based workflows for next deployment. Expected to multiply cost savings and extend competitive advantage across product lines.
-                </p>
-              </div>
-            </div>
-          </div>
+            return (
+              <div
+                key={insight.id}
+                className={`bg-white rounded-xl border-2 overflow-hidden transition-all ${
+                  isExpanded ? getCategoryBorderColor(insight.category) : 'border-gray-200'
+                }`}
+              >
+                <div
+                  className="p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                  onClick={() => setExpandedInsight(isExpanded ? null : insight.id)}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start space-x-4 flex-1">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${getCategoryColor(insight.category)} flex items-center justify-center flex-shrink-0`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <h3 className="text-lg font-bold text-black">{insight.title}</h3>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getPriorityColor(insight.priority)}`}>
+                            {insight.priority.toUpperCase()}
+                          </span>
+                          <span className="text-xs text-gray-500">
+                            {insight.confidence}% confidence
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-700 mb-2">
+                          <strong className="text-black">Problem:</strong> {insight.problem}
+                        </p>
+                        {!isExpanded && (
+                          <div className="flex items-center space-x-2 text-sm text-gray-500">
+                            <ChevronRight className="w-4 h-4" />
+                            <span>Click to view agentic solution and implementation plan</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-4 border-l-4 border-purple-500">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
-              </div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-black mb-2">Develop Board-Level AI Governance Framework</h4>
-                <p className="text-sm text-gray-700 mb-2">
-                  <strong>Opportunity:</strong> Regulatory scrutiny of AI in financial services is increasing. Proactive governance framework demonstrates leadership and mitigates regulatory risk.
-                </p>
-                <p className="text-sm text-gray-700">
-                  <strong>Action:</strong> Establish executive steering committee and quarterly AI performance reviews. Position BMO as industry thought leader in responsible AI deployment.
-                </p>
-              </div>
-            </div>
-          </div>
+                {isExpanded && (
+                  <div className="border-t border-gray-200 p-5 space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <AlertCircle className="w-4 h-4 text-orange-600" />
+                          <span className="text-xs font-bold text-gray-600 uppercase">Impact</span>
+                        </div>
+                        <p className="text-sm text-gray-700">{insight.impact}</p>
+                      </div>
 
-          <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-4 border-l-4 border-orange-500">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Activity className="w-4 h-4 text-blue-600" />
+                          <span className="text-xs font-bold text-gray-600 uppercase">Current State</span>
+                        </div>
+                        <p className="text-sm text-gray-700">{insight.currentState}</p>
+                      </div>
+                    </div>
+
+                    <div className={`rounded-xl p-5 border-2 ${getCategoryBorderColor(insight.category)}`}>
+                      <div className="flex items-center space-x-2 mb-3">
+                        <Sparkles className="w-5 h-5 text-black" />
+                        <span className="font-bold text-black">Recommended Agentic Solution</span>
+                      </div>
+                      <p className="text-sm text-gray-700 mb-3">{insight.recommendation}</p>
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
+                        <p className="text-sm text-gray-800 leading-relaxed">{insight.agenticSolution}</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-black to-gray-800 rounded-xl p-5 text-white">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <Workflow className="w-5 h-5 text-white" />
+                        <span className="font-bold">Implementation Plan</span>
+                      </div>
+                      <p className="text-sm text-gray-300 mb-4">{insight.implementation}</p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="text-xs text-gray-400 mb-1">Timeline to Production</div>
+                          <div className="text-lg font-bold">{insight.timeline}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400 mb-1">Estimated Value</div>
+                          <div className="text-sm font-semibold text-gray-200">{insight.estimatedValue}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="flex-1">
-                <h4 className="font-semibold text-black mb-2">Reallocate Staff to High-Value Relationship Management</h4>
-                <p className="text-sm text-gray-700 mb-2">
-                  <strong>Opportunity:</strong> Automation frees experienced staff from routine work. Redeploying talent to complex cases and relationship building improves customer lifetime value.
-                </p>
-                <p className="text-sm text-gray-700">
-                  <strong>Action:</strong> Create specialized fraud investigation and VIP customer support teams. Expected to increase retention rates and reduce attrition in high-value segments.
-                </p>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
-      </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <div className="flex items-center space-x-3 mb-4">
-          <AlertTriangle className="w-6 h-6 text-red-500" />
-          <h3 className="text-lg font-bold text-black">Risk Considerations & Mitigation</h3>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-            <h4 className="font-semibold text-black mb-2 flex items-center space-x-2">
-              <span className="text-red-600">⚠️</span>
-              <span>Regulatory Scrutiny Risk</span>
-            </h4>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Risk:</strong> Increasing regulatory focus on AI decision-making in financial services may require enhanced explainability and oversight.
-            </p>
-            <p className="text-sm text-gray-700">
-              <strong>Mitigation:</strong> Built-in compliance validation and human oversight for edge cases. Full audit trails provide regulatory transparency. Risk level: Low.
-            </p>
-          </div>
-
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
-            <h4 className="font-semibold text-black mb-2 flex items-center space-x-2">
-              <span className="text-yellow-600">⚠️</span>
-              <span>Model Drift & Accuracy</span>
-            </h4>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Risk:</strong> Fraud patterns evolve rapidly. Models require continuous updating to maintain detection accuracy and avoid false positives.
-            </p>
-            <p className="text-sm text-gray-700">
-              <strong>Mitigation:</strong> Continuous learning architecture adapts in real-time. Human feedback loop ensures quality. Monitoring alerts flag performance degradation. Risk level: Low.
-            </p>
-          </div>
-
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-            <h4 className="font-semibold text-black mb-2 flex items-center space-x-2">
-              <span className="text-blue-600">⚠️</span>
-              <span>Competitive Replication</span>
-            </h4>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Risk:</strong> Competitors may adopt similar AI-driven fraud resolution, eroding differentiation advantage over time.
-            </p>
-            <p className="text-sm text-gray-700">
-              <strong>Mitigation:</strong> Continuous innovation and expansion to additional use cases. First-mover advantage in data collection creates defensible moat. Risk level: Medium.
-            </p>
-          </div>
-
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-            <h4 className="font-semibold text-black mb-2 flex items-center space-x-2">
-              <span className="text-purple-600">⚠️</span>
-              <span>Customer Trust & Transparency</span>
-            </h4>
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Risk:</strong> Customers may be uncomfortable with automated fraud decisions without understanding AI reasoning.
-            </p>
-            <p className="text-sm text-gray-700">
-              <strong>Mitigation:</strong> Plain-language explanations for every decision. Option for human review maintains customer control. Transparent communication builds trust. Risk level: Low.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-gradient-to-br from-black to-gray-800 rounded-2xl p-8 text-white">
-        <div className="flex items-start space-x-6">
-          <Zap className="w-12 h-12 text-white flex-shrink-0" />
-          <div>
-            <h3 className="text-xl font-bold mb-3">Executive Summary</h3>
-            <p className="text-gray-300 mb-4 leading-relaxed">
-              The AI-driven fraud resolution platform represents a strategic asset that delivers immediate ROI while creating sustainable competitive advantage. Industry-leading resolution speed and automation rates position BMO as the innovation leader in customer protection.
-            </p>
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              <div className="bg-white bg-opacity-10 rounded-lg p-3">
-                <div className="text-2xl font-bold mb-1">Strategic</div>
-                <div className="text-sm text-gray-300">Differentiation in premium card market drives growth</div>
-              </div>
-              <div className="bg-white bg-opacity-10 rounded-lg p-3">
-                <div className="text-2xl font-bold mb-1">Financial</div>
-                <div className="text-sm text-gray-300">Exceptional ROI with proven unit economics improvement</div>
-              </div>
-              <div className="bg-white bg-opacity-10 rounded-lg p-3">
-                <div className="text-2xl font-bold mb-1">Operational</div>
-                <div className="text-sm text-gray-300">Staff reallocation enables higher-value work and expertise development</div>
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl border-2 border-green-200 p-6">
+          <div className="flex items-start space-x-4">
+            <CheckCircle className="w-10 h-10 text-green-600 flex-shrink-0" />
+            <div>
+              <h3 className="text-lg font-bold text-black mb-2">Next Steps for Executive Team</h3>
+              <div className="space-y-2 text-sm text-gray-700">
+                <p><strong>1. Prioritize Critical Opportunities:</strong> Elder fraud protection, crypto scam detection, and deep-fake voice defense represent both high impact and emerging regulatory expectations.</p>
+                <p><strong>2. Quick Wins:</strong> Agent optimization items (Outreach empathy tuning, Fraud Sentinel cross-border enhancement) deliver immediate ROI with 3-6 week timelines.</p>
+                <p><strong>3. Build Strategic Moat:</strong> Advanced threat detection capabilities (synthetic identity networks, fraud rings) position BMO as innovation leader ahead of competitors.</p>
+                <p><strong>4. Operational Excellence:</strong> Outage response orchestration and system monitoring demonstrate enterprise-grade reliability to customers and regulators.</p>
               </div>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              <strong>Next Steps:</strong> (1) Launch premium card campaign leveraging fraud protection positioning, (2) Expand multi-agent framework to loan origination, (3) Establish executive AI governance committee, (4) Develop talent redeployment strategy for freed capacity.
-            </p>
           </div>
         </div>
       </div>
