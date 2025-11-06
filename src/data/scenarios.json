@@ -6,7 +6,7 @@
       "description": "Customer disputes unauthorized transaction",
       "valueProps": {
         "customer": "Instant fraud protection with zero liability",
-        "bmo": "98% automation rate reduces ops cost by $47 per case"
+        "bmo": "High automation rate dramatically reduces ops cost per case"
       },
       "customer": {
         "name": "Sarah Mitchell",
@@ -460,7 +460,7 @@
       "description": "Customer charged twice for same service",
       "valueProps": {
         "customer": "Automatic duplicate detection and instant refund",
-        "bmo": "Merchant relationship protection with 4-hour resolution"
+        "bmo": "Merchant relationship protection with rapid resolution"
       },
       "customer": {
         "name": "Marcus Chen",
@@ -522,7 +522,7 @@
       "description": "Hotel charge after cancelled reservation",
       "valueProps": {
         "customer": "Hassle-free travel dispute resolution",
-        "bmo": "83% win rate on travel chargebacks vs. 52% industry avg"
+        "bmo": "Industry-leading win rate on travel chargebacks"
       },
       "customer": {
         "name": "Emily Rodriguez",
@@ -584,7 +584,7 @@
       "description": "Recurring charge from unknown service",
       "valueProps": {
         "customer": "Multi-month recovery of unauthorized charges",
-        "bmo": "Prevents $2.3M annual revenue leakage from undetected fraud"
+        "bmo": "Prevents major annual revenue leakage from undetected fraud"
       },
       "customer": {
         "name": "David Thompson",
@@ -645,8 +645,8 @@
       "title": "Proactive Fraud Prevention",
       "description": "AI stops fraud before customer notices",
       "valueProps": {
-        "customer": "Zero fraud impact with proactive blocking",
-        "bmo": "$8.4M annual fraud loss prevention, 94% pre-auth catch rate"
+        "customer": "AI stops fraud before customer notices",
+        "bmo": "Major annual fraud loss prevention with proactive blocking"
       },
       "customer": {
         "name": "Jennifer Wu",
@@ -708,7 +708,7 @@
       "description": "Hidden currency conversion fees",
       "valueProps": {
         "customer": "Protection from hidden international fees",
-        "bmo": "Average $112 recovery per case, strengthens premium card value prop"
+        "bmo": "Significant recovery per case, strengthens premium card value"
       },
       "customer": {
         "name": "Raj Patel",
@@ -769,8 +769,8 @@
       "title": "Elder Fraud Protection",
       "description": "Protecting vulnerable customer from scam",
       "valueProps": {
-        "customer": "Real-time elder fraud intervention and recovery",
-        "bmo": "Mitigates reputational risk, saves avg $12K per elder fraud case"
+        "customer": "Real-time elder fraud protection and recovery",
+        "bmo": "Mitigates reputational risk and protects vulnerable customers"
       },
       "customer": {
         "name": "Dorothy Evans",
@@ -832,7 +832,7 @@
       "description": "Complex insurance coordination issue",
       "valueProps": {
         "customer": "Stress-free medical billing dispute resolution",
-        "bmo": "Reduces 18-day avg resolution to 2 days, improves NPS +23pts"
+        "bmo": "Dramatic reduction in resolution time improves satisfaction"
       },
       "customer": {
         "name": "Patricia Johnson",

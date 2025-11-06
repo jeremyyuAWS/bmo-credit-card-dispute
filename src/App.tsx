@@ -9,6 +9,7 @@ import { ResponsibleAITab } from './components/ResponsibleAITab';
 import { LyzrAgents } from './components/LyzrAgents';
 import { AgentConfiguration } from './components/AgentConfiguration';
 import { StrategicAdvisor } from './components/StrategicAdvisor';
+import { StrategicInsights } from './components/StrategicInsights';
 import { PersonaSelector } from './components/PersonaSelector';
 import { PersonaDashboard } from './components/PersonaDashboard';
 import { AgentPanel } from './components/AgentPanel';
@@ -400,7 +401,7 @@ function App() {
 
         {activeTab === 'strategic-insights' && (
           <div className="h-full overflow-y-auto bg-gray-50">
-            <StrategicAdvisor />
+            {selectedPersonaRole === 'executive' ? <StrategicInsights /> : <StrategicAdvisor />}
           </div>
         )}
 

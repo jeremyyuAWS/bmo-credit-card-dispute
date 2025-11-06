@@ -151,7 +151,7 @@
         "Export board report"
       ],
       "dashboardLayout": "executive-focused",
-      "availableTabs": ["live-demo", "strategic-advisor", "analytics", "responsible-ai"],
+      "availableTabs": ["live-demo", "strategic-insights", "analytics", "responsible-ai"],
       "conversationType": "executive-focused"
     }
   ]
