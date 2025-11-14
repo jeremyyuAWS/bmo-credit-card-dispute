@@ -45,6 +45,7 @@ export function ChatWindow({
   const [showingAgent, setShowingAgent] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const conversationRef = useRef(conversation);
 
   useEffect(() => {
     if (isActive && scrollContainerRef.current) {
@@ -66,15 +67,18 @@ export function ChatWindow({
         onAgentChange(firstMessage.agent);
       }
     }
+  }, [isActive, hasStarted, conversation, onAgentChange]);
 
-    if (!isActive && hasStarted && currentIndex === 0) {
+  useEffect(() => {
+    if (conversationRef.current !== conversation) {
+      conversationRef.current = conversation;
       setMessages([]);
       setCurrentIndex(0);
       setHasStarted(false);
       setShowingAgent(null);
       onAgentChange(null);
     }
-  }, [isActive, hasStarted, currentIndex, conversation, onAgentChange]);
+  }, [conversation, onAgentChange]);
 
   const handleMessageComplete = () => {
     const nextIndex = currentIndex + 1;

@@ -58,6 +58,7 @@ function App() {
   const [activeAgent, setActiveAgent] = useState<string | null>(null);
   const [isComplete, setIsComplete] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [demoStarted, setDemoStarted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [activeTab, setActiveTab] = useState('live-demo');
   const [playbackSpeed, setPlaybackSpeed] = useState(0.5);
@@ -131,8 +132,9 @@ function App() {
     setSelectedPersonaRole(roleId);
     const role = personasData.personas.find(p => p.id === roleId);
 
-    if (isPlaying) {
+    if (demoStarted) {
       setIsPlaying(false);
+      setDemoStarted(false);
       setPauseRequested(false);
     }
 
@@ -157,12 +159,13 @@ function App() {
   };
 
   const handleScenarioSelect = (scenarioId: string) => {
-    if (isPlaying) return;
+    if (demoStarted) return;
 
     setSelectedScenarioId(scenarioId);
     setActiveAgent(null);
     setIsComplete(false);
     setIsPlaying(true);
+    setDemoStarted(true);
     setPauseRequested(false);
   };
 
@@ -170,16 +173,18 @@ function App() {
     setIsComplete(true);
     setTimeout(() => {
       setIsPlaying(false);
+      setDemoStarted(false);
       setPauseRequested(false);
     }, 2000);
   };
 
   const handlePlayPause = () => {
-    if (!isPlaying) {
+    if (!demoStarted) {
       setIsPlaying(true);
+      setDemoStarted(true);
       setPauseRequested(false);
     } else {
-      setPauseRequested(!pauseRequested);
+      setIsPlaying(!isPlaying);
     }
   };
 
@@ -187,6 +192,7 @@ function App() {
     setActiveAgent(null);
     setIsComplete(false);
     setIsPlaying(true);
+    setDemoStarted(true);
     setPauseRequested(false);
     setSelectedScenarioId(selectedScenarioId);
   };
@@ -369,8 +375,9 @@ function App() {
               scenarios={filteredScenarios}
               selectedScenario={selectedScenarioId}
               onSelect={handleScenarioSelect}
-              disabled={isPlaying}
-              isPlaying={isPlaying && !pauseRequested}
+              disabled={demoStarted}
+              isPlaying={isPlaying}
+              demoStarted={demoStarted}
               onPlayPause={handlePlayPause}
               onRestart={handleRestart}
               playbackSpeed={playbackSpeed}
@@ -382,7 +389,7 @@ function App() {
                   conversation={getPersonaConversation()}
                   onAgentChange={setActiveAgent}
                   onComplete={handleComplete}
-                  isActive={isPlaying && !pauseRequested}
+                  isActive={isPlaying}
                   playbackSpeed={playbackSpeed}
                   viewMode={viewMode}
                   customerName={currentScenario.customer?.name}
@@ -390,7 +397,7 @@ function App() {
                   priorityAgents={currentPersonaRole?.priorityAgents || []}
                 />
               </div>
-              {isPlaying && <AgentPanel activeAgent={activeAgent} />}
+              {demoStarted && <AgentPanel activeAgent={activeAgent} />}
             </div>
           </div>
         )}

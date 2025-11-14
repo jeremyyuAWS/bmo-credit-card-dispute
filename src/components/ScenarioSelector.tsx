@@ -16,6 +16,7 @@ interface ScenarioSelectorProps {
   onSelect: (scenarioId: string) => void;
   disabled?: boolean;
   isPlaying?: boolean;
+  demoStarted?: boolean;
   onPlayPause?: () => void;
   onRestart?: () => void;
   playbackSpeed?: number;
@@ -28,6 +29,7 @@ export function ScenarioSelector({
   onSelect,
   disabled,
   isPlaying,
+  demoStarted,
   onPlayPause,
   onRestart,
   playbackSpeed = 1,
@@ -47,7 +49,7 @@ export function ScenarioSelector({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-black mb-1">Demo Scenarios</h3>
-          {!isPlaying && <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>}
+          {!demoStarted && <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>}
         </div>
 
         <div className="flex items-center space-x-3">
@@ -100,7 +102,7 @@ export function ScenarioSelector({
         </div>
       </div>
 
-      {!isPlaying && (
+      {!demoStarted && (
         <div className="grid grid-cols-4 gap-3 mt-4">
           {scenarios.map((scenario) => (
           <button
