@@ -67,14 +67,14 @@ export function ChatWindow({
       }
     }
 
-    if (!isActive && hasStarted) {
+    if (!isActive && hasStarted && currentIndex === 0) {
       setMessages([]);
       setCurrentIndex(0);
       setHasStarted(false);
       setShowingAgent(null);
       onAgentChange(null);
     }
-  }, [isActive, hasStarted, conversation, onAgentChange]);
+  }, [isActive, hasStarted, currentIndex, conversation, onAgentChange]);
 
   const handleMessageComplete = () => {
     const nextIndex = currentIndex + 1;
