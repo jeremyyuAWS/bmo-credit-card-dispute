@@ -59,7 +59,7 @@ function App() {
   const [isComplete, setIsComplete] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [demoStarted, setDemoStarted] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [activeTab, setActiveTab] = useState('live-demo');
   const [playbackSpeed, setPlaybackSpeed] = useState(0.5);
   const [pauseRequested, setPauseRequested] = useState(false);
@@ -189,12 +189,17 @@ function App() {
   };
 
   const handleRestart = () => {
+    const currentScenarioId = selectedScenarioId;
     setActiveAgent(null);
     setIsComplete(false);
-    setIsPlaying(true);
-    setDemoStarted(true);
+    setIsPlaying(false);
+    setDemoStarted(false);
     setPauseRequested(false);
-    setSelectedScenarioId(selectedScenarioId);
+    setTimeout(() => {
+      setSelectedScenarioId(currentScenarioId);
+      setIsPlaying(true);
+      setDemoStarted(true);
+    }, 50);
   };
 
   return (
@@ -375,7 +380,7 @@ function App() {
               scenarios={filteredScenarios}
               selectedScenario={selectedScenarioId}
               onSelect={handleScenarioSelect}
-              disabled={demoStarted}
+              disabled={!demoStarted}
               isPlaying={isPlaying}
               demoStarted={demoStarted}
               onPlayPause={handlePlayPause}
