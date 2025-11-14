@@ -9,6 +9,7 @@ interface ChatMessageProps {
   delay?: number;
   onComplete?: () => void;
   playbackSpeed?: number;
+  isActive?: boolean;
   viewMode?: 'customer' | 'bmo-team';
   customerName?: string;
   bmoTeamMember?: {
@@ -29,6 +30,7 @@ export function ChatMessage({
   delay = 0,
   onComplete,
   playbackSpeed = 1,
+  isActive = true,
   viewMode = 'customer',
   customerName,
   bmoTeamMember,
@@ -41,6 +43,7 @@ export function ChatMessage({
   const [initialText] = useState(text);
 
   useEffect(() => {
+    if (!isActive) return;
     if (hasStartedTyping) return;
     if (text !== initialText) return;
 
@@ -51,9 +54,10 @@ export function ChatMessage({
     }, delay / playbackSpeed);
 
     return () => clearTimeout(showTimer);
-  }, [delay, playbackSpeed, hasStartedTyping, text, initialText]);
+  }, [delay, playbackSpeed, hasStartedTyping, text, initialText, isActive]);
 
   useEffect(() => {
+    if (!isActive) return;
     if (!isVisible || currentCharIndex >= initialText.length) return;
 
     const charDelay = speaker === 'user'
@@ -66,14 +70,15 @@ export function ChatMessage({
     }, charDelay);
 
     return () => clearTimeout(typingTimer);
-  }, [isVisible, currentCharIndex, initialText, playbackSpeed, speaker]);
+  }, [isVisible, currentCharIndex, initialText, playbackSpeed, speaker, isActive]);
 
   useEffect(() => {
+    if (!isActive) return;
     if (isVisible && currentCharIndex >= initialText.length && onComplete && hasStartedTyping) {
       const completeTimer = setTimeout(onComplete, 700 / playbackSpeed);
       return () => clearTimeout(completeTimer);
     }
-  }, [currentCharIndex, initialText.length, onComplete, isVisible, playbackSpeed, hasStartedTyping]);
+  }, [currentCharIndex, initialText.length, onComplete, isVisible, playbackSpeed, hasStartedTyping, isActive]);
 
   if (!isVisible) return null;
 

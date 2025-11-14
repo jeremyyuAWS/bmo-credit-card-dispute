@@ -129,6 +129,7 @@ export function ChatWindow({
           delay={isLast ? msg.delay || 0 : 0}
           onComplete={isLast ? handleMessageComplete : undefined}
           playbackSpeed={playbackSpeed}
+          isActive={isActive}
           viewMode={viewMode}
           customerName={customerName}
           bmoTeamMember={bmoTeamMember}
