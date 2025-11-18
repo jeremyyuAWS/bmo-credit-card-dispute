@@ -169,11 +169,14 @@ function App() {
 
   const handleComplete = () => {
     setIsComplete(true);
-    setTimeout(() => {
-      setIsPlaying(false);
-      setDemoStarted(false);
-      setPauseRequested(false);
-    }, 2000);
+  };
+
+  const handleEndDemo = () => {
+    setIsPlaying(false);
+    setDemoStarted(false);
+    setPauseRequested(false);
+    setActiveAgent(null);
+    setIsComplete(false);
   };
 
   const handlePlayPause = () => {
@@ -383,6 +386,7 @@ function App() {
               demoStarted={demoStarted}
               onPlayPause={handlePlayPause}
               onRestart={handleRestart}
+              onEndDemo={handleEndDemo}
               playbackSpeed={playbackSpeed}
               onSpeedChange={setPlaybackSpeed}
             />

@@ -1,4 +1,4 @@
-import { Play, Pause, RotateCcw, Gauge, TrendingUp, Users } from 'lucide-react';
+import { Play, Pause, RotateCcw, Gauge, TrendingUp, Users, X } from 'lucide-react';
 
 interface Scenario {
   id: string;
@@ -19,6 +19,7 @@ interface ScenarioSelectorProps {
   demoStarted?: boolean;
   onPlayPause?: () => void;
   onRestart?: () => void;
+  onEndDemo?: () => void;
   playbackSpeed?: number;
   onSpeedChange?: (speed: number) => void;
 }
@@ -32,6 +33,7 @@ export function ScenarioSelector({
   demoStarted,
   onPlayPause,
   onRestart,
+  onEndDemo,
   playbackSpeed = 1,
   onSpeedChange
 }: ScenarioSelectorProps) {
@@ -53,6 +55,17 @@ export function ScenarioSelector({
         </div>
 
         <div className="flex items-center space-x-3">
+          {demoStarted && (
+            <button
+              onClick={onEndDemo}
+              className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-100 border border-red-200 transition-colors"
+              title="End demo"
+            >
+              <X className="w-4 h-4" />
+              <span className="text-sm font-semibold">End Demo</span>
+            </button>
+          )}
+
           <button
             onClick={onRestart}
             disabled={disabled}
@@ -102,8 +115,9 @@ export function ScenarioSelector({
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-3 mt-4">
-        {scenarios.map((scenario) => (
+      {!demoStarted && (
+        <div className="grid grid-cols-4 gap-3 mt-4">
+          {scenarios.map((scenario) => (
           <button
             key={scenario.id}
             onClick={() => onSelect(scenario.id)}
@@ -142,8 +156,9 @@ export function ScenarioSelector({
               </div>
             )}
           </button>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
