@@ -162,9 +162,13 @@ function App() {
     setSelectedScenarioId(scenarioId);
     setActiveAgent(null);
     setIsComplete(false);
-    setIsPlaying(true);
+    setIsPlaying(false);
     setDemoStarted(true);
     setPauseRequested(false);
+
+    setTimeout(() => {
+      setIsPlaying(true);
+    }, 10);
   };
 
   const handleComplete = () => {

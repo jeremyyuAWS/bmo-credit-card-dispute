@@ -57,6 +57,15 @@ export function ChatWindow({
   }, [messages, showingAgent, isActive]);
 
   useEffect(() => {
+    conversationRef.current = conversation;
+    setMessages([]);
+    setCurrentIndex(0);
+    setHasStarted(false);
+    setShowingAgent(null);
+    onAgentChange(null);
+  }, [conversation, onAgentChange]);
+
+  useEffect(() => {
     if (isActive && !hasStarted) {
       setMessages([0]);
       setCurrentIndex(0);
@@ -68,15 +77,6 @@ export function ChatWindow({
       }
     }
   }, [isActive, hasStarted, conversation, onAgentChange]);
-
-  useEffect(() => {
-    conversationRef.current = conversation;
-    setMessages([]);
-    setCurrentIndex(0);
-    setHasStarted(false);
-    setShowingAgent(null);
-    onAgentChange(null);
-  }, [conversation, onAgentChange]);
 
   const handleMessageComplete = () => {
     const nextIndex = currentIndex + 1;
