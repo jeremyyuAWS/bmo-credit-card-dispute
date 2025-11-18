@@ -66,13 +66,13 @@ export function ChatWindow({
   }, [conversation, onAgentChange]);
 
   useEffect(() => {
-    if (!isActive) {
+    if (!isActive && !hasStarted) {
       setMessages([]);
       setCurrentIndex(0);
       setHasStarted(false);
       setShowingAgent(null);
     }
-  }, [isActive]);
+  }, [isActive, hasStarted]);
 
   useEffect(() => {
     if (isActive && !hasStarted) {
