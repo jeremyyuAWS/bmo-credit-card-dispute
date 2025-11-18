@@ -35,8 +35,8 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
       <div className="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
         <div className="bg-white border-b border-gray-200 px-8 py-6 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-black">BMO Credit Card Dispute Resolution</h2>
-            <p className="text-sm text-gray-600 mt-1">Agentic AI Platform Overview</p>
+            <h2 className="text-2xl font-bold text-black">Demo Guide</h2>
+            <p className="text-sm text-gray-600 mt-1">Learn how to use this interactive demo</p>
           </div>
           <button
             onClick={onClose}
@@ -69,60 +69,35 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
           {activeTab === 'overview' && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-black mb-3">Executive Summary</h3>
+                <h3 className="text-xl font-bold text-black mb-3">Welcome to the Demo</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  This agentic AI platform transforms BMO's credit card dispute resolution from a multi-day,
-                  multi-department process into an automated, compliant, and customer-centric experience.
-                  Seven specialized AI agents orchestrate fraud detection, dispute validation, regulatory compliance,
-                  resolution execution, and continuous learning.
+                  This interactive demo showcases an enterprise-grade autonomous dispute resolution system.
+                  Explore how AI agents work together to handle credit card disputes in real-time.
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-5 border border-green-200">
-                  <DollarSign className="w-8 h-8 text-green-700 mb-3" />
-                  <div className="text-3xl font-bold text-green-900 mb-1">$12.4M</div>
-                  <div className="text-sm font-semibold text-green-700">Annual Cost Savings</div>
-                  <div className="text-xs text-green-600 mt-2">98% automation rate at $47 per case</div>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200">
-                  <Clock className="w-8 h-8 text-blue-700 mb-3" />
-                  <div className="text-3xl font-bold text-blue-900 mb-1">2 Min</div>
-                  <div className="text-sm font-semibold text-blue-700">Avg Resolution Time</div>
-                  <div className="text-xs text-blue-600 mt-2">Down from 7-14 days industry standard</div>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border border-purple-200">
-                  <TrendingUp className="w-8 h-8 text-purple-700 mb-3" />
-                  <div className="text-3xl font-bold text-purple-900 mb-1">+23</div>
-                  <div className="text-sm font-semibold text-purple-700">NPS Point Increase</div>
-                  <div className="text-xs text-purple-600 mt-2">Customer satisfaction transformed</div>
-                </div>
-              </div>
-
               <div>
-                <h3 className="text-lg font-bold text-black mb-3">Strategic Business Impact</h3>
+                <h3 className="text-lg font-bold text-black mb-3">How to Use This Demo</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3 bg-gray-50 rounded-lg p-4">
-                    <Shield className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                    <Zap className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-black">Risk Mitigation</div>
-                      <div className="text-sm text-gray-600">Real-time compliance validation eliminates regulatory exposure. Zero audit findings since deployment.</div>
+                      <div className="font-semibold text-black">1. Select a Scenario</div>
+                      <div className="text-sm text-gray-600">Choose from 8 dispute scenarios on the Live Demo tab to see different use cases in action.</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 bg-gray-50 rounded-lg p-4">
                     <Users className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-black">Operational Efficiency</div>
-                      <div className="text-sm text-gray-600">Reduces dispute workflow from 72 manual steps across 5 departments to 6 automated agent actions.</div>
+                      <div className="font-semibold text-black">2. Switch Perspectives</div>
+                      <div className="text-sm text-gray-600">Toggle between Customer and BMO Team views to see both sides of the conversation.</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 bg-gray-50 rounded-lg p-4">
-                    <DollarSign className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
+                    <BarChart3 className="w-5 h-5 text-black mt-0.5 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-black">Revenue Protection</div>
-                      <div className="text-sm text-gray-600">Proactive fraud detection prevents $8.4M in annual losses. 94% of fraud caught before customer impact.</div>
+                      <div className="font-semibold text-black">3. Explore Insights</div>
+                      <div className="text-sm text-gray-600">Visit Analytics, Strategic Insights, and other tabs to see operational metrics and business value.</div>
                     </div>
                   </div>
                 </div>
@@ -141,23 +116,23 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
-                <h4 className="font-bold text-black mb-3">Business Value for BMO</h4>
+                <h4 className="font-bold text-black mb-3">What You'll See</h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Customer Experience:</strong> Instant resolution builds trust and loyalty. 60% reduction in follow-up calls.</span>
+                    <span><strong>Real-Time Conversations:</strong> Watch AI agents interact with customers and resolve disputes.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Operational Scale:</strong> Handles 10x transaction volume without adding headcount.</span>
+                    <span><strong>Agent Actions:</strong> See specialized agents working together with fraud detection, validation, and compliance.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Fraud Prevention:</strong> Proactive detection stops $2.3M in unauthorized charges annually.</span>
+                    <span><strong>Playback Controls:</strong> Adjust speed (0.25x to 2x) and pause/restart demos at any time.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Card Portfolio Growth:</strong> Premium dispute resolution differentiates BMO's card products.</span>
+                    <span><strong>Resolution Summary:</strong> View final outcomes with metrics and actions taken.</span>
                   </li>
                 </ul>
               </div>
@@ -197,23 +172,23 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5">
-                <h4 className="font-bold text-black mb-3">Business Value for BMO</h4>
+                <h4 className="font-bold text-black mb-3">What This Tab Shows</h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="text-yellow-600 mr-2">•</span>
-                    <span><strong>Risk Management:</strong> Human oversight on complex cases protects against edge case errors.</span>
+                    <span><strong>Human Oversight:</strong> See how complex cases are flagged for human review and feedback.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-yellow-600 mr-2">•</span>
-                    <span><strong>Quality Assurance:</strong> Sample reviews maintain 99.2% decision accuracy across all disputes.</span>
+                    <span><strong>Quality Assurance:</strong> Review sample cases to understand the decision-making process.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-yellow-600 mr-2">•</span>
-                    <span><strong>Regulatory Compliance:</strong> Documented review trail satisfies OCC oversight requirements.</span>
+                    <span><strong>Feedback Loop:</strong> Explore how human input improves agent performance over time.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-yellow-600 mr-2">•</span>
-                    <span><strong>Agent Improvement:</strong> Human feedback refines AI decision-making over time.</span>
+                    <span><strong>Edge Cases:</strong> Understand when and why cases need human intervention.</span>
                   </li>
                 </ul>
               </div>
@@ -244,23 +219,23 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               <div className="bg-green-50 border border-green-200 rounded-xl p-5">
-                <h4 className="font-bold text-black mb-3">Business Value for BMO</h4>
+                <h4 className="font-bold text-black mb-3">What This Tab Shows</h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span><strong>Financial Visibility:</strong> Track $47 per case cost savings vs. manual processing.</span>
+                    <span><strong>Key Metrics:</strong> View resolution times, automation rates, and cost savings.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span><strong>Fraud Intelligence:</strong> Real-time detection of emerging fraud patterns across portfolio.</span>
+                    <span><strong>Fraud Patterns:</strong> Explore real-time detection and prevention analytics.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span><strong>Regulatory Reporting:</strong> Automated compliance metrics for OCC, FINRA oversight.</span>
+                    <span><strong>Performance Trends:</strong> See how the system improves over time with charts and graphs.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span><strong>Performance Benchmarking:</strong> Compare resolution speed, costs against industry standards.</span>
+                    <span><strong>Operational Insights:</strong> Understand throughput, volumes, and efficiency metrics.</span>
                   </li>
                 </ul>
               </div>
@@ -299,43 +274,43 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-red-500">
                   <div className="font-bold text-black mb-1">Fraud Sentinel</div>
                   <div className="text-sm text-gray-700 mb-2">Real-time fraud detection across transaction patterns, geolocation, velocity checks</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> Catches 94% of fraud pre-authorization, preventing $8.4M annual losses</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Catches fraud patterns before they impact customers</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-500">
                   <div className="font-bold text-black mb-1">Outreach Agent</div>
                   <div className="text-sm text-gray-700 mb-2">Empathetic customer communication, context gathering, identity verification</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> 89% customer satisfaction score, reduces call handle time by 67%</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Provides empathetic communication and gathers dispute context</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-green-500">
                   <div className="font-bold text-black mb-1">Eligibility Agent</div>
                   <div className="text-sm text-gray-700 mb-2">KYC validation, merchant reputation check, card network rule verification</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> 99.2% accuracy on dispute validity, eliminates false positives</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Validates dispute eligibility and verifies merchant information</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-yellow-500">
                   <div className="font-bold text-black mb-1">Compliance Guard</div>
                   <div className="text-sm text-gray-700 mb-2">Real-time regulatory validation against OCC, FINRA, Visa/Mastercard policies</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> Zero audit findings, eliminates $2.1M regulatory risk exposure</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Ensures all actions comply with regulations and card network rules</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-purple-500">
                   <div className="font-bold text-black mb-1">Resolution Agent</div>
                   <div className="text-sm text-gray-700 mb-2">Executes provisional credits, card blocking, reissuance, backend orchestration</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> 2-minute resolution vs. 7-14 day industry standard</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Executes credits, card blocks, and reissuance processes</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-teal-500">
                   <div className="font-bold text-black mb-1">Recovery Agent</div>
                   <div className="text-sm text-gray-700 mb-2">Identifies and reconnects recurring payment relationships to new cards</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> 92% subscription continuity, prevents $3.2M revenue churn</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Identifies and reconnects recurring payments to new cards</div>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-gray-700">
                   <div className="font-bold text-black mb-1">Learning Agent</div>
                   <div className="text-sm text-gray-700 mb-2">Captures case outcomes, retrains fraud models, continuous improvement loop</div>
-                  <div className="text-xs text-gray-600"><strong>Value:</strong> 12% monthly improvement in fraud detection accuracy</div>
+                  <div className="text-xs text-gray-600"><strong>Role:</strong> Captures outcomes and continuously improves system performance</div>
                 </div>
               </div>
             </div>
@@ -352,23 +327,23 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               <div className="bg-purple-50 border border-purple-200 rounded-xl p-5">
-                <h4 className="font-bold text-black mb-3">Business Value for BMO</h4>
+                <h4 className="font-bold text-black mb-3">What This Tab Shows</h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="text-purple-600 mr-2">•</span>
-                    <span><strong>Business Control:</strong> Operations teams adjust fraud thresholds without IT dependency.</span>
+                    <span><strong>Agent Controls:</strong> See how thresholds and parameters are configured.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-purple-600 mr-2">•</span>
-                    <span><strong>Risk Management:</strong> Real-time agent health monitoring prevents service degradation.</span>
+                    <span><strong>System Health:</strong> Monitor agent performance, uptime, and response times.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-purple-600 mr-2">•</span>
-                    <span><strong>Model Governance:</strong> Version control, A/B testing, rollback capabilities for ML models.</span>
+                    <span><strong>Model Management:</strong> Explore version control and A/B testing capabilities.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-purple-600 mr-2">•</span>
-                    <span><strong>Integration Health:</strong> Monitor connections to card networks, core banking, CRM systems.</span>
+                    <span><strong>Integration Status:</strong> Check connections to external systems and APIs.</span>
                   </li>
                 </ul>
               </div>
@@ -399,23 +374,23 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               </div>
 
               <div className="bg-teal-50 border border-teal-200 rounded-xl p-5">
-                <h4 className="font-bold text-black mb-3">Business Value for BMO</h4>
+                <h4 className="font-bold text-black mb-3">What This Tab Shows</h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2">•</span>
-                    <span><strong>Competitive Intelligence:</strong> Benchmark resolution speed, costs against competitors.</span>
+                    <span><strong>Performance Benchmarks:</strong> Compare metrics against industry standards.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2">•</span>
-                    <span><strong>Fraud Forecasting:</strong> Predict emerging scam patterns before industry-wide impact.</span>
+                    <span><strong>Trend Analysis:</strong> Identify emerging patterns and opportunities.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2">•</span>
-                    <span><strong>Workflow Optimization:</strong> Identify bottlenecks, recommend process improvements.</span>
+                    <span><strong>Optimization Recommendations:</strong> See AI-generated suggestions for improvements.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2">•</span>
-                    <span><strong>Product Strategy:</strong> Inform card product design with dispute resolution insights.</span>
+                    <span><strong>Strategic Insights:</strong> Understand business implications and growth opportunities.</span>
                   </li>
                 </ul>
               </div>
@@ -447,7 +422,7 @@ export function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
               <div>
                 <h3 className="text-xl font-bold text-black mb-3">Responsible AI & Governance</h3>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  BMO's commitment to ethical AI deployment. Every agent decision includes explainability,
+                  This system is built with ethical AI principles. Every agent decision includes explainability,
                   bias monitoring, audit trails, and human oversight capabilities.
                 </p>
               </div>
