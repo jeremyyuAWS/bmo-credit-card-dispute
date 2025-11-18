@@ -49,7 +49,7 @@ export function ScenarioSelector({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-black mb-1">Demo Scenarios</h3>
-          {!demoStarted && <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>}
+          <p className="text-xs text-gray-500">Select a scenario to watch the AI agents in action</p>
         </div>
 
         <div className="flex items-center space-x-3">
@@ -102,18 +102,16 @@ export function ScenarioSelector({
         </div>
       </div>
 
-      {!demoStarted && (
-        <div className="grid grid-cols-4 gap-3 mt-4">
-          {scenarios.map((scenario) => (
+      <div className="grid grid-cols-4 gap-3 mt-4">
+        {scenarios.map((scenario) => (
           <button
             key={scenario.id}
-            onClick={() => !disabled && onSelect(scenario.id)}
-            disabled={disabled}
+            onClick={() => onSelect(scenario.id)}
             className={`text-left p-4 rounded-xl border-2 transition-all ${
               selectedScenario === scenario.id
                 ? 'border-black bg-black text-white'
                 : 'border-gray-200 bg-white text-black hover:border-gray-400'
-            } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+            } cursor-pointer`}
           >
             <div className="flex items-start justify-between mb-2">
               <h4 className={`text-sm font-semibold ${selectedScenario === scenario.id ? 'text-white' : 'text-black'}`}>
@@ -144,9 +142,8 @@ export function ScenarioSelector({
               </div>
             )}
           </button>
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 }

@@ -61,7 +61,7 @@ function App() {
   const [demoStarted, setDemoStarted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [activeTab, setActiveTab] = useState('live-demo');
-  const [playbackSpeed, setPlaybackSpeed] = useState(0.5);
+  const [playbackSpeed, setPlaybackSpeed] = useState(0.75);
   const [pauseRequested, setPauseRequested] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('customer');
   const [selectedPersona, setSelectedPersona] = useState<BMOPersona>('cardholder-resolution');
@@ -159,8 +159,6 @@ function App() {
   };
 
   const handleScenarioSelect = (scenarioId: string) => {
-    if (demoStarted) return;
-
     setSelectedScenarioId(scenarioId);
     setActiveAgent(null);
     setIsComplete(false);
@@ -207,7 +205,7 @@ function App() {
       <header className="border-b border-gray-200 px-8 py-5 bg-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <img src="/BMO-bank-logo.png" alt="BMO" className="h-12 object-contain" />
+            <img src="/accenture-logo.png" alt="Accenture" className="h-12 object-contain" />
             <div>
               <h1 className="text-3xl font-bold text-black">Credit Card Dispute Resolution</h1>
               <p className="text-sm text-gray-600 mt-1">Agentic AI Demo — Bank of Montreal</p>
