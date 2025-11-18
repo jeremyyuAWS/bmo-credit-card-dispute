@@ -70,14 +70,12 @@ export function ChatWindow({
   }, [isActive, hasStarted, conversation, onAgentChange]);
 
   useEffect(() => {
-    if (conversationRef.current !== conversation) {
-      conversationRef.current = conversation;
-      setMessages([]);
-      setCurrentIndex(0);
-      setHasStarted(false);
-      setShowingAgent(null);
-      onAgentChange(null);
-    }
+    conversationRef.current = conversation;
+    setMessages([]);
+    setCurrentIndex(0);
+    setHasStarted(false);
+    setShowingAgent(null);
+    onAgentChange(null);
   }, [conversation, onAgentChange]);
 
   const handleMessageComplete = () => {
