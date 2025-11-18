@@ -215,7 +215,7 @@ function App() {
             <img src="/accenture-logo.png" alt="Accenture" className="h-12 object-contain" />
             <div>
               <h1 className="text-3xl font-bold text-black">Credit Card Dispute Resolution</h1>
-              <p className="text-sm text-gray-600 mt-1">Agentic AI Demo — Bank of Montreal</p>
+              <p className="text-sm text-gray-600 mt-1">Enterprise-Grade Autonomous Dispute Resolution</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
