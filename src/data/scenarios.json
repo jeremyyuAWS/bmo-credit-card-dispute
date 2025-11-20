@@ -65,6 +65,19 @@
           "speaker": "agent",
           "text": "Case closed ✅ This outcome has been added to our fraud prevention models to protect you better.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "Your fraud case was resolved automatically in seconds. Documents verified, card reissued, and recurring payments transferred - no manual handoffs, no delays. Seven specialized agents worked together seamlessly to protect your account while maintaining full compliance.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Customer Experience",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 2 min" },
+              { "icon": "check", "label": "Agent Coordination", "value": "7 agents" },
+              { "icon": "dollar", "label": "Cost Savings", "value": "$44.60/case" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
