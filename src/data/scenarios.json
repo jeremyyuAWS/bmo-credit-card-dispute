@@ -136,14 +136,14 @@
         },
         {
           "speaker": "summary",
-          "text": "Sarah's fraud case was resolved automatically in seconds. Documents verified, card reissued, and recurring payments transferred - no manual handoffs, no delays. Seven specialized agents worked together seamlessly to protect her account while maintaining full compliance.",
+          "text": "Case was processed automatically in seconds. Eligibility verified, compliance checked, and resolution executed - no manual handoffs, no delays. System coordinated across seven specialized agents while maintaining complete audit trail.",
           "delay": 2000,
           "summaryData": {
-            "title": "Customer Experience",
+            "title": "BMO Team Impact",
             "metrics": [
-              { "icon": "trending", "label": "Resolution Time", "value": "< 2 min" },
-              { "icon": "check", "label": "Agent Coordination", "value": "7 agents" },
-              { "icon": "dollar", "label": "Cost Savings", "value": "$44.60/case" }
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Automation Rate", "value": "High Priority" },
+              { "icon": "dollar", "label": "Cost per Case", "value": "$3.20" }
             ]
           }
         }
@@ -579,6 +579,19 @@
           "speaker": "agent",
           "text": "Service continuity confirmed. StreamFlix subscription active with corrected single charge. No customer action required. Merchant acknowledgment received: Billing system glitch affecting 47 customers, all resolved. Added to merchant quality monitoring for 30 days.",
           "delay": 2200
+        },
+        {
+          "speaker": "summary",
+          "text": "Duplicate billing detected and resolved automatically. Transaction analysis completed, merchant contacted, and credit issued - with subscription status maintained. Zero manual intervention required for standard merchant error.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Status", "value": "Auto-Resolved" },
+              { "icon": "dollar", "label": "Manual Work", "value": "Zero" }
+            ]
+          }
         }
       ]
     },
@@ -706,6 +719,19 @@
           "speaker": "agent",
           "text": "Merchant analysis: Grand Plaza Hotel has 8 similar disputes in past 12 months (cancellation policy violations). Chargeback win rate against this merchant: 87%. Recommendation: Flag for enhanced monitoring. Alert issued to fraud prevention team for portfolio-wide review of active bookings with this merchant.",
           "delay": 2500
+        },
+        {
+          "speaker": "summary",
+          "text": "Travel dispute processed automatically through policy verification and documentation analysis. Chargeback filed with complete evidence package, provisional credit issued, and merchant flagged - routing based on complexity and win probability.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Win Probability", "value": "87%" },
+              { "icon": "dollar", "label": "Documentation", "value": "Complete" }
+            ]
+          }
         }
       ]
     },
@@ -833,6 +859,19 @@
           "speaker": "agent",
           "text": "Pattern analysis: ProFit Wellness linked to 34 similar cases across portfolio (suspected card testing operation). Common thread: Small recurring charges, zero customer engagement. Portfolio exposure: $6,847 total. Recommendation: Add to merchant watchlist, implement real-time subscription verification for this merchant category.",
           "delay": 2600
+        },
+        {
+          "speaker": "summary",
+          "text": "Subscription fraud identified automatically through usage pattern analysis. Multi-month recovery executed, merchant blocked, and portfolio exposure assessed - with watchlist updated across 34 related cases for proactive prevention.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Portfolio Cases", "value": "34 similar" },
+              { "icon": "dollar", "label": "Exposure Saved", "value": "$6,847" }
+            ]
+          }
         }
       ]
     },
@@ -960,6 +999,19 @@
           "speaker": "agent",
           "text": "Strategic impact analysis: Proactive detection prevented $2,847 loss. Customer experience: Exceptional (zero effort, zero loss). Attack vector identified: Compromised cards from data breach at third-party retailer. Portfolio protection: Pattern shared across fraud detection system, 127 similar attempts blocked network-wide today. Annual savings from proactive blocks: $12.3M.",
           "delay": 2800
+        },
+        {
+          "speaker": "summary",
+          "text": "Fraud blocked in real-time before posting. Risk scoring, geolocation analysis, and velocity checks executed instantly - with attack pattern shared across network to protect 127 additional cardholders automatically.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Detection Time", "value": "Real-time" },
+              { "icon": "check", "label": "Network Protected", "value": "127 cards" },
+              { "icon": "dollar", "label": "Loss Prevention", "value": "$12.3M YTD" }
+            ]
+          }
         }
       ]
     },
@@ -1087,6 +1139,19 @@
           "speaker": "agent",
           "text": "Recommendation: Yes. Grand Hotel Paris added to DCC watchlist. 14 similar complaints identified in past 6 months. Alert system activated: Future transactions at this merchant will trigger real-time SMS to customer: 'Decline currency conversion if offered.' Portfolio protection: Estimated $8.4K annual savings.",
           "delay": 2600
+        },
+        {
+          "speaker": "summary",
+          "text": "Currency markup detected automatically through exchange rate analysis and regulatory compliance verification. Credit issued, chargeback filed with complete citations, and merchant watchlist updated - with customer alerts activated for future protection.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Merchant Flagged", "value": "14 cases" },
+              { "icon": "dollar", "label": "Portfolio Savings", "value": "$8.4K/yr" }
+            ]
+          }
         }
       ]
     },
@@ -1214,6 +1279,19 @@
           "speaker": "agent",
           "text": "Multi-layer response executed: 1) Scam reported to Canadian Anti-Fraud Centre, 2) Tech Support Services LLC added to merchant block list network-wide, 3) Portfolio scan: 23 customers 65+ with similar patterns identified and contacted, 4) Pattern shared with Financial Crimes Enforcement Network (FinCEN). Estimated portfolio protection: $340K in prevented losses.",
           "delay": 3000
+        },
+        {
+          "speaker": "summary",
+          "text": "Elder scam detected automatically through behavioral analysis and intervention protocol. Wire recall executed, trusted contacts enabled, and authorities notified - with 23 vulnerable customers proactively protected across portfolio.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Response Time", "value": "Real-time" },
+              { "icon": "check", "label": "Portfolio Protected", "value": "23 customers" },
+              { "icon": "dollar", "label": "Loss Prevention", "value": "$340K" }
+            ]
+          }
         }
       ]
     },
@@ -1341,6 +1419,19 @@
           "speaker": "agent",
           "text": "Customer advocacy package prepared: 1) Timeline of events document, 2) EOB summary, 3) Hospital billing resolution letter, 4) Direct contact for hospital billing dept if needed. Added benefit: City Medical Center flagged in system - future charges will trigger automatic insurance verification check before posting to customer accounts.",
           "delay": 2600
+        },
+        {
+          "speaker": "summary",
+          "text": "Medical billing error resolved automatically through insurance coordination analysis and hospital communication. Double-charge detected, credit issued immediately, and provider flagged - with complete documentation package prepared for customer records.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "BMO Team Impact",
+            "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
+              { "icon": "check", "label": "Hospital Contacted", "value": "Direct" },
+              { "icon": "dollar", "label": "Customer Stress", "value": "Eliminated" }
+            ]
+          }
         }
       ]
     }
