@@ -520,6 +520,19 @@
           "speaker": "agent",
           "text": "Case resolved ✅ Pattern logged to identify similar merchant errors automatically.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "This demonstration showed how AI agents resolved a duplicate billing error in under 2 minutes, automatically refunding Marcus while maintaining his subscription. The system prevented customer frustration and reduced manual investigation time by 94%.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Business Impact",
+            "metrics": [
+              { "icon": "check", "label": "Resolution Time", "value": "< 2 min" },
+              { "icon": "dollar", "label": "Customer Retained", "value": "100%" },
+              { "icon": "trending", "label": "Manual Work Saved", "value": "94%" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -634,6 +647,19 @@
           "speaker": "agent",
           "text": "Dispute won ✅ This merchant flagged for closer monitoring on future cancellation disputes.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "This case demonstrates the system's superior travel dispute handling with 83% win rate versus 52% industry average. Emily received immediate relief while comprehensive documentation ensures successful chargeback outcomes.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Travel Dispute Excellence",
+            "metrics": [
+              { "icon": "check", "label": "Win Rate", "value": "83%" },
+              { "icon": "dollar", "label": "Amount Recovered", "value": "$425" },
+              { "icon": "trending", "label": "Resolution Speed", "value": "2 days" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -748,6 +774,19 @@
           "speaker": "agent",
           "text": "Case closed ✅ This subscription pattern added to early detection models across all customers.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "This case highlights the system's ability to detect and recover multi-month subscription fraud totaling $179.94. Proactive pattern detection prevents $2.3M in annual unauthorized charges across the portfolio while protecting customer accounts.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Subscription Fraud Prevention",
+            "metrics": [
+              { "icon": "check", "label": "Amount Recovered", "value": "$179.94" },
+              { "icon": "dollar", "label": "Annual Protection", "value": "$2.3M" },
+              { "icon": "trending", "label": "Detection Rate", "value": "91%" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -862,6 +901,19 @@
           "speaker": "agent",
           "text": "Threat neutralized ✅ This attack pattern shared across network to protect all BMO customers.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "This demonstration showcases real-time fraud prevention that stopped a $2,847 attack before any customer impact. The system's proactive blocking prevents $8.4M in annual fraud losses while delivering exceptional customer experience through instant protection.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Proactive Protection Impact",
+            "metrics": [
+              { "icon": "check", "label": "Fraud Blocked", "value": "$2,847" },
+              { "icon": "dollar", "label": "Annual Prevention", "value": "$8.4M" },
+              { "icon": "trending", "label": "Detection Speed", "value": "Real-time" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -976,6 +1028,19 @@
           "speaker": "agent",
           "text": "Case won ✅ This merchant flagged. We'll alert customers about currency conversion options at this location.",
           "delay": 1500
+        },
+        {
+          "speaker": "summary",
+          "text": "This case demonstrates sophisticated international transaction protection, recovering $127 in hidden currency markup. The system educates customers on currency best practices while strengthening the value proposition of premium travel cards.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "International Protection",
+            "metrics": [
+              { "icon": "check", "label": "Amount Recovered", "value": "$127" },
+              { "icon": "dollar", "label": "Avg Markup Caught", "value": "18%" },
+              { "icon": "trending", "label": "Customer Education", "value": "High" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -1090,6 +1155,19 @@
           "speaker": "agent",
           "text": "Customer protected ✅ Scam pattern added to real-time detection. We're calling other customers who may be targeted.",
           "delay": 1800
+        },
+        {
+          "speaker": "summary",
+          "text": "This case highlights specialized elder fraud protection that recovered $15,000 from a tech support scam. The system combines behavioral analytics, family notifications, and compassionate intervention to protect vulnerable customers while preventing an estimated $4.2M in annual elder fraud losses.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Elder Protection Impact",
+            "metrics": [
+              { "icon": "check", "label": "Amount Recovered", "value": "$15,000" },
+              { "icon": "users", "label": "Family Alerts", "value": "Enabled" },
+              { "icon": "dollar", "label": "Annual Prevention", "value": "$4.2M" }
+            ]
+          }
         }
       ],
       "bmoConversation": [
@@ -1204,6 +1282,19 @@
           "speaker": "agent",
           "text": "Issue resolved ✅ This hospital's billing system flagged. We'll expedite future insurance disputes from this provider.",
           "delay": 1600
+        },
+        {
+          "speaker": "summary",
+          "text": "This case demonstrates compassionate handling of complex medical billing disputes, resolving Patricia's $2,340 insurance coordination error in under 3 minutes. The system reduced medical dispute resolution time from 14 days to 2 minutes, alleviating customer stress during vulnerable moments.",
+          "delay": 2000,
+          "summaryData": {
+            "title": "Medical Billing Resolution",
+            "metrics": [
+              { "icon": "check", "label": "Resolution Time", "value": "< 3 min" },
+              { "icon": "dollar", "label": "Amount Resolved", "value": "$2,340" },
+              { "icon": "trending", "label": "Time Saved", "value": "93%" }
+            ]
+          }
         }
       ],
       "bmoConversation": [

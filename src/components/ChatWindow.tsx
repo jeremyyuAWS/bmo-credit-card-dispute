@@ -48,11 +48,18 @@ export function ChatWindow({
   const conversationRef = useRef(conversation);
 
   useEffect(() => {
-    if (isActive && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: scrollContainerRef.current.scrollHeight,
-        behavior: 'smooth'
-      });
+    if (scrollContainerRef.current) {
+      const scrollToBottom = () => {
+        scrollContainerRef.current?.scrollTo({
+          top: scrollContainerRef.current.scrollHeight,
+          behavior: 'smooth'
+        });
+      };
+
+      scrollToBottom();
+      const timeoutId = setTimeout(scrollToBottom, 100);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [messages, showingAgent, isActive]);
 
