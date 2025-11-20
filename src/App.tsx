@@ -240,7 +240,7 @@ function App() {
                 }`}
               >
                 <Users className="w-4 h-4" />
-                <span>BMO Team</span>
+                <span>Fraud Team</span>
               </button>
             </div>
 
