@@ -152,7 +152,7 @@
           "text": "Case was processed automatically in seconds. Eligibility verified, compliance checked, and resolution executed - no manual handoffs, no delays. System coordinated across seven specialized agents while maintaining complete audit trail.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Automation Rate", "value": "High Priority" },
@@ -598,7 +598,7 @@
           "text": "Duplicate billing detected and resolved automatically. Transaction analysis completed, merchant contacted, and credit issued - with subscription status maintained. Zero manual intervention required for standard merchant error.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Status", "value": "Auto-Resolved" },
@@ -738,7 +738,7 @@
           "text": "Travel dispute processed automatically through policy verification and documentation analysis. Chargeback filed with complete evidence package, provisional credit issued, and merchant flagged - routing based on complexity and win probability.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Win Probability", "value": "87%" },
@@ -878,7 +878,7 @@
           "text": "Subscription fraud identified automatically through usage pattern analysis. Multi-month recovery executed, merchant blocked, and portfolio exposure assessed - with watchlist updated across 34 related cases for proactive prevention.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Portfolio Cases", "value": "34 similar" },
@@ -1018,7 +1018,7 @@
           "text": "Fraud blocked in real-time before posting. Risk scoring, geolocation analysis, and velocity checks executed instantly - with attack pattern shared across network to protect 127 additional cardholders automatically.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Detection Time", "value": "Real-time" },
               { "icon": "check", "label": "Network Protected", "value": "127 cards" },
@@ -1158,7 +1158,7 @@
           "text": "Currency markup detected automatically through exchange rate analysis and regulatory compliance verification. Credit issued, chargeback filed with complete citations, and merchant watchlist updated - with customer alerts activated for future protection.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Merchant Flagged", "value": "14 cases" },
@@ -1298,7 +1298,7 @@
           "text": "Elder scam detected automatically through behavioral analysis and intervention protocol. Wire recall executed, trusted contacts enabled, and authorities notified - with 23 vulnerable customers proactively protected across portfolio.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Response Time", "value": "Real-time" },
               { "icon": "check", "label": "Portfolio Protected", "value": "23 customers" },
@@ -1438,7 +1438,7 @@
           "text": "Medical billing error resolved automatically through insurance coordination analysis and hospital communication. Double-charge detected, credit issued immediately, and provider flagged - with complete documentation package prepared for customer records.",
           "delay": 2000,
           "summaryData": {
-            "title": "BMO Team Impact",
+            "title": "Fraud Team Impact",
             "metrics": [
               { "icon": "trending", "label": "Processing Time", "value": "< 30 sec" },
               { "icon": "check", "label": "Hospital Contacted", "value": "Direct" },
