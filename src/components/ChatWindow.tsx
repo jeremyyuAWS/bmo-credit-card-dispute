@@ -125,6 +125,15 @@ export function ChatWindow({
     }
   };
 
+  const handleScrollToBottom = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const renderMessages = () => {
     const elements: JSX.Element[] = [];
 
@@ -148,6 +157,7 @@ export function ChatWindow({
           customerName={customerName}
           bmoTeamMember={bmoTeamMember}
           summaryData={msg.summaryData}
+          onMessageRender={handleScrollToBottom}
         />
       );
     });

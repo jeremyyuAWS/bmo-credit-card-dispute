@@ -21,6 +21,7 @@ interface ChatMessageProps {
     title: string;
     metrics: Array<{ icon: string; label: string; value: string }>;
   };
+  onMessageRender?: () => void;
 }
 
 export function ChatMessage({
@@ -34,7 +35,8 @@ export function ChatMessage({
   viewMode = 'customer',
   customerName,
   bmoTeamMember,
-  summaryData
+  summaryData,
+  onMessageRender
 }: ChatMessageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
@@ -67,10 +69,11 @@ export function ChatMessage({
     const typingTimer = setTimeout(() => {
       setCurrentCharIndex(prev => prev + 1);
       setDisplayedText(initialText.slice(0, currentCharIndex + 1));
+      onMessageRender?.();
     }, charDelay);
 
     return () => clearTimeout(typingTimer);
-  }, [isVisible, currentCharIndex, initialText, playbackSpeed, speaker, isActive]);
+  }, [isVisible, currentCharIndex, initialText, playbackSpeed, speaker, isActive, onMessageRender]);
 
   useEffect(() => {
     if (!isActive) return;
@@ -106,23 +109,23 @@ export function ChatMessage({
 
   if (speaker === 'summary' && summaryData) {
     return (
-      <div className="flex justify-center mb-6 animate-fadeIn mt-6">
-        <div className="w-full max-w-4xl bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 rounded-2xl p-6 shadow-lg">
-          <div className="flex items-center space-x-2 mb-4">
+      <div className="flex justify-center mb-6 animate-fadeIn mt-8">
+        <div className="w-full max-w-4xl bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl p-6 shadow-xl">
+          <div className="flex items-center space-x-2 mb-3">
             <CheckCircle2 className="w-6 h-6 text-green-600" />
-            <h3 className="text-lg font-bold text-black">{summaryData.title}</h3>
+            <h3 className="text-xl font-bold text-black">{summaryData.title}</h3>
           </div>
-          <p className="text-sm text-gray-700 mb-4 leading-relaxed">{text}</p>
+          <p className="text-sm text-gray-800 mb-5 leading-relaxed">{text}</p>
           <div className="grid grid-cols-3 gap-4">
             {summaryData.metrics.map((metric, index) => {
               const Icon = getIcon(metric.icon);
               return (
-                <div key={index} className="bg-white rounded-xl p-4 border border-green-100">
-                  <div className="flex items-center space-x-2 mb-1">
+                <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-center space-x-2 mb-2">
                     <Icon className="w-4 h-4 text-green-600" />
-                    <span className="text-xs font-semibold text-gray-600">{metric.label}</span>
+                    <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">{metric.label}</span>
                   </div>
-                  <p className="text-lg font-bold text-black">{metric.value}</p>
+                  <p className="text-2xl font-bold text-black">{metric.value}</p>
                 </div>
               );
             })}

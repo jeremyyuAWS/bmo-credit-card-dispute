@@ -136,14 +136,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This demonstration showcased how Lyzr's AI agents transformed a $142 fraud case from an 18-minute manual process into a 2.1-minute automated resolution. Sarah received instant protection while BMO maintained compliance, prevented future fraud, and achieved 98% automation.",
+          "text": "Sarah's fraud case was resolved automatically in seconds. Documents verified, card reissued, and recurring payments transferred - no manual handoffs, no delays. Seven specialized agents worked together seamlessly to protect her account while maintaining full compliance.",
           "delay": 2000,
           "summaryData": {
-            "title": "Demo Value Summary",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Customer Impact", "value": "2-min resolution" },
-              { "icon": "dollar", "label": "Cost Savings", "value": "$44.60 per case" },
-              { "icon": "trending", "label": "Automation Rate", "value": "98.4%" }
+              { "icon": "trending", "label": "Resolution Time", "value": "< 2 min" },
+              { "icon": "check", "label": "Agent Coordination", "value": "7 agents" },
+              { "icon": "dollar", "label": "Cost Savings", "value": "$44.60/case" }
             ]
           }
         }
@@ -523,14 +523,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This demonstration showed how AI agents resolved a duplicate billing error in under 2 minutes, automatically refunding Marcus while maintaining his subscription. The system prevented customer frustration and reduced manual investigation time by 94%.",
+          "text": "Marcus's duplicate charge was processed automatically in seconds. The merchant error was detected, verified against billing records, and refunded - while keeping his subscription active. No customer effort required, no service disruption.",
           "delay": 2000,
           "summaryData": {
-            "title": "Business Impact",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Resolution Time", "value": "< 2 min" },
-              { "icon": "dollar", "label": "Customer Retained", "value": "100%" },
-              { "icon": "trending", "label": "Manual Work Saved", "value": "94%" }
+              { "icon": "trending", "label": "Processing Time", "value": "< 2 min" },
+              { "icon": "check", "label": "Service Status", "value": "Maintained" },
+              { "icon": "dollar", "label": "Effort Required", "value": "Zero" }
             ]
           }
         }
@@ -650,14 +650,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This case demonstrates the system's superior travel dispute handling with 83% win rate versus 52% industry average. Emily received immediate relief while comprehensive documentation ensures successful chargeback outcomes.",
+          "text": "Emily's cancellation was verified automatically through policy analysis and documentation review. Provisional credit issued immediately while the chargeback was filed with supporting evidence - routed to the right process based on complexity and merchant history.",
           "delay": 2000,
           "summaryData": {
-            "title": "Travel Dispute Excellence",
+            "title": "Customer Experience",
             "metrics": [
+              { "icon": "trending", "label": "Processing Time", "value": "< 3 min" },
               { "icon": "check", "label": "Win Rate", "value": "83%" },
-              { "icon": "dollar", "label": "Amount Recovered", "value": "$425" },
-              { "icon": "trending", "label": "Resolution Speed", "value": "2 days" }
+              { "icon": "dollar", "label": "Credit Issued", "value": "Immediate" }
             ]
           }
         }
@@ -777,14 +777,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This case highlights the system's ability to detect and recover multi-month subscription fraud totaling $179.94. Proactive pattern detection prevents $2.3M in annual unauthorized charges across the portfolio while protecting customer accounts.",
+          "text": "David's subscription fraud was processed automatically in seconds. Six months of unauthorized charges detected through usage pattern analysis, recovered in full, and subscription cancelled - with enhanced monitoring activated to prevent future incidents.",
           "delay": 2000,
           "summaryData": {
-            "title": "Subscription Fraud Prevention",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Amount Recovered", "value": "$179.94" },
-              { "icon": "dollar", "label": "Annual Protection", "value": "$2.3M" },
-              { "icon": "trending", "label": "Detection Rate", "value": "91%" }
+              { "icon": "trending", "label": "Processing Time", "value": "< 3 min" },
+              { "icon": "check", "label": "Recovery Period", "value": "6 months" },
+              { "icon": "dollar", "label": "Amount Recovered", "value": "$179.94" }
             ]
           }
         }
@@ -904,14 +904,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This demonstration showcases real-time fraud prevention that stopped a $2,847 attack before any customer impact. The system's proactive blocking prevents $8.4M in annual fraud losses while delivering exceptional customer experience through instant protection.",
+          "text": "Jennifer's attempted fraud was blocked in real-time before any charge posted. Geolocation analyzed, merchant risk scored, and transaction pattern evaluated - card secured and reissued with all recurring payments automatically transferred.",
           "delay": 2000,
           "summaryData": {
-            "title": "Proactive Protection Impact",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Fraud Blocked", "value": "$2,847" },
-              { "icon": "dollar", "label": "Annual Prevention", "value": "$8.4M" },
-              { "icon": "trending", "label": "Detection Speed", "value": "Real-time" }
+              { "icon": "trending", "label": "Detection Time", "value": "Real-time" },
+              { "icon": "check", "label": "Customer Loss", "value": "$0" },
+              { "icon": "dollar", "label": "Threat Blocked", "value": "$2,847" }
             ]
           }
         }
@@ -1031,14 +1031,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This case demonstrates sophisticated international transaction protection, recovering $127 in hidden currency markup. The system educates customers on currency best practices while strengthening the value proposition of premium travel cards.",
+          "text": "Raj's currency charge was processed automatically through exchange rate analysis and merchant disclosure verification. Hidden markup detected, chargeback filed with regulatory citations, and customer educated on future travel best practices.",
           "delay": 2000,
           "summaryData": {
-            "title": "International Protection",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Amount Recovered", "value": "$127" },
-              { "icon": "dollar", "label": "Avg Markup Caught", "value": "18%" },
-              { "icon": "trending", "label": "Customer Education", "value": "High" }
+              { "icon": "trending", "label": "Processing Time", "value": "< 3 min" },
+              { "icon": "check", "label": "Markup Detected", "value": "18%" },
+              { "icon": "dollar", "label": "Amount Recovered", "value": "$127" }
             ]
           }
         }
@@ -1158,14 +1158,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This case highlights specialized elder fraud protection that recovered $15,000 from a tech support scam. The system combines behavioral analytics, family notifications, and compassionate intervention to protect vulnerable customers while preventing an estimated $4.2M in annual elder fraud losses.",
+          "text": "Dorothy's wire transfers were intercepted automatically through behavioral pattern analysis and scam detection. Funds recalled, family notifications enabled, and account secured - with compassionate intervention protecting a vulnerable customer from financial abuse.",
           "delay": 2000,
           "summaryData": {
-            "title": "Elder Protection Impact",
+            "title": "Customer Experience",
             "metrics": [
+              { "icon": "trending", "label": "Response Time", "value": "Real-time" },
               { "icon": "check", "label": "Amount Recovered", "value": "$15,000" },
-              { "icon": "users", "label": "Family Alerts", "value": "Enabled" },
-              { "icon": "dollar", "label": "Annual Prevention", "value": "$4.2M" }
+              { "icon": "users", "label": "Family Alerts", "value": "Enabled" }
             ]
           }
         }
@@ -1285,14 +1285,14 @@
         },
         {
           "speaker": "summary",
-          "text": "This case demonstrates compassionate handling of complex medical billing disputes, resolving Patricia's $2,340 insurance coordination error in under 3 minutes. The system reduced medical dispute resolution time from 14 days to 2 minutes, alleviating customer stress during vulnerable moments.",
+          "text": "Patricia's medical billing issue was processed automatically through insurance coordination verification and hospital billing analysis. Double-charge detected, credit issued immediately, and hospital contacted directly - eliminating stress during a vulnerable medical situation.",
           "delay": 2000,
           "summaryData": {
-            "title": "Medical Billing Resolution",
+            "title": "Customer Experience",
             "metrics": [
-              { "icon": "check", "label": "Resolution Time", "value": "< 3 min" },
-              { "icon": "dollar", "label": "Amount Resolved", "value": "$2,340" },
-              { "icon": "trending", "label": "Time Saved", "value": "93%" }
+              { "icon": "trending", "label": "Processing Time", "value": "< 3 min" },
+              { "icon": "check", "label": "Customer Effort", "value": "Minimal" },
+              { "icon": "dollar", "label": "Amount Resolved", "value": "$2,340" }
             ]
           }
         }
